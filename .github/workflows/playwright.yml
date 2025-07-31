@@ -22,6 +22,9 @@ jobs:
       - name: Restore NuGet packages
         run: dotnet restore WebApp.sln
 
+      - name: Install missing NuGet package (QRCoder)
+        run: dotnet add eUseControl.Helper/eUseControl.Helper.csproj package QRCoder
+
       - name: Build solution
         run: dotnet build WebApp.sln --configuration Debug
 
