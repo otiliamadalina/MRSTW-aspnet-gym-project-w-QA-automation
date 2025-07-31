@@ -17,7 +17,10 @@ jobs:
       - name: Build solution with MSBuild
         uses: microsoft/setup-msbuild@v1.1
 
-      - run: msbuild WebsiteGym.sln /p:Configuration=Debug
+      - name: Build solution
+        run: |
+          cd WebsiteGym.Web
+          msbuild WebsiteGym.Web.sln /p:Configuration=Debug
 
       - name: Start the web app
         run: |
