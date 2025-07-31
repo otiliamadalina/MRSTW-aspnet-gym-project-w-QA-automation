@@ -1,0 +1,43 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "4.8.x" # ← .NET Framework (nu Core)
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Restore NuGet packages
+        run: nuget restore WebsiteGym.sln
+
+      - name: Build the solution
+        run: msbuild WebsiteGym.sln /p:Configuration=Debug
+
+      - name: Start the web app
+        run: |
+          cd WebsiteGym.Web
+          start /B cmd /c "bin\Debug\WebsiteGym.Web.exe"
+          timeout /t 10
+
+      - name: Install Playwright and run tests
+        run: |
+          cd PlaywrightTests
+          npm ci
+          npx playwright install
+          npx playwright test
