@@ -20,12 +20,12 @@ jobs:
         run: nuget restore WebApp.sln
 
       - name: Build solution
-        run: msbuild WebApp.sln /p:Configuration=Debug
+        run: '"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" WebApp.sln /p:Configuration=Debug'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+         node-version: '20'
 
       - name: Install Playwright dependencies
         run: npm install
