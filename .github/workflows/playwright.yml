@@ -19,13 +19,13 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install dependencies
-        run: dotnet restore WebsiteGym.sln
+      - name: Restore NuGet packages
+        run: dotnet restore WebApp.sln
 
       - name: Build solution
         run: msbuild WebApp.sln /p:Configuration=Debug
 
-      - name: Install Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -34,7 +34,7 @@ jobs:
         run: npm ci
         working-directory: PlaywrightTests
 
-      - name: Install Playwright Browsers
+      - name: Install Playwright browsers
         run: npx playwright install --with-deps
         working-directory: PlaywrightTests
 
