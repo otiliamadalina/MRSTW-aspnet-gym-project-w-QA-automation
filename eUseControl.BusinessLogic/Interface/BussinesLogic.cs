@@ -4,7 +4,6 @@ namespace eUseControl.BusinessLogic.Interface
 {
      public class BussinesLogic
      {
-
           public IUserServices GetUserApi()
           {
                return new UserServices();
