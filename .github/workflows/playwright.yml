@@ -7,30 +7,37 @@ on:
   pull_request:
 
 jobs:
-  test:
+  build-and-test:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build solution with MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Install dependencies
+        run: dotnet restore WebsiteGym.sln
 
       - name: Build solution
-        run: |
-          cd WebsiteGym.Web
-          msbuild WebsiteGym.Web.sln /p:Configuration=Debug
+        run: msbuild WebApp.sln /p:Configuration=Debug
 
-      - name: Start the web app
-        run: |
-          cd WebsiteGym.Web
-          start /B cmd /c "bin\Debug\WebsiteGym.Web.exe"
-          timeout /t 10
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-      - name: Install Playwright and run tests
-        run: |
-          cd PlaywrightTests
-          npm ci
-          npx playwright install
-          npx playwright test
+      - name: Install Playwright deps
+        run: npm ci
+        working-directory: PlaywrightTests
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        working-directory: PlaywrightTests
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        working-directory: PlaywrightTests
