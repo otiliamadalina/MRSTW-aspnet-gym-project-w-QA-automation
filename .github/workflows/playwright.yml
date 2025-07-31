@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore WebApp.sln
 
       - name: Build solution
-        run: msbuild WebApp.sln /p:Configuration=Debug
+        run: dotnet build WebApp.sln --configuration Debug
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
