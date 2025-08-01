@@ -1,4 +1,4 @@
-name: CI - Build & E2E Tests
+name: Run Playwright Tests on IIS Express
 
 on:
   workflow_dispatch: {}
@@ -8,93 +8,56 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  test:
     runs-on: windows-latest
 
+    env:
+      IIS_PATH: "C:\\Program Files (x86)\\IIS Express\\iisexpress.exe"
+      WEB_PROJECT_PATH: "${{ github.workspace }}\\WebsiteGym.Web"
+      TEMPLATE_CONFIG: "${{ github.workspace }}\\iisconfig\\applicationhost.config"
+      ACTUAL_CONFIG: "${{ github.workspace }}\\iisconfig\\actual.config"
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+    - name: Replace site path in config
+      run: |
+        $template = Get-Content "$env:TEMPLATE_CONFIG"
+        $template -replace 'C:\\site', "$env:WEB_PROJECT_PATH" | Set-Content "$env:ACTUAL_CONFIG"
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+    - name: Start IIS Express
+      run: |
+        Start-Process -FilePath "$env:IIS_PATH" `
+                      -ArgumentList "/config:$env:ACTUAL_CONFIG", "/site:WebsiteGym.Web", "/apppool:Clr4IntegratedAppPool" `
+                      -NoNewWindow
 
-      - name: Restore NuGet packages
-        run: nuget restore WebApp.sln
-
-      - name: Build Solution with MSBuild
-        shell: pwsh
-        run: msbuild WebApp.sln /p:Configuration=Debug
-
-      - name: Install Playwright dependencies
-        run: npm install
-        working-directory: PlaywrightTests
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-        working-directory: PlaywrightTests
-
-      - name: Start IIS Express with config
-        shell: pwsh
-        run: |
-          $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          $webProjectPath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          $templatePath = "$env:GITHUB_WORKSPACE\iisconfig\applicationhost.config"
-          $actualPath = "$env:GITHUB_WORKSPACE\iisconfig\actual.config"
-
-          (Get-Content $templatePath) -replace 'C:\\site', $webProjectPath | Set-Content $actualPath
-
-          Start-Process -FilePath $iisPath -ArgumentList "/config:$actualPath", "/site:WebsiteGym.Web", "/apppool:Clr4IntegratedAppPool" -NoNewWindow
-
-          Start-Sleep -Seconds 5
-
-      - name: Wait for port to open
-        shell: pwsh
-        run: |
-          $port = 44336
-          $retries = 15
-          $ok = $false
-
-          for ($i = 1; $i -le $retries; $i++) {
-            Write-Host "⏳ Checking port $port... attempt $i of $retries"
-            $result = Test-NetConnection -ComputerName "localhost" -Port $port
-            if ($result.TcpTestSucceeded) {
-              Write-Host "✅ Port $port is open!"
-              $ok = $true
-              break
-            }
-            Start-Sleep -Seconds 2
+    - name: Wait for IIS to start
+      run: |
+        $retry = 0
+        while ($retry -lt 15) {
+          if (Test-NetConnection -ComputerName 'localhost' -Port 44336).TcpTestSucceeded) {
+            Write-Host "✅ Port 44336 is open."
+            break
           }
+          Write-Host "⏳ Port not open yet, retrying... attempt $($retry + 1) of 15"
+          Start-Sleep -Seconds 2
+          $retry++
+        }
+        if ($retry -eq 15) {
+          throw "❌ Port 44336 is NOT open after 15 attempts"
+        }
 
-          if (-not $ok) {
-            Write-Error "❌ Port $port is NOT open after $retries attempts"
-            exit 1
-          }
+    - name: Install dependencies
+      run: npm ci
+      working-directory: PlaywrightTests
 
-      - name: Run Playwright tests
-        run: npx playwright test --project=chromium
-        working-directory: PlaywrightTests
+    - name: Run Playwright tests
+      run: npx playwright test
+      working-directory: PlaywrightTests
 
-      - name: Upload Playwright HTML report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: PlaywrightTests/playwright-report
-
-      - name: Stop IIS Express
-        shell: pwsh
-        run: |
-          $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          $processes = Get-Process -Name iisexpress -ErrorAction Silent
-          if ($processes) {
-            Write-Host "Stopping IIS Express..."
-            Stop-Process -Name iisexpress -Force
-            Write-Host "IIS Express stopped."
-          } else {
-            Write-Host "IIS Express is not running."
-          }
+    - name: Kill IIS Express
+      if: always()
+      shell: pwsh
+      run: |
+        Get-Process iisexpress -ErrorAction SilentlyContinue | Stop-Process -Force
