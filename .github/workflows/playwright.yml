@@ -46,11 +46,10 @@ jobs:
           $configTemplate = "$env:GITHUB_WORKSPACE\iisconfig\applicationhost.config"
           $configActual = "$env:GITHUB_WORKSPACE\iisconfig\actual.config"
 
-          # Înlocuiește C:\site cu path-ul real
           (Get-Content $configTemplate) -replace 'C:\\site', $webProjectPath | Set-Content $configActual
 
           Start-Process -FilePath $iisPath `
-            -ArgumentList "/config:$configActual", "/site:WebsiteGym.Web", "/trace:error" `
+            -ArgumentList "/config:$configActual", "/site:WebsiteGym.Web" `
             -NoNewWindow
 
           Start-Sleep -Seconds 5
