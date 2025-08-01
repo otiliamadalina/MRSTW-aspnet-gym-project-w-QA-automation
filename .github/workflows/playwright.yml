@@ -39,6 +39,19 @@ jobs:
         run: npx playwright install --with-deps
         working-directory: PlaywrightTests
 
+      - name: Start IIS Express
+        run: |
+          Start-Process -FilePath "C:\Program Files\IIS Express\iisexpress.exe" `
+            -ArgumentList '/path:"D:\a\gym-website\gym-website\WebsiteGym.Web"', '/port:44336' `
+            -NoNewWindow
+
+
+      - name: Wait for app to start
+        run: Start-Sleep -Seconds 10
+
+      - name: Check localhost is up
+        run: curl -k https://localhost:44336
+
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: PlaywrightTests
