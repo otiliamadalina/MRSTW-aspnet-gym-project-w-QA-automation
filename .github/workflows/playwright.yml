@@ -43,11 +43,23 @@ jobs:
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
           $webProjectPath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          $logPath = "$env:GITHUB_WORKSPACE\iis.log"
-          $proc = Start-Process -FilePath $iisPath -ArgumentList "/path:`"$webProjectPath`"", "/port:44336" -RedirectStandardOutput $logPath -RedirectStandardError $logPath -PassThru
+          $stdoutPath = "$env:GITHUB_WORKSPACE\iis_stdout.log"
+          $stderrPath = "$env:GITHUB_WORKSPACE\iis_stderr.log"
+
+          $proc = Start-Process -FilePath $iisPath `
+            -ArgumentList "/path:`"$webProjectPath`"", "/port:44336" `
+            -RedirectStandardOutput $stdoutPath `
+            -RedirectStandardError $stderrPath `
+            -PassThru
+
           Start-Sleep -Seconds 3
-          Write-Host "Started IIS Express with PID $($proc.Id)"
-          Get-Content $logPath -Tail 30
+          Write-Host "✅ Started IIS Express with PID $($proc.Id)"
+
+          Write-Host "📄 IIS Express stdout (last 30 lines):"
+          Get-Content $stdoutPath -Tail 30
+
+          Write-Host "📄 IIS Express stderr (last 30 lines):"
+          Get-Content $stderrPath -Tail 30
 
       - name: Wait for IIS site to be available
         shell: pwsh
@@ -69,7 +81,7 @@ jobs:
             Write-Error "❌ Port 44336 is NOT open after $maxRetries attempts"
             exit 1
           }
-            
+
       - name: Run Playwright tests
         run: npx playwright test --project=chromium
         working-directory: PlaywrightTests
