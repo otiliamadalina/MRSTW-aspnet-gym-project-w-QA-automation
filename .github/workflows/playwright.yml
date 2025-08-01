@@ -27,6 +27,7 @@ jobs:
         run: nuget restore WebApp.sln
 
       - name: Build Solution with MSBuild
+        shell: pwsh
         run: msbuild WebApp.sln /p:Configuration=Debug /t:Rebuild
 
       - name: Install Playwright dependencies
@@ -41,21 +42,23 @@ jobs:
         shell: pwsh
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          $sitePath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          Start-Process $iisPath -ArgumentList "/path:$sitePath", "/port:44336" -NoNewWindow
-          Start-Sleep -Seconds 10
+          $sitePath = Resolve-Path "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
+          Write-Host "Starting IISExpress for $sitePath"
+          Start-Process -FilePath $iisPath -ArgumentList "/path:`"$sitePath`"", '/port:44336' -NoNewWindow
+          Start-Sleep -Seconds 5
 
-      - name: Check if IIS site is up
+      - name: Wait for IIS site to be available
         shell: pwsh
         run: |
-          $maxRetries = 5
+          $maxRetries = 10
           $success = $false
           for ($i = 0; $i -lt $maxRetries; $i++) {
             try {
-              curl -sSf http://localhost:44336 > $null
+              Invoke-WebRequest -Uri http://localhost:44336 -UseBasicParsing -TimeoutSec 5
               $success = $true
               break
             } catch {
+              Write-Host "IIS not up yet, retrying... ($i)"
               Start-Sleep -Seconds 2
             }
           }
@@ -74,3 +77,9 @@ jobs:
         with:
           name: playwright-report
           path: PlaywrightTests/playwright-report
+
+      - name: Show IIS logs (optional debug)
+        if: failure()
+        shell: pwsh
+        run: |
+          Get-Content "$env:USERPROFILE\Documents\IISExpress\logs\trace.log" -ErrorAction SilentlyContinue
