@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.3.1
+        uses: microsoft/setup-msbuild@v1.1
 
       - name: Restore NuGet packages
         run: nuget restore WebApp.sln
@@ -41,19 +41,35 @@ jobs:
         shell: pwsh
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          $sitePath = Resolve-Path "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          Start-Process $iisPath -ArgumentList "/path:`"$sitePath`"", '/port:44336', '/clr:4.0' -NoNewWindow
+          $sitePath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
+          Start-Process $iisPath -ArgumentList "/path:$sitePath", "/port:44336" -NoNewWindow
           Start-Sleep -Seconds 10
 
-      - name: Check IIS site is up
+      - name: Check if IIS site is up
         shell: pwsh
-        run: curl -v http://localhost:44336
+        run: |
+          $maxRetries = 5
+          $success = $false
+          for ($i = 0; $i -lt $maxRetries; $i++) {
+            try {
+              curl -sSf http://localhost:44336 > $null
+              $success = $true
+              break
+            } catch {
+              Start-Sleep -Seconds 2
+            }
+          }
+          if (-not $success) {
+            Write-Error "IIS Express did not start in time"
+            exit 1
+          }
 
       - name: Run Playwright tests
         run: npx playwright test --project=chromium --reporter=html
         working-directory: PlaywrightTests
 
-      - name: Upload Playwright report artifact
+      - name: Upload Playwright HTML report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
