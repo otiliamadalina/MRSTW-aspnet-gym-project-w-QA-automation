@@ -32,9 +32,11 @@ jobs:
 
       - name: Install Playwright dependencies
         run: npm install
+        working-directory: PlaywrightTests
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+        working-directory: PlaywrightTests
 
       - name: Start IIS Express
         shell: pwsh
@@ -45,6 +47,7 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test --project=chromium
+        working-directory: PlaywrightTests
 
       - name: Check IISExpress logs (optional debug)
         shell: pwsh
