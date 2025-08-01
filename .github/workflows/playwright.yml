@@ -43,14 +43,12 @@ jobs:
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
           $webProjectPath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          $configTemplate = "$env:GITHUB_WORKSPACE\iisconfig\applicationhost.config"
-          $configActual = "$env:GITHUB_WORKSPACE\iisconfig\actual.config"
+          $templatePath = "$env:GITHUB_WORKSPACE\iisconfig\applicationhost.config"
+          $actualPath = "$env:GITHUB_WORKSPACE\iisconfig\actual.config"
 
-          (Get-Content $configTemplate) -replace 'C:\\site', $webProjectPath | Set-Content $configActual
+          (Get-Content $templatePath) -replace 'C:\\site', $webProjectPath | Set-Content $actualPath
 
-          Start-Process -FilePath $iisPath `
-            -ArgumentList "/config:$configActual", "/site:WebsiteGym.Web" `
-            -NoNewWindow
+          Start-Process -FilePath $iisPath -ArgumentList "/config:$actualPath", "/site:WebsiteGym.Web", "/apppool:Clr4IntegratedAppPool" -NoNewWindow
 
           Start-Sleep -Seconds 5
 
