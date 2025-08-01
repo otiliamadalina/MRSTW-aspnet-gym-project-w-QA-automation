@@ -21,14 +21,13 @@ jobs:
           node-version: '20'
 
       - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+        uses: microsoft/setup-msbuild@v1.3.1
 
       - name: Restore NuGet packages
         run: nuget restore WebApp.sln
 
       - name: Build Solution with MSBuild
-        shell: pwsh
-        run: msbuild WebApp.sln /p:Configuration=Debug
+        run: msbuild WebApp.sln /p:Configuration=Debug /t:Rebuild
 
       - name: Install Playwright dependencies
         run: npm install
@@ -42,19 +41,20 @@ jobs:
         shell: pwsh
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          $projectPath = Resolve-Path "$env:GITHUB_WORKSPACE\WebsiteGym.Web\WebsiteGym.Web.csproj"
-          Start-Process $iisPath -ArgumentList "/project:`"$projectPath`"", '/port:44336' -NoNewWindow
+          $sitePath = Resolve-Path "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
+          Start-Process $iisPath -ArgumentList "/path:`"$sitePath`"", '/port:44336', '/clr:4.0' -NoNewWindow
           Start-Sleep -Seconds 10
 
       - name: Check IIS site is up
-        run: curl -v http://localhost:44336
         shell: pwsh
+        run: curl -v http://localhost:44336
 
       - name: Run Playwright tests
-        run: npx playwright test --project=chromium
+        run: npx playwright test --project=chromium --reporter=html
         working-directory: PlaywrightTests
 
-      - name: Check IISExpress logs (optional debug)
-        shell: pwsh
-        run: |
-          Get-Content "$env:USERPROFILE\Documents\IISExpress\logs\trace.log" -ErrorAction SilentlyContinue
+      - name: Upload Playwright report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: PlaywrightTests/playwright-report
