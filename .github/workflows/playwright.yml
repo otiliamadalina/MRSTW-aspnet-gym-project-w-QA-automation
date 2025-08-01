@@ -42,8 +42,13 @@ jobs:
         shell: pwsh
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          Start-Process $iisPath -ArgumentList '/path:"WebsiteGym.Web"', '/port:44336' -NoNewWindow
+          $projectPath = Resolve-Path "$env:GITHUB_WORKSPACE\WebsiteGym.Web\WebsiteGym.Web.csproj"
+          Start-Process $iisPath -ArgumentList "/project:`"$projectPath`"", '/port:44336' -NoNewWindow
           Start-Sleep -Seconds 10
+
+      - name: Check IIS site is up
+        run: curl -v http://localhost:44336
+        shell: pwsh
 
       - name: Run Playwright tests
         run: npx playwright test --project=chromium
