@@ -1,4 +1,4 @@
-name: ASP.NET & Playwright Tests
+name: Playwright Tests
 
 on:
   workflow_dispatch: {}
@@ -14,17 +14,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'  # ajustează după cum ai nevoie
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
-
-      - name: Restore NuGet packages
-        run: nuget restore WebApp.sln
+      - name: Restore dependencies
+        run: dotnet restore WebApp.sln
 
       - name: Build solution
-        run: msbuild WebApp.sln /p:Configuration=Debug
+        run: dotnet build WebApp.sln --no-restore --configuration Debug
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -39,26 +38,27 @@ jobs:
         run: npx playwright install --with-deps
         working-directory: PlaywrightTests
 
-      - name: Start IIS Express
+      - name: Run web app
+        run: dotnet run --no-build --project WebsiteGym.Web/WebsiteGym.Web.csproj --urls "https://localhost:5001"
+        shell: pwsh
+        env:
+          ASPNETCORE_ENVIRONMENT: Development
+        # Rulează în background
+        continue-on-error: true
+
+      - name: Wait for the app to be ready
         run: |
-          Start-Process -FilePath "C:\Program Files\IIS Express\iisexpress.exe" `
-            -ArgumentList '/path:"D:\a\gym-website\gym-website\WebsiteGym.Web"', '/port:44336' `
-            -NoNewWindow
-        shell: pwsh
-
-      - name: Wait for app to start
-        run: Start-Sleep -Seconds 10
-        shell: pwsh
-
-      - name: Check IISExpress logs
-        run: Get-Content "$env:USERPROFILE\Documents\IISExpress\logs\trace.log" -ErrorAction SilentlyContinue
-        shell: pwsh
-
-      - name: Check if app is running
-        run: curl -k https://localhost:44336
+          $retries = 0
+          do {
+            Start-Sleep -Seconds 2
+            $response = try { Invoke-WebRequest -Uri https://localhost:5001 -UseBasicParsing -SkipCertificateCheck } catch { $null }
+            $retries++
+          } while (!$response -and $retries -lt 15)
+          if (!$response) { throw "App did not start in time" }
         shell: pwsh
 
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: PlaywrightTests
-        shell: pwsh
+        env:
+          BASE_URL: https://localhost:5001
