@@ -11,29 +11,25 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
       - name: Restore NuGet packages
         run: nuget restore WebApp.sln
 
-      - name: Check MSBuild.exe presence
-        shell: pwsh
-        run: |
-          Test-Path "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
-
       - name: Build solution
-        shell: pwsh
-        run: |
-          & "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" WebApp.sln /p:Configuration=Debug
+        run: msbuild WebApp.sln /p:Configuration=Debug
 
-      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-         node-version: '20'
+          node-version: '20'
 
       - name: Install Playwright dependencies
         run: npm install
