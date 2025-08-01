@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: ASP.NET & Playwright Tests
 
 on:
   workflow_dispatch: {}
@@ -44,14 +44,21 @@ jobs:
           Start-Process -FilePath "C:\Program Files\IIS Express\iisexpress.exe" `
             -ArgumentList '/path:"D:\a\gym-website\gym-website\WebsiteGym.Web"', '/port:44336' `
             -NoNewWindow
-
+        shell: pwsh
 
       - name: Wait for app to start
         run: Start-Sleep -Seconds 10
+        shell: pwsh
 
-      - name: Check localhost is up
+      - name: Check IISExpress logs
+        run: Get-Content "$env:USERPROFILE\Documents\IISExpress\logs\trace.log" -ErrorAction SilentlyContinue
+        shell: pwsh
+
+      - name: Check if app is running
         run: curl -k https://localhost:44336
+        shell: pwsh
 
       - name: Run Playwright tests
         run: npx playwright test
         working-directory: PlaywrightTests
+        shell: pwsh
