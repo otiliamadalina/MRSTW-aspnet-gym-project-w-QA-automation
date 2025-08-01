@@ -40,38 +40,36 @@ jobs:
 
       - name: Start IIS Express
         shell: pwsh
-        id: start_iis
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
           $webProjectPath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          # Start IIS Express și salvează PID-ul în variabilă output
-          $process = Start-Process -FilePath $iisPath -ArgumentList "/path:`"$webProjectPath`"", "/port:44336" -PassThru
-          Write-Host "Started IIS Express with PID $($process.Id)"
-          # Așteaptă puțin înainte de retry-uri să pornească
+          $logPath = "$env:GITHUB_WORKSPACE\iis.log"
+          $proc = Start-Process -FilePath $iisPath -ArgumentList "/path:`"$webProjectPath`"", "/port:44336" -RedirectStandardOutput $logPath -RedirectStandardError $logPath -PassThru
           Start-Sleep -Seconds 3
-          echo "::set-output name=iis_pid::$($process.Id)"
+          Write-Host "Started IIS Express with PID $($proc.Id)"
+          Get-Content $logPath -Tail 30
 
       - name: Wait for IIS site to be available
         shell: pwsh
         run: |
           $maxRetries = 15
           $success = $false
-          for ($i = 0; $i -lt $maxRetries; $i++) {
-            try {
-              Invoke-WebRequest -Uri http://localhost:44336 -UseBasicParsing -TimeoutSec 5
-              Write-Host "IIS site is up!"
+          for ($i = 1; $i -le $maxRetries; $i++) {
+            $result = Test-NetConnection -ComputerName localhost -Port 44336
+            if ($result.TcpTestSucceeded) {
+              Write-Host "✅ Port 44336 is open!"
               $success = $true
               break
-            } catch {
-              Write-Host "IIS not up yet, retrying... attempt $($i+1) of $maxRetries"
+            } else {
+              Write-Host "❌ Port not open yet, retrying... attempt $i of $maxRetries"
               Start-Sleep -Seconds 3
             }
           }
           if (-not $success) {
-            Write-Error "IIS Express did not start in time"
+            Write-Error "❌ Port 44336 is NOT open after $maxRetries attempts"
             exit 1
           }
-
+            
       - name: Run Playwright tests
         run: npx playwright test --project=chromium
         working-directory: PlaywrightTests
