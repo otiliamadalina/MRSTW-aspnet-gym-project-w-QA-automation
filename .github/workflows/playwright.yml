@@ -8,44 +8,58 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: windows-latest
 
-    env:
-      IIS_PATH: "C:\\Program Files (x86)\\IIS Express\\iisexpress.exe"
-      WEB_PROJECT_PATH: "${{ github.workspace }}\\WebsiteGym.Web"
-      TEMPLATE_CONFIG: "${{ github.workspace }}\\iisconfig\\applicationhost.config"
-      ACTUAL_CONFIG: "${{ github.workspace }}\\iisconfig\\actual.config"
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
-    - name: Replace site path in config
+    - name: Setup IIS Express path
+      shell: pwsh
       run: |
-        $template = Get-Content "$env:TEMPLATE_CONFIG"
-        $template -replace 'C:\\site', "$env:WEB_PROJECT_PATH" | Set-Content "$env:ACTUAL_CONFIG"
+        $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
+        Write-Output "IIS Express path: $iisPath"
 
     - name: Start IIS Express
+      shell: pwsh
       run: |
-        Start-Process -FilePath "$env:IIS_PATH" `
-                      -ArgumentList "/config:$env:ACTUAL_CONFIG", "/site:WebsiteGym.Web", "/apppool:Clr4IntegratedAppPool" `
-                      -NoNewWindow
+        $webProjectPath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
+        $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
+        
+        # Pornim IIS Express direct pe folderul proiectului, port 44336
+        $arguments = "/path:`"$webProjectPath`" /port:44336"
+        Write-Output "Starting IIS Express with args: $arguments"
+        
+        Start-Process -FilePath $iisPath -ArgumentList $arguments -NoNewWindow
+        
+        # Așteptăm să se pornească
+        Start-Sleep -Seconds 10
 
-    - name: Wait for IIS to start
+    - name: Check if IIS Express port is open
+      shell: pwsh
       run: |
-        $retry = 0
-        while ($retry -lt 15) {
-          if (Test-NetConnection -ComputerName 'localhost' -Port 44336).TcpTestSucceeded) {
-            Write-Host "✅ Port 44336 is open."
-            break
+        $port = 44336
+        $maxAttempts = 15
+        $attempt = 0
+        $open = $false
+
+        while ($attempt -lt $maxAttempts -and -not $open) {
+          try {
+            $tcpClient = New-Object System.Net.Sockets.TcpClient("localhost", $port)
+            $open = $true
+            $tcpClient.Close()
+          } catch {
+            Write-Output "Port $port not open yet, retrying... attempt $($attempt + 1) of $maxAttempts"
+            Start-Sleep -Seconds 2
           }
-          Write-Host "⏳ Port not open yet, retrying... attempt $($retry + 1) of 15"
-          Start-Sleep -Seconds 2
-          $retry++
+          $attempt++
         }
-        if ($retry -eq 15) {
-          throw "❌ Port 44336 is NOT open after 15 attempts"
+
+        if (-not $open) {
+          Write-Error "Port $port is NOT open after $maxAttempts attempts"
+          exit 1
+        } else {
+          Write-Output "Port $port is open."
         }
 
     - name: Install dependencies
