@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Solution with MSBuild
         shell: pwsh
-        run: msbuild WebApp.sln /p:Configuration=Debug /t:Rebuild
+        run: msbuild WebApp.sln /p:Configuration=Debug
 
       - name: Install Playwright dependencies
         run: npm install
@@ -40,26 +40,31 @@ jobs:
 
       - name: Start IIS Express
         shell: pwsh
+        id: start_iis
         run: |
           $iisPath = "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe"
-          $sitePath = Resolve-Path "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
-          Write-Host "Starting IISExpress for $sitePath"
-          Start-Process -FilePath $iisPath -ArgumentList "/path:`"$sitePath`"", '/port:44336' -NoNewWindow
-          Start-Sleep -Seconds 5
+          $webProjectPath = "$env:GITHUB_WORKSPACE\WebsiteGym.Web"
+          # Start IIS Express și salvează PID-ul în variabilă output
+          $process = Start-Process -FilePath $iisPath -ArgumentList "/path:`"$webProjectPath`"", "/port:44336" -PassThru
+          Write-Host "Started IIS Express with PID $($process.Id)"
+          # Așteaptă puțin înainte de retry-uri să pornească
+          Start-Sleep -Seconds 3
+          echo "::set-output name=iis_pid::$($process.Id)"
 
       - name: Wait for IIS site to be available
         shell: pwsh
         run: |
-          $maxRetries = 10
+          $maxRetries = 15
           $success = $false
           for ($i = 0; $i -lt $maxRetries; $i++) {
             try {
               Invoke-WebRequest -Uri http://localhost:44336 -UseBasicParsing -TimeoutSec 5
+              Write-Host "IIS site is up!"
               $success = $true
               break
             } catch {
-              Write-Host "IIS not up yet, retrying... ($i)"
-              Start-Sleep -Seconds 2
+              Write-Host "IIS not up yet, retrying... attempt $($i+1) of $maxRetries"
+              Start-Sleep -Seconds 3
             }
           }
           if (-not $success) {
@@ -68,7 +73,7 @@ jobs:
           }
 
       - name: Run Playwright tests
-        run: npx playwright test --project=chromium --reporter=html
+        run: npx playwright test --project=chromium
         working-directory: PlaywrightTests
 
       - name: Upload Playwright HTML report
@@ -78,8 +83,14 @@ jobs:
           name: playwright-report
           path: PlaywrightTests/playwright-report
 
-      - name: Show IIS logs (optional debug)
-        if: failure()
+      - name: Stop IIS Express
+        if: always()
         shell: pwsh
         run: |
-          Get-Content "$env:USERPROFILE\Documents\IISExpress\logs\trace.log" -ErrorAction SilentlyContinue
+          $pid = ${{ steps.start_iis.outputs.iis_pid }}
+          if ($pid) {
+            Write-Host "Stopping IIS Express with PID $pid"
+            Stop-Process -Id $pid -Force
+          } else {
+            Write-Host "No IIS Express PID found, nothing to stop"
+          }
