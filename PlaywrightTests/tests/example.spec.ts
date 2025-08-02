@@ -1,14 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test('has title', async ({ page }) => {
-  await page.goto('https://localhost:44336');
+  await page.goto("/");
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle('Gym Management - Home');
 });
 
 test('get started link', async ({ page }) => {
-  await page.goto('https://localhost:44336');
+  await page.goto("/");
 
   // Click the get started link.
   await page.getByRole('link', { name: 'Join Now ↓' }).click();
