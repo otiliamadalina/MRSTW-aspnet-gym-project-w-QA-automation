@@ -10,7 +10,6 @@ export default class NavigationActions extends BaseActions {
     this.navigationSectionPage = new NavigationSection(page, context);
   }
 
-
   async pageUrlAsExpected(route: string) {
     await this.navigationSectionPage.page.waitForLoadState("domcontentloaded");
     await this.navigationSectionPage.page.waitForURL(`${route}`, {

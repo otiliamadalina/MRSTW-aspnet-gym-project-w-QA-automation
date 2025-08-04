@@ -1,3 +1,5 @@
 {
-
+    "homeLinks":{
+        "home":"https://localhost:44336"
+    }
 }

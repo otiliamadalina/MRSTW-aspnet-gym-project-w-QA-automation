@@ -10,8 +10,17 @@ export default class HomeActions extends BaseActions {
     this.home = new HomePage(page, context);
   }
 
-  async verifyHomePage() {
-    await expect(this.page).toHaveURL(/.*home/);
-    await expect(this.page.locator("h1")).toHaveText("Welcome to the Gym Website");
+  async verifyHeroCarousel() {
+    const heroCarouselImages = this.home.heroCarousel;
+    const count = await heroCarouselImages.count();
+
+    for(let i = 0; i < count; i++) {
+      const image = heroCarouselImages.nth(i);
+      await expect(image).toBeVisible();
+      await expect(image).toHaveAttribute("src", /.*\.jpg/);
+      
+      console.log('Image ' + (i + 1) + ' is visible with src: ' + await image.getAttribute('src'));
+    }
+
   }
 }
