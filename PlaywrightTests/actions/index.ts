@@ -1,13 +1,16 @@
 import { BrowserContext, Page } from "@playwright/test";
 import BaseActions from "./base.actions";
-import NavigationSectionActions from "./navigation.actions";
+import NavigationActions from "./navigation.actions";
+import HomeActions from "./home.actions";
 
 export default class App {
   base: BaseActions;
-  navigation: NavigationSectionActions;
+  navigation: NavigationActions;
+  home: HomeActions;
 
   constructor(page: Page, context: BrowserContext) {
     this.base = new BaseActions(page, context);
-    this.navigation = new NavigationSectionActions(page, context);
+    this.navigation = new NavigationActions(page, context);
+    this.home = new HomeActions(page, context);
 }
 }

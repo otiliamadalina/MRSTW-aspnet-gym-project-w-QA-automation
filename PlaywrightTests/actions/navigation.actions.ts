@@ -2,7 +2,7 @@ import BaseActions from "./base.actions";
 import { BrowserContext, expect, Page } from "@playwright/test";
 import NavigationSection from "../pages/navigation.page.ts";
 
-export default class NavigationSectionActions extends BaseActions {
+export default class NavigationActions extends BaseActions {
   navigationSectionPage: NavigationSection;
 
   constructor(page: Page, context: BrowserContext) {
