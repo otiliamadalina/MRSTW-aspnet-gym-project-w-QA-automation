@@ -22,25 +22,25 @@ jobs:
     - name: Start IIS Express on port 5000
       shell: pwsh
       run: |
-        Write-Host "Starting IIS Express with path: $env:WEB_PROJECT_PATH and port: $env:IIS_PORT"
-        Start-Process -FilePath $env:IIS_EXPRESS_PATH -ArgumentList "/path:`"$env:WEB_PROJECT_PATH`" /port:$env:IIS_PORT" -NoNewWindow
+        Write-Host "Starting IIS Express with path: $env:WEB_PROJECT_PATH and port: 5000"
+        Start-Process -FilePath $env:IIS_EXPRESS_PATH -ArgumentList "/path:`"$env:WEB_PROJECT_PATH`" /port:5000" -NoNewWindow
         Write-Host "Waiting for IIS Express to start..."
         $maxAttempts = 15
         $attempt = 0
         do {
           Start-Sleep -Seconds 2
-          $isListening = netstat -ano | Select-String ":$env:IIS_PORT"
+          $isListening = netstat -ano | Select-String ":5000"
           $attempt++
           if ($isListening) {
-            Write-Host "Port $env:IIS_PORT is now listening."
+            Write-Host "Port 5000 is now listening."
             break
           } else {
-            Write-Host "Port $env:IIS_PORT not open yet, retrying... attempt $attempt of $maxAttempts"
+            Write-Host "Port 5000 not open yet, retrying... attempt $attempt of $maxAttempts"
           }
         } while ($attempt -lt $maxAttempts)
 
         if (-not $isListening) {
-          Write-Error "Port $env:IIS_PORT is NOT open after $maxAttempts attempts"
+          Write-Error "Port 5000 is NOT open after $maxAttempts attempts"
           exit 1
         }
 
@@ -48,7 +48,7 @@ jobs:
       shell: pwsh
       run: |
         try {
-          $response = Invoke-WebRequest http://localhost:$env:IIS_PORT/ -UseBasicParsing -TimeoutSec 10
+          $response = Invoke-WebRequest http://localhost:5000/ -UseBasicParsing -TimeoutSec 10
           if ($response.StatusCode -eq 200) {
             Write-Host "IIS Express responded with status 200 OK"
           } else {
