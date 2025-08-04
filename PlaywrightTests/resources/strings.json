@@ -1,5 +1,24 @@
 {
     "home":{
-        "homeTitle":"Gym Management - Home"
+        "homeTitle":"Gym Management - Home",
+        "heroSection": {
+        "heroTitle":"Push Your Limits",
+        "heroDescription":"Experience the best training programs tailored to your needs.",
+        "joinNow":"Join Now ↓"
+        },
+
+        "ourServicesCards": {
+            "ourServicesTitle":"Our Services",
+            "personalTraining":"Personal Training",
+            "personalTrainingDescription":"One-on-one coaching with expert trainers.",
+            "groupClasses":"Group Classes",
+            "groupClassesDescription":"Exciting HIIT, yoga, and strength classes.",
+            "nutritionCoaching":"Nutrition Coaching",
+            "nutritionCoachingDescription":"Personalized meal plans for better results.",
+            "seeServicesButton":"See Services"
+        },
+        "ourMembershipsCards": {
+            "ourMembershipsTitle":"Our Memberships"
+        }
     }
 }
