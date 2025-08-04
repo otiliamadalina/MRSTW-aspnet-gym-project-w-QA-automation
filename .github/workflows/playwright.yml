@@ -13,7 +13,7 @@ jobs:
     env:
       WEB_PROJECT_PATH: ${{ github.workspace }}\WebsiteGym.Web
       IIS_EXPRESS_PATH: 'C:\Program Files\IIS Express\iisexpress.exe'
-      IIS_PORT: 44336
+      IIS_PORT: 5000
 
     steps:
     - name: Checkout code
