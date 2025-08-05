@@ -48,6 +48,11 @@ test.describe(
       await test.step("Click on each Link", async () => {
         await app.navbarFooter.verifyNavbarLinks();
       });
+
+      And("the user sees Footer");
+      await test.step("Verify Footer text", async() => {
+        await app.navbarFooter.verifyFooterText();
+      });
     });
   }
 );

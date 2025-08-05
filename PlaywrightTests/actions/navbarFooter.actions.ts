@@ -71,4 +71,12 @@ export default class navbarFooterActions extends BaseActions {
       await this.page.goBack();
     }
   }
+
+  async verifyFooterText() {
+    const footer = this.navbarFooter.footerText;
+    const footerText = strings.footer;
+
+    await expect(footer).toBeVisible();
+    await expect(footer).toHaveText(footerText);
+  }
 }
