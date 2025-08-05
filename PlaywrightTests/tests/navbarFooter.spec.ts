@@ -16,7 +16,7 @@ test.describe(
   "Navbar&Footer tests",
   { tag: ["@smoke", "@navbarFooter"] },
   async () => {
-    test("", async ({ app }) => {
+    test("Verify Logo", async ({ app }) => {
       And("the user sees Navigation bar");
       await test.step("Locate Navigation bar is visible", async () => {
         await app.navbarFooter.locateNavbar();
@@ -35,6 +35,18 @@ test.describe(
       And("the user sees Logo text");
       await test.step("Verify Logo text", async () => {
         await app.navbarFooter.verifyLogoText();
+      });
+    });
+
+    test("Verify Links text", async ({ app }) => {
+      And("the user sees Links");
+      await test.step("Verify links text", async () => {
+        await app.navbarFooter.verifyNavbarTextLinks();
+      });
+
+      And("the user clicks on each Link");
+      await test.step("Click on each Link", async () => {
+        await app.navbarFooter.verifyNavbarLinks();
       });
     });
   }

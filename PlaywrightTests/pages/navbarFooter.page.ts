@@ -22,4 +22,9 @@ export default class NavbarFooterPage extends BasePage {
     get navbarLinks() {
         return this.page.locator(`ul.navbar-nav a.nav-link, ul.navbar-nav a.btn-primary`);
     }
+
+    get footerText() {
+        return this.page.locator(`footer.bg-dark.text-white.text-center.py-3`);
+    }
+
 }

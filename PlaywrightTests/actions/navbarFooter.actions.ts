@@ -34,4 +34,41 @@ export default class navbarFooterActions extends BaseActions {
     const logoText = this.navbarFooter.logoText;
     await expect(logoText).toBeVisible();
   }
+
+  async checkNavbarTextLinks(linkText: string) {
+    const locator = this.page.getByRole("link", {
+      name: linkText,
+      exact: true,
+    });
+
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(linkText);
+  }
+
+  async verifyNavbarTextLinks() {
+    await this.checkNavbarTextLinks(strings.navBar.about);
+    await this.checkNavbarTextLinks(strings.navBar.services);
+    await this.checkNavbarTextLinks(strings.navBar.membership);
+    await this.checkNavbarTextLinks(strings.navBar.contact);
+    await this.checkNavbarTextLinks(strings.navBar.login);
+  }
+
+  async verifyNavbarLinks() {
+    const links = this.navbarFooter.navbarLinks;
+    const count = await links.count();
+
+    for (let i = 0; i < count; i++) {
+      const link = links.nth(i);
+      const text = await link.textContent();
+      const href = await link.getAttribute("href");
+
+      await expect(link).toBeVisible();
+      await link.click();
+
+      await expect(this.page).toHaveURL(href!);
+      console.log(`Link '${text}' navigated to '${href}'`);
+
+      await this.page.goBack();
+    }
+  }
 }
