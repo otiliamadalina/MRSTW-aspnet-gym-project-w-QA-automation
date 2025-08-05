@@ -12,9 +12,30 @@ test.beforeEach(async ({ app }) => {
   });
 });
 
-test.describe("Navbar&Footer tests", { tag: ["@smoke", "@navbarFooter"] }, async () => {
-  test("", async ({ app }) => {
-    And("the user sees nav bar");
+test.describe(
+  "Navbar&Footer tests",
+  { tag: ["@smoke", "@navbarFooter"] },
+  async () => {
+    test("", async ({ app }) => {
+      And("the user sees Navigation bar");
+      await test.step("Locate Navigation bar is visible", async () => {
+        await app.navbarFooter.locateNavbar();
+      });
 
-  });
-});
+      And("the user locates Logo");
+      await test.step("Locate Logo", async () => {
+        await app.navbarFooter.locateLogo();
+      });
+
+      And("the user sees Logo image");
+      await test.step("Verify Logo image and image title", async () => {
+        await app.navbarFooter.verifyLogoImg();
+      });
+
+      And("the user sees Logo text");
+      await test.step("Verify Logo text", async () => {
+        await app.navbarFooter.verifyLogoText();
+      });
+    });
+  }
+);

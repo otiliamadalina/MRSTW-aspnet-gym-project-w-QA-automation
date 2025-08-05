@@ -13,5 +13,25 @@ export default class navbarFooterActions extends BaseActions {
     this.navbarFooter = new NavbarFooterPage(page, context);
   }
 
+  async locateNavbar() {
+    await expect(this.navbarFooter.navbar).toBeVisible();
+    return this.navbarFooter.navbar;
+  }
 
+  async locateLogo() {
+    await expect(this.navbarFooter.logo).toBeVisible();
+    return this.navbarFooter.logo;
+  }
+
+  async verifyLogoImg() {
+    const logo = this.navbarFooter.logoImg;
+    await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute("alt", strings.navBar.logoImageTitle);
+    await expect(logo).toHaveAttribute("src", strings.navBar.logoSrc);
+  }
+
+  async verifyLogoText() {
+    const logoText = this.navbarFooter.logoText;
+    await expect(logoText).toBeVisible();
+  }
 }

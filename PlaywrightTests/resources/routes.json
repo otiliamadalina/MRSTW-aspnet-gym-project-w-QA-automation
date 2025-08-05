@@ -5,5 +5,12 @@
         "seeServices":"/Home/Services",
         "seeMemberships":"/Home/Membership",
         "learnMoreHref":"/Home/about"
+    },
+    "navbarLinks": {
+        "about":"/Home/About",
+        "services":"/Home/Services",
+        "membership":"/Home/Membership",
+        "contact":"/Feedback/Contact",
+        "login":"/Home/AuthPage"
     }
 }
