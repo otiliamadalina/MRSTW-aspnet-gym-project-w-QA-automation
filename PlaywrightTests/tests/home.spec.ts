@@ -1,4 +1,3 @@
-import { expect } from "@playwright/test";
 import routes from "../resources/routes.json";
 import strings from "../resources/strings.json";
 import { And, Given, Then } from "../utils/annotations";
@@ -15,7 +14,6 @@ test.beforeEach(async ({ app }) => {
 
 test.describe("Home page tests", { tag: ["@smoke", "@home"] }, async () => {
   test("Hero section", async ({ app }) => {
-
     And("the user sees hero carousel images");
     await test.step("Verify hero carousel images are visible", async () => {
       await app.home.verifyHeroCarousel();
@@ -28,7 +26,9 @@ test.describe("Home page tests", { tag: ["@smoke", "@home"] }, async () => {
 
     And("the user sees hero description");
     await test.step("Verify hero description is visible", async () => {
-      await app.home.verifyHeroDescription(strings.home.heroSection.heroDescription);
+      await app.home.verifyHeroDescription(
+        strings.home.heroSection.heroDescription
+      );
     });
 
     And("the user sees and clicks on Join Now button");
@@ -38,30 +38,65 @@ test.describe("Home page tests", { tag: ["@smoke", "@home"] }, async () => {
   });
 
   test("Our Services section", async ({ app }) => {
-    
-    And("the user sees Our Services cards");
-    await test.step("Verify Our Services cards are visible", async () => {
+    And("the user sees Our Services cards and main title");
+    await test.step("Verify Our Services cards and title are visible", async () => {
+      await app.home.verifyServicesSectionTitle();
       await app.home.verifyOurServicesCards();
     });
-    
+
     And("the user sees Our Services cards titles");
-    await test.step("Verify Our Services cards titles", async() =>  {
-      await app.home.verifyServiceCardTitle(strings.home.ourServicesCards.personalTraining);
-      await app.home.verifyServiceCardTitle(strings.home.ourServicesCards.groupClasses);
-      await app.home.verifyServiceCardTitle(strings.home.ourServicesCards.nutritionCoaching
-      );
+    await test.step("Verify Our Services cards titles", async () => {
+      await app.home.verifyServicesCardTitle();
     });
 
     And("the user sees Our Services cards description");
-    await test.step("Verify Our Services cards description", async() => {
-      await app.home.verifyServiceCardDescription(strings.home.ourServicesCards.personalTrainingDescription);
-      await app.home.verifyServiceCardDescription(strings.home.ourServicesCards.groupClassesDescription);
-      await app.home.verifyServiceCardDescription(strings.home.ourServicesCards.nutritionCoachingDescription);
+    await test.step("Verify Our Services cards description", async () => {
+      await app.home.verifyServicesCardDescription();
     });
 
     And("the user sees Our Services section button See Services");
     await test.step("Verify Our Services section button", async () => {
       await app.home.verifySeeServicesButton();
+    });
+  });
+
+  test("Our Memberships section", async ({ app }) => {
+    And("the user sees Our Memberships cards and main title");
+    await test.step("Verify Our Memberships cards and title are visible", async () => {
+      await app.home.verifyMembershipsSectionTitle();
+      await app.home.verifyOurMembershipsCards();
+    });
+
+    And("the user sees Our Memberships cards titles");
+    await test.step("Verify Our Memberships cards titles", async () => {
+      await app.home.verifyMembershipsCardTitle();
+    });
+
+    And("the user sees Our Memberships cards description");
+    await test.step("Verify Our Memberships cards description", async () => {
+      await app.home.verifyMembershipsCardDescription();
+    });
+
+    And("the user sees Our Memberships section button See Memberships");
+    await test.step("Verify Our Memberships section button", async () => {
+      await app.home.verifySeeMembershipsButton();
+    });
+  });
+  
+  test("About MadGym section", async ({ app }) => {
+    And("the user sees About MadGym section title");
+    await test.step("Verify About MadGym section title", async () => {
+      await app.home.verifyAboutSectionTitle();
+    });
+
+    And("the user sees About MadGym section description");
+    await test.step("Verify About MadGym section description", async () => {
+      await app.home.verifyAboutSectionDescription();
+    });
+
+    And("the user sees About MadGym section button Learn More");
+    await test.step("Verify About MadGym section button", async () => {
+      await app.home.verifyLearnMoreButton();
     });
   });
 });

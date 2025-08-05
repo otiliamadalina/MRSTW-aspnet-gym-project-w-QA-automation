@@ -18,7 +18,22 @@
             "seeServicesButton":"See Services"
         },
         "ourMembershipsCards": {
-            "ourMembershipsTitle":"Our Memberships"
+            "ourMembershipsTitle":"Our Memberships",
+            "basicCardTitle":"Basic",
+            "basicCardDescription":"Access to limited features.",
+            "basicCardPrice":"$10,00/month",
+            "eliteCardTitle":"Elite",
+            "eliteCardDescription":"Access to all features.",
+            "eliteCardPrice":"$50,00/month",
+            "premiumCardTitle":"Premium",
+            "premiumCardDescription":"Limited access",
+            "premiumCardPrice":"$30,00/month",
+            "seeMembershipsButton":"See Memberships"
+        },
+        "aboutSection": {
+            "aboutTitle":"About MadGym",
+            "aboutDescription":"Welcome to GymMaster, your all-in-one fitness membership platform designed to simplify and energize your journey to better health.",
+            "learnMoreButton":"Learn More"
         }
     }
 }

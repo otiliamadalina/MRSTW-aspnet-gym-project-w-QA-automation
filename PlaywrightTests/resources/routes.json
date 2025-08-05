@@ -1,8 +1,9 @@
 {
     "homeLinks":{
         "home":"https://localhost:44336",
-        "joinNow":"https://localhost:44336/#services",
         "joinNowHref":"#services",
-        "seeServices":"/Home/Services"
+        "seeServices":"/Home/Services",
+        "seeMemberships":"/Home/Membership",
+        "learnMoreHref":"/Home/about"
     }
 }
