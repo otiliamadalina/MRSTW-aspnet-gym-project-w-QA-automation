@@ -38,7 +38,7 @@ test.describe(
       });
     });
 
-    test("Verify Links text", async ({ app }) => {
+    test("Verify Nav-bar Links text", async ({ app }) => {
       And("the user sees Links");
       await test.step("Verify links text", async () => {
         await app.navbarFooter.verifyNavbarTextLinks();
@@ -48,11 +48,15 @@ test.describe(
       await test.step("Click on each Link", async () => {
         await app.navbarFooter.verifyNavbarLinks();
       });
+    });
 
+
+    test("Verify Footer", async ({ app }) => {
       And("the user sees Footer");
       await test.step("Verify Footer text", async() => {
         await app.navbarFooter.verifyFooterText();
       });
     });
+
   }
 );
