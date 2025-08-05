@@ -1,3 +1,55 @@
 {
+  "home": {
+    "homeTitle": "Gym Management - Home",
+    "heroSection": {
+      "heroTitle": "Push Your Limits",
+      "heroDescription": "Experience the best training programs tailored to your needs.",
+      "joinNow": "Join Now ↓"
+    },
+
+    "ourServicesCards": {
+      "ourServicesTitle": "Our Services",
+      "personalTraining": "Personal Training",
+      "personalTrainingDescription": "One-on-one coaching with expert trainers.",
+      "groupClasses": "Group Classes",
+      "groupClassesDescription": "Exciting HIIT, yoga, and strength classes.",
+      "nutritionCoaching": "Nutrition Coaching",
+      "nutritionCoachingDescription": "Personalized meal plans for better results.",
+      "seeServicesButton": "See Services"
+    },
+    
+    "ourMembershipsCards": {
+      "ourMembershipsTitle": "Our Memberships",
+      "basicCardTitle": "Basic",
+      "basicCardDescription": "Access to limited features.",
+      "basicCardPrice": "$10,00/month",
+      "eliteCardTitle": "Elite",
+      "eliteCardDescription": "Access to all features.",
+      "eliteCardPrice": "$50,00/month",
+      "premiumCardTitle": "Premium",
+      "premiumCardDescription": "Limited access",
+      "premiumCardPrice": "$30,00/month",
+      "seeMembershipsButton": "See Memberships"
+    },
+
+    "aboutSection": {
+      "aboutTitle": "About MadGym",
+      "aboutDescription": "Welcome to GymMaster, your all-in-one fitness membership platform designed to simplify and energize your journey to better health.",
+      "learnMoreButton": "Learn More"
+    }
+  },
+
+  "navBar": {
+    "logoSrc": "/Content/img/Logo.png",
+    "logoImageTitle": "Gym Logo",
+    "logoTextTitle": "MADGYM",
+    "about": "About",
+    "services": "Services",
+    "membership": "Membership",
+    "contact": "Contact",
+    "login": "Login"
+  },
+
+  "footer":"© 2025 MadGym. All Rights Reserved."
 
 }
