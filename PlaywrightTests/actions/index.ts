@@ -21,5 +21,5 @@ export default class App {
     this.home = new HomeActions(page, context);
     this.navbarFooter = new navbarFooterActions(page, context);
     this.about = new AboutActions(page, context);
-}
+  }
 }
