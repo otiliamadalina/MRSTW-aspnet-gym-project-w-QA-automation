@@ -6,11 +6,39 @@
         "seeMemberships":"/Home/Membership",
         "learnMoreHref":"/Home/about"
     },
+
     "navbarLinks": {
         "about":"/Home/About",
         "services":"/Home/Services",
         "membership":"/Home/Membership",
         "contact":"/Feedback/Contact",
         "login":"/Home/AuthPage"
+    },
+
+    "allPages": {
+        "aboutPage":"https://localhost:44336/Home/About",
+        "servicesMainPage":"https://localhost:44336/Home/Services",
+        "servicePersonalTrainingPage":"https://localhost:44336/Services/PersonalTraining",
+        "serviceGroupProgramsPage":"https://localhost:44336/Services/GroupPrograms",
+        "serviceNutritionCoachingPage":"https://localhost:44336/Services/NutritionCoaching",
+        "membershipPage":"https://localhost:44336/Home/Membership",
+        "checkoutPage":"https://localhost:44336/Checkout/CheckoutMembership?membershipId=1",
+        "tsuccessOrderPage":"https://localhost:44336/Checkout/OrderSuccess",
+        "termsAndCondPage":"https://localhost:44336/Checkout/TermsAndConditions",
+        "authLoginPage":"https://localhost:44336/Home/AuthPage",
+        "userProfilePage":"https://localhost:44336/Account/UserDashboard",
+        "forgotPasswordPage":"https://localhost:44336/Account/ForgotPassword",
+        "editProfilePage":"https://localhost:44336/Account/EditUserProfile",
+        "paymentHistoryPage":"https://localhost:44336/Account/PaymentHistory",
+        "adminDashboardPage":"https://localhost:44336/Admin/AdminDash",
+        "manageCoachesPage":"https://localhost:44336/Admin/ManageCoaches",
+        "manageMembershipsPage":"https://localhost:44336/Admin/ManageMemberships",
+        "manageDiscountCodesPage":"https://localhost:44336/Admin/ManageDiscountCodes",
+        "listOfFeedbacksPage":"https://localhost:44336/Admin/ListOfFeedbacks",
+        "activeMembershipsPage":"https://localhost:44336/Admin/ListOfActiveMemberships",
+        "orderListPage":"https://localhost:44336/Admin/ListOfOrders",
+        "manageUsersPage":"https://localhost:44336/Admin/ListOfUsers"
+
+
     }
 }
