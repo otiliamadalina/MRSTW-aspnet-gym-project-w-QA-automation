@@ -73,10 +73,10 @@ export default class navbarFooterActions extends BaseActions {
   }
 
   async verifyFooterText() {
-    const footer = this.navbarFooter.footerText;
     const footerText = strings.footer;
+    const footerParagraph = this.navbarFooter.pLocator(footerText);
 
-    await expect(footer).toBeVisible();
-    await expect(footer).toHaveText(footerText);
+    await expect(footerParagraph).toBeVisible();
+    await expect(footerParagraph).toHaveText(footerText);
   }
 }
