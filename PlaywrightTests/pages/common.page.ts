@@ -39,4 +39,17 @@ export default class CommonPage extends BasePage {
   return this.page.locator('a', { hasText: `${text}` });
 }
 
+  get usernameInput() {
+    return this.page.locator('input[name="Login.UserName"]');
+  }
+
+  get passwordInput() {
+    return this.page.locator('input[name="Login.Password"]');
+  }
+
+  get loginButton() {
+    return this.page.locator('button[type="submit"]');
+  }
+
+
 }

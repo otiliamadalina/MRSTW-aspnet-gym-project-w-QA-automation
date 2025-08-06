@@ -79,4 +79,62 @@ export default class navbarFooterActions extends BaseActions {
     await expect(footerParagraph).toBeVisible();
     await expect(footerParagraph).toHaveText(footerText);
   }
+
+  async verifyCommonLayoutAndNavigation(linkText: string, expectedUrl: string) {
+
+    const link = this.page.getByRole("link", { name: linkText, exact: true });
+    await expect(link).toBeVisible();
+    await link.click();
+    await this.page.waitForLoadState("load");
+
+    await expect(this.page).toHaveURL(expectedUrl);
+    await this.locateNavbar();
+    await this.locateLogo();
+    await this.verifyLogoImg();
+    await this.verifyLogoText();
+    await this.verifyNavbarTextLinks();
+    await this.verifyNavbarLinks();
+
+    await this.verifyFooterText();
+
+
+    //await this.page.goBack();
+    await this.page.waitForLoadState("load");
+    await expect(this.page).toHaveURL(routes.homeLinks.home);
+  }
+
+  async verifyAboutPage() {
+    await this.verifyCommonLayoutAndNavigation(
+      strings.navBar.about,
+      routes.allPages.aboutPage
+    );
+  }
+
+  async verifyServicesPage() {
+    await this.verifyCommonLayoutAndNavigation(
+      strings.navBar.services,
+      routes.allPages.servicesMainPage
+    );
+  }
+
+  async verifyMembershipPage() {
+    await this.verifyCommonLayoutAndNavigation(
+      strings.navBar.membership,
+      routes.allPages.membershipPage
+    );
+  }
+
+  async verifyContactPage() {
+    await this.verifyCommonLayoutAndNavigation(
+      strings.navBar.contact,
+      routes.allPages.contactPage
+    );
+  }
+
+  async verifyLoginPage() {
+    await this.verifyCommonLayoutAndNavigation(
+      strings.navBar.login,
+      routes.allPages.authLoginPage
+    );
+  }
 }

@@ -78,5 +78,13 @@
     "ourValues3Strong": "Innovation:",
     "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics.",
     "registerButton":"Register"
+  },
+
+  "loginCredentials": {
+    "username":"otiliamadalina",
+    "password":"otiliamadalina",
+    "adminUsername":"Admin1234",
+    "adminPassword":"Admin1234"
   }
+
 }

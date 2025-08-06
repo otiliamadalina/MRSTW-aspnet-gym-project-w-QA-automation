@@ -1,6 +1,8 @@
 import { BrowserContext, Page, expect } from "@playwright/test";
 import CommonPage from "../pages/common.page";
 import BaseActions from "./base.actions";
+import routes from "../resources/routes.json";
+import strings from "../resources/strings.json";
 
 export default class CommonActions extends BaseActions {
   commonPage: CommonPage;
@@ -70,5 +72,25 @@ export default class CommonActions extends BaseActions {
 
     await this.commonPage.page.goBack();
     console.log("Went back to previous page in the same tab");
+  }
+
+  async login(username: string, password: string) {
+    await this.commonPage.usernameInput.fill(username);
+    await this.commonPage.passwordInput.fill(password);
+    await this.commonPage.loginButton.click();
+  }
+
+  async loginAsUser() {
+    const username = strings.loginCredentials.username;
+    const password = strings.loginCredentials.password;
+
+    await this.login(username, password);
+  }
+
+  async loginAsAdmin() {
+    const username = strings.loginCredentials.adminUsername;
+    const password = strings.loginCredentials.adminPassword;
+
+    await this.login(username, password);
   }
 }
