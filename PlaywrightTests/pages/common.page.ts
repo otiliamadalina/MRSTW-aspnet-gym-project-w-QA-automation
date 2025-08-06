@@ -35,4 +35,8 @@ export default class CommonPage extends BasePage {
     return this.page.locator("strong", { hasText: text });
   }
 
+  getLinkByText(text: string) {
+  return this.page.locator('a', { hasText: text });
+}
+
 }

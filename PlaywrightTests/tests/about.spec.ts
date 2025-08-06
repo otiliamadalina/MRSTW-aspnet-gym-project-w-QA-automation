@@ -25,5 +25,10 @@ test.describe("About page tests", { tag: ["@smoke", "@about"] }, async () => {
     await test.step("Verify information is visible", async () => {
       await app.about.verifyAboutPageContent();
     });
+
+    And("the user sees Register button");
+    await test.step("Verify Register button", async()=> {
+      await app.about.verifyRegisterLink();
+    });
   });
 });

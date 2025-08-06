@@ -50,9 +50,25 @@ export default class CommonActions extends BaseActions {
   }
 
   async checkLi(text: string) {
-  const locator = this.commonPage.liLocator(text);
-  await expect(locator).toBeVisible();
-  await expect(locator).toHaveText(text);
-  console.log(`Checked list item: "${text}"`);
-}
+    const locator = this.commonPage.liLocator(text);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(text);
+    console.log(`Checked list item: "${text}"`);
+  }
+
+  async checkLinkByTextAndHref(text: string, expectedHref: string) {
+    const locator = this.commonPage.getLinkByText(text);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveAttribute("href", expectedHref);
+    console.log(`Checked link href for text "${text}" is: "${expectedHref}"`);
+
+    await locator.click();
+    console.log(`Clicked link with text "${text}"`);
+
+    const currentUrl = await this.commonPage.page.url();
+    console.log(`Navigated to URL: ${currentUrl}`);
+
+    await this.commonPage.page.goBack();
+    console.log("Went back to previous page in the same tab");
+  }
 }

@@ -76,6 +76,7 @@
     "ourValues2Strong": "Transparency:",
     "ourValues2Description": "No hidden fees, clear terms, and instant access to your order history ensure you always know what you're paying for.",
     "ourValues3Strong": "Innovation:",
-    "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics."
+    "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics.",
+    "registerButton":"Register"
   }
 }
