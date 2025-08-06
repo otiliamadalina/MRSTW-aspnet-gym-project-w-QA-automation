@@ -6,4 +6,5 @@ class NavigationSection extends BasePage {
     super(page, context);
   }
 }
+
 export default NavigationSection;
