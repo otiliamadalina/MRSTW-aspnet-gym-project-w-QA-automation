@@ -85,6 +85,22 @@
     "password":"otiliamadalina",
     "adminUsername":"Admin1234",
     "adminPassword":"Admin1234"
-  }
+  },
 
+  "userProfile": {
+    "editProfile":"Edit Profile",
+    "changePassword":"Change Password",
+    "resetPassword":"Send Reset Link",
+    "paymentHistory":"Payment History"
+  },
+
+  "membership": {
+    "checkout":"Choose"
+    
+  },
+
+  "checkout":{
+    "orderSuccess":"Place Order",
+    "termsAndConditions":"terms and conditions"
+  }
 }

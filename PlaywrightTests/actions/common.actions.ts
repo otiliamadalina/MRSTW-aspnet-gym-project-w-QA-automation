@@ -93,4 +93,11 @@ export default class CommonActions extends BaseActions {
 
     await this.login(username, password);
   }
+
+  async goToUserProfile(username: string) {
+  const userLink = this.commonPage.userProfileLink(username);
+  await expect(userLink).toBeVisible();
+  await userLink.click();
+  await this.page.waitForLoadState('load');
+}
 }

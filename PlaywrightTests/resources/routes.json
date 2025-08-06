@@ -39,7 +39,7 @@
         "orderListPage":"https://localhost:44336/Admin/ListOfOrders",
         "manageUsersPage":"https://localhost:44336/Admin/ListOfUsers",
         "contactPage":"https://localhost:44336/Feedback/Contact",
-        "resetPassword":"https://localhost:44336/Account/ResetPassword"
+        "resetPasswordPage":"https://localhost:44336/Account/ResetPassword"
 
     }
 }

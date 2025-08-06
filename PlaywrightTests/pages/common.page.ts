@@ -51,5 +51,9 @@ export default class CommonPage extends BasePage {
     return this.page.locator('button[type="submit"]');
   }
 
+  userProfileLink(username: string) {
+  return this.page.getByRole('link', { name: username });
+}
+
 
 }
