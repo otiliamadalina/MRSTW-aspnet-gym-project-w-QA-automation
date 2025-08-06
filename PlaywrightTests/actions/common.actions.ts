@@ -48,4 +48,11 @@ export default class CommonActions extends BaseActions {
     await expect(locator).toHaveText(text);
     console.log(`Checked P: "${text}" is visible and has correct text.`);
   }
+
+  async checkLi(text: string) {
+  const locator = this.commonPage.liLocator(text);
+  await expect(locator).toBeVisible();
+  await expect(locator).toHaveText(text);
+  console.log(`Checked list item: "${text}"`);
+}
 }
