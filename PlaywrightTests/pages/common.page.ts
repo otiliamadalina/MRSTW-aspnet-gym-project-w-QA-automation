@@ -56,11 +56,17 @@ export default class CommonPage extends BasePage {
 }
 
 get userDashButtonDesktop() {
-  return this.page.locator('#navbarNav #userDashboardButton');
+  return this.page.locator('#userDashboardButtonDesktop');
 }
 
 get userDashButtonMobile() {
   return this.page.locator('#offcanvasSidebar #userDashboardButton');
 }
+
+get editProfileButton() {
+  return this.page.locator('#editProfileLink');
+}
+
+
 
 }
