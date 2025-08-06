@@ -1,18 +1,7 @@
 import { BrowserContext, Page } from "@playwright/test";
 import BasePage from "./base.page";
 
-export default class CommonPage extends BasePage {
-  constructor(page: Page, context: BrowserContext) {
-    super(page, context);
-  }
-
-  get tabTitle() {
-    return this.page.title();
-  }
-
-  h1Locator(text: string) {
-    return this.page.locator("h1", { hasText: `${text}` });
-  }
+export default class AboutPage extends BasePage {
 
   h2Locator(text: string) {
     return this.page.locator("h2", { hasText: `${text}` });
@@ -25,4 +14,15 @@ export default class CommonPage extends BasePage {
   pLocator(text: string) {
     return this.page.locator("p", { hasText: `${text}` });
   }
+
+  liLocator(text: string) {
+    return this.page.locator("li", { hasText: text });
+  }
+
+  strongLocator(text: string){
+    return this.page.locator("strong", { hasText: text });
+  }
+
+  
+
 }

@@ -1,3 +1,81 @@
 {
+  "home": {
+    "homeTitle": "Gym Management - Home",
+    "heroSection": {
+      "heroTitle": "Push Your Limits",
+      "heroDescription": "Experience the best training programs tailored to your needs.",
+      "joinNow": "Join Now ↓"
+    },
 
+    "ourServicesCards": {
+      "ourServicesTitle": "Our Services",
+      "personalTraining": "Personal Training",
+      "personalTrainingDescription": "One-on-one coaching with expert trainers.",
+      "groupClasses": "Group Classes",
+      "groupClassesDescription": "Exciting HIIT, yoga, and strength classes.",
+      "nutritionCoaching": "Nutrition Coaching",
+      "nutritionCoachingDescription": "Personalized meal plans for better results.",
+      "seeServicesButton": "See Services"
+    },
+
+    "ourMembershipsCards": {
+      "ourMembershipsTitle": "Our Memberships",
+      "basicCardTitle": "Basic",
+      "basicCardDescription": "Access to limited features.",
+      "basicCardPrice": "$10,00/month",
+      "eliteCardTitle": "Elite",
+      "eliteCardDescription": "Access to all features.",
+      "eliteCardPrice": "$50,00/month",
+      "premiumCardTitle": "Premium",
+      "premiumCardDescription": "Limited access",
+      "premiumCardPrice": "$30,00/month",
+      "seeMembershipsButton": "See Memberships"
+    },
+
+    "aboutSection": {
+      "aboutTitle": "About MadGym",
+      "aboutDescription": "Welcome to GymMaster, your all-in-one fitness membership platform designed to simplify and energize your journey to better health.",
+      "learnMoreButton": "Learn More"
+    }
+  },
+
+  "navBar": {
+    "logoSrc": "/Content/img/Logo.png",
+    "logoImageTitle": "Gym Logo",
+    "logoTextTitle": "MADGYM",
+    "about": "About",
+    "services": "Services",
+    "membership": "Membership",
+    "contact": "Contact",
+    "login": "Login"
+  },
+
+  "footer": "© 2025 MadGym. All Rights Reserved.",
+
+  "aboutPage": {
+    "aboutUsTitle": "About Us",
+    "aboutUsParagraph": "Welcome to GymMaster, your all-in-one fitness membership platform designed to simplify and energize your journey to better health. Founded on the belief that staying motivated shouldn't be hard work, GymMaster brings together cutting-edge features and a supportive community so you can focus on what matters most: your workout.",
+    "ourMissionTitle": "Our Mission",
+    "ourMissionParagraph": "At GymMaster, we strive to make fitness accessible, engaging, and seamless. Whether you're signing up for your first program or renewing a long-term membership, our streamlined registration and checkout process, complete with instant QR-code check-ins lets you skip the paperwork and get straight to the gym floor.",
+    "meetTheTeamTitle": "Meet the Team",
+    "meetTheTeamParagraph": "Behind GymMaster is a dedicated group of developers, fitness enthusiasts, and customer advocates. We're united by a simple goal: remove barriers between you and your best self. From software updates to discount code launches, our team works around the clock to bring you features that matter.",
+    "joinUsTodayTitle": "Join Us Today",
+    "joinUsTodayParagraph": "Ready to elevate your workout experience? Register, pick your plan, and start your fitness journey with GymMaster - where every rep, class, and milestone is just a click away. Let's build a healthier, happier community together.",
+    "whatWeOfferTitle": "What We Offer",
+    "whatWeOffer1Strong": "Flexible Plans:",
+    "whatWeOffer1Description": "Choose from our memberships, with built-in discount support so you get the best value every time.",
+    "whatWeOffer2Strong": "Real-Time Dashboard:",
+    "whatWeOffer2Description": "Track your plan's expiration countdown, access your personal progress bar, and view past orders and activity, all from your personalized dashboard.",
+    "whatWeOffer3Strong": "Secure & Reliable:",
+    "whatWeOffer3Description": "We use industry-standard encryption for your data and never share your information. Password resets, email verification, and role-based access keep your profile and payments safe.",
+    "whatWeOffer4Strong": "Admin Control:",
+    "whatWeOffer4Description": "Gym owners and managers can effortlessly view revenue reports, manage memberships, and respond to user feedback right from our intuitive admin panel.",
+    "ourValuesTitle": "Our Values",
+    "ourValues1Strong": "Community:",
+    "ourValues1Description": "Fitness thrives in a supportive environment. GymMaster fosters connection through feedback channels and shared achievements.",
+    "ourValues2Strong": "Transparency:",
+    "ourValues2Description": "No hidden fees, clear terms, and instant access to your order history ensure you always know what you're paying for.",
+    "ourValues3Strong": "Innovation:",
+    "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics."
+  }
 }

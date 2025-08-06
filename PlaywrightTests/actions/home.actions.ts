@@ -6,6 +6,7 @@ import { BrowserContext, expect, Page } from "@playwright/test";
 import CommonActions from "./common.actions";
 
 export default class HomeActions extends CommonActions {
+
   home: HomePage;
 
   constructor(page: Page, context: BrowserContext) {
