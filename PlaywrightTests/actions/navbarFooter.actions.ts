@@ -174,9 +174,8 @@ export default class navbarFooterActions extends CommonActions {
 
     await this.loginAsUser();
 
-    const username = strings.loginCredentials.username;
 
-    await this.goToUserProfile(username);
+    await this.goToUserProfile();
 
     await this.verifyNavbarAndFooter();
   }
@@ -297,7 +296,12 @@ async verifyLoginFlow() {
   }
 }
 
+
+///////// Login AS USER
+
 async verifyEditProfilePage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.userProfile.editProfile,
     routes.allPages.editProfilePage
@@ -312,6 +316,8 @@ async verifyEditProfilePage() {
 }
 
 async verifyChangePasswordPage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.userProfile.changePassword,
     routes.allPages.forgotPasswordPage
@@ -326,6 +332,8 @@ async verifyChangePasswordPage() {
 }
 
 async verifyResetPasswordPage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.userProfile.resetPassword,
     routes.allPages.resetPasswordPage
@@ -343,6 +351,8 @@ async verifyResetPasswordPage() {
 }
 
 async verifyPaymentHistoryPage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.userProfile.paymentHistory,
     routes.allPages.paymentHistoryPage
@@ -357,6 +367,8 @@ async verifyPaymentHistoryPage() {
 }
 
 async verifyMembershipCheckoutPage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.membership.checkout,
     routes.allPages.checkoutPage
@@ -371,6 +383,8 @@ async verifyMembershipCheckoutPage() {
 }
 
 async verifyOrderSuccessPage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.checkout.orderSuccess,
     routes.allPages.successOrderPage
@@ -388,6 +402,8 @@ async verifyOrderSuccessPage() {
 }
 
 async verifyTermsAndConditionsPage() {
+  await this.goToUserProfile();
+
   await this.navigateToPageByLinkText(
     strings.checkout.termsAndConditions,
     routes.allPages.termsAndCondPage

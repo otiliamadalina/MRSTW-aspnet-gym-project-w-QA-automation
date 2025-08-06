@@ -94,10 +94,18 @@ export default class CommonActions extends BaseActions {
     await this.login(username, password);
   }
 
-  async goToUserProfile(username: string) {
-  const userLink = this.commonPage.userProfileLink(username);
-  await expect(userLink).toBeVisible();
-  await userLink.click();
+  async goToUserProfile() {
+  if (await this.commonPage.userDashButtonDesktop.isVisible()) {
+    await expect(this.commonPage.userDashButtonDesktop).toBeVisible();
+    await this.commonPage.userDashButtonDesktop.click();
+  } else if (await this.commonPage.userDashButtonMobile.isVisible()) {
+    await expect(this.commonPage.userDashButtonMobile).toBeVisible();
+    await this.commonPage.userDashButtonMobile.click();
+  } else {
+    throw new Error('eeeerrrrrorrrrrrrr.');
+  }
+
   await this.page.waitForLoadState('load');
 }
+
 }

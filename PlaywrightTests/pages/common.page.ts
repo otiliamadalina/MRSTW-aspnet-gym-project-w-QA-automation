@@ -48,12 +48,19 @@ export default class CommonPage extends BasePage {
   }
 
   get loginButton() {
-    return this.page.locator('button[type="submit"]');
+    return this.page.locator('#LoginSubmitBtn');
   }
 
   userProfileLink(username: string) {
   return this.page.getByRole('link', { name: username });
 }
 
+get userDashButtonDesktop() {
+  return this.page.locator('#navbarNav #userDashboardButton');
+}
+
+get userDashButtonMobile() {
+  return this.page.locator('#offcanvasSidebar #userDashboardButton');
+}
 
 }
