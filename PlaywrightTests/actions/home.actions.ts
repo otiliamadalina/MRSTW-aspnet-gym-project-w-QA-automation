@@ -3,8 +3,9 @@ import HomePage from "../pages/home.page";
 import routes from "../resources/routes.json";
 import strings from "../resources/strings.json";
 import { BrowserContext, expect, Page } from "@playwright/test";
+import CommonActions from "./common.actions";
 
-export default class HomeActions extends BaseActions {
+export default class HomeActions extends CommonActions {
   home: HomePage;
 
   constructor(page: Page, context: BrowserContext) {
@@ -31,20 +32,14 @@ export default class HomeActions extends BaseActions {
     }
   }
 
-  async verifyHeroTitle(heroTitle: string) {
-    const titleLocator = this.home.h1Locator(heroTitle);
-    await expect(titleLocator).toBeVisible();
-    await expect(titleLocator).toHaveText(heroTitle);
-    console.log("Hero title is: " + heroTitle);
+  async verifyHeroTitle() {
+    const heroTitle = strings.home.heroSection.heroTitle;
+    await this.checkH1(heroTitle);
   }
 
-  async verifyHeroDescription(heroDescription: string) {
-    const descriptionLocator = this.home.page.locator("p", {
-      hasText: heroDescription,
-    });
-    await expect(descriptionLocator).toBeVisible();
-    await expect(descriptionLocator).toHaveText(heroDescription);
-    console.log("Hero description is: " + heroDescription);
+  async verifyHeroDescription() {
+    const heroDescription = strings.home.heroSection.heroDescription;
+    await this.checkP(heroDescription);
   }
 
   async verifyJoinNowButton() {
@@ -63,7 +58,7 @@ export default class HomeActions extends BaseActions {
     await expect(joinNowButton).toHaveText(strings.home.heroSection.joinNow);
     await joinNowButton.click();
     await expect(this.page).toHaveURL(routes.homeLinks.joinNowHref);
-    
+
     console.log(
       "Join Now button clicked and URL changed to:",
       await this.page.url()
@@ -86,48 +81,36 @@ export default class HomeActions extends BaseActions {
 
   async verifyServicesSectionTitle() {
     const servicesSectionTitle = strings.home.ourServicesCards.ourServicesTitle;
-    const servicesSectionLocator = this.home.h2Locator(servicesSectionTitle);
-
-    await expect(servicesSectionLocator).toBeVisible();
-    await expect(servicesSectionLocator).toHaveText(servicesSectionTitle);
+    await this.checkH2(servicesSectionTitle);
   }
 
   async checkServicesCardTitle(serviceName: string) {
-    const serviceTitleLocator = this.home.h3Locator(serviceName);
-    await expect(serviceTitleLocator).toBeVisible();
-    await expect(serviceTitleLocator).toHaveText(serviceName);
-    console.log("Service card title is: " + serviceName);
+    await this.checkH3(serviceName);
   }
 
   async verifyServicesCardTitle() {
-    await this.checkServicesCardTitle(
+    await this.checkMembershipsCardTitle(
       strings.home.ourServicesCards.personalTraining
     );
-    await this.checkServicesCardTitle(
+    await this.checkMembershipsCardTitle(
       strings.home.ourServicesCards.groupClasses
     );
-    await this.checkServicesCardTitle(
+    await this.checkMembershipsCardTitle(
       strings.home.ourServicesCards.nutritionCoaching
     );
   }
 
-  async checkServicesCardDescription(description: string) {
-    const descriptionLocator = this.home.pLocator(description);
-    await expect(descriptionLocator).toBeVisible();
-    await expect(descriptionLocator).toHaveText(description);
-    console.log("Service card description is: " + description);
-  }
-
   async verifyServicesCardDescription() {
-    await this.checkServicesCardDescription(
-      strings.home.ourServicesCards.personalTrainingDescription
-    );
-    await this.checkServicesCardDescription(
-      strings.home.ourServicesCards.groupClassesDescription
-    );
-    await this.checkServicesCardDescription(
-      strings.home.ourServicesCards.nutritionCoachingDescription
-    );
+    const personalTrainingDescription =
+      strings.home.ourServicesCards.personalTrainingDescription;
+    const groupClassesDescription =
+      strings.home.ourServicesCards.groupClassesDescription;
+    const nutritionCoachingDescription =
+      strings.home.ourServicesCards.nutritionCoachingDescription;
+
+    await this.checkP(personalTrainingDescription);
+    await this.checkP(groupClassesDescription);
+    await this.checkP(nutritionCoachingDescription);
   }
 
   async verifySeeServicesButton() {
@@ -146,13 +129,12 @@ export default class HomeActions extends BaseActions {
         (await seeServicesButton.getAttribute("href"))
     );
 
-     await expect(seeServicesButton).toHaveText(
+    await expect(seeServicesButton).toHaveText(
       strings.home.ourServicesCards.seeServicesButton
     );
 
     await seeServicesButton.click();
     await expect(this.page).toHaveURL(routes.homeLinks.seeServices);
-   
   }
 
   // -------- Our Memberships Section
@@ -172,37 +154,27 @@ export default class HomeActions extends BaseActions {
   async verifyMembershipsSectionTitle() {
     const membesrhipSectionTitle =
       strings.home.ourMembershipsCards.ourMembershipsTitle;
-    const membershipsSectionLocator = this.home.h2Locator(
-      membesrhipSectionTitle
-    );
-
-    await expect(membershipsSectionLocator).toBeVisible();
-    await expect(membershipsSectionLocator).toHaveText(membesrhipSectionTitle);
+    await this.checkH2(membesrhipSectionTitle);
   }
 
   async checkMembershipsCardTitle(membershipName: string) {
-    const membershipTitleLocator = this.home.h3Locator(membershipName);
-    await expect(membershipTitleLocator).toBeVisible();
-    await expect(membershipTitleLocator).toHaveText(membershipName);
-    console.log("Membership card title is: " + membershipName);
+    await this.checkH3(membershipName);
   }
 
   async verifyMembershipsCardTitle() {
     await this.checkMembershipsCardTitle(
-      strings.home.ourServicesCards.personalTraining
+      strings.home.ourMembershipsCards.basicCardTitle
     );
     await this.checkMembershipsCardTitle(
-      strings.home.ourServicesCards.groupClasses
+      strings.home.ourMembershipsCards.eliteCardTitle
     );
     await this.checkMembershipsCardTitle(
-      strings.home.ourServicesCards.nutritionCoaching
+      strings.home.ourMembershipsCards.premiumCardTitle
     );
   }
-  async checkMembershipsCardDescription(description: string) {
-    const descriptionLocator = this.home.pLocator(description);
-    await expect(descriptionLocator).toBeVisible();
-    await expect(descriptionLocator).toHaveText(description);
-    console.log("Membership card description is: " + description);
+
+  async checkMembershipsCardDescription(membershipDescription: string) {
+    await this.checkP(membershipDescription);
   }
 
   async verifyMembershipsCardDescription() {
@@ -238,40 +210,45 @@ export default class HomeActions extends BaseActions {
     );
     await seeMembershipsButton.click();
     await expect(this.page).toHaveURL(routes.homeLinks.seeMemberships);
-    
   }
 
   // --------- About MadGym Section
 
   async verifyAboutSectionTitle() {
     const aboutSectionTitle = strings.home.aboutSection.aboutTitle;
-    const aboutSectionLocator = this.home.h2Locator(aboutSectionTitle);
-
-    await expect(aboutSectionLocator).toBeVisible();
-    await expect(aboutSectionLocator).toHaveText(aboutSectionTitle);
+    await this.checkH2(aboutSectionTitle);
   }
 
   async verifyAboutSectionDescription() {
     const aboutSectionDescription = strings.home.aboutSection.aboutDescription;
-    const descriptionLocator = this.home.pLocator(aboutSectionDescription);
-    await expect(descriptionLocator).toBeVisible();
-    await expect(descriptionLocator).toHaveText(aboutSectionDescription);
+    await this.checkP(aboutSectionDescription);
   }
 
   async verifyLearnMoreButton() {
-  const learnMoreButton = this.home.learnMoreHref(routes.homeLinks.learnMoreHref);
+    const learnMoreButton = this.home.learnMoreHref(
+      routes.homeLinks.learnMoreHref
+    );
 
-  await expect(learnMoreButton).toBeVisible();
-  await expect(learnMoreButton).toHaveAttribute("href", routes.homeLinks.learnMoreHref);
+    await expect(learnMoreButton).toBeVisible();
+    await expect(learnMoreButton).toHaveAttribute(
+      "href",
+      routes.homeLinks.learnMoreHref
+    );
 
-  console.log("Learn More button href: " + await learnMoreButton.getAttribute("href"));
+    console.log(
+      "Learn More button href: " + (await learnMoreButton.getAttribute("href"))
+    );
 
-  await expect(learnMoreButton).toHaveText(strings.home.aboutSection.learnMoreButton);
+    await expect(learnMoreButton).toHaveText(
+      strings.home.aboutSection.learnMoreButton
+    );
 
-  await learnMoreButton.click();
-  await expect(this.page).toHaveURL(routes.homeLinks.learnMoreHref);
+    await learnMoreButton.click();
+    await expect(this.page).toHaveURL(routes.homeLinks.learnMoreHref);
 
-  console.log("Learn More button clicked and URL changed to:", await this.page.url());
-}
-
+    console.log(
+      "Learn More button clicked and URL changed to:",
+      await this.page.url()
+    );
+  }
 }

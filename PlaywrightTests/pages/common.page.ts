@@ -10,6 +10,7 @@ export default class CommonPage extends BasePage {
     return this.page.title();
   }
 
+  //-------- Headers % P
   h1Locator(text: string) {
     return this.page.locator("h1", { hasText: `${text}` });
   }
@@ -25,4 +26,13 @@ export default class CommonPage extends BasePage {
   pLocator(text: string) {
     return this.page.locator("p", { hasText: `${text}` });
   }
+  
+  liLocator(text: string) {
+    return this.page.locator("li", { hasText: text });
+  }
+
+  strongLocator(text: string){
+    return this.page.locator("strong", { hasText: text });
+  }
+
 }

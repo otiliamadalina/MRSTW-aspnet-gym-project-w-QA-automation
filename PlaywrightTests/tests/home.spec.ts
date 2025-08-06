@@ -21,14 +21,12 @@ test.describe("Home page tests", { tag: ["@smoke", "@home"] }, async () => {
 
     And("the user sees hero title");
     await test.step("Verify hero title is visible", async () => {
-      await app.home.verifyHeroTitle(strings.home.heroSection.heroTitle);
+      await app.home.verifyHeroTitle();
     });
 
     And("the user sees hero description");
     await test.step("Verify hero description is visible", async () => {
-      await app.home.verifyHeroDescription(
-        strings.home.heroSection.heroDescription
-      );
+      await app.home.verifyHeroDescription();
     });
 
     And("the user sees and clicks on Join Now button");
@@ -82,7 +80,7 @@ test.describe("Home page tests", { tag: ["@smoke", "@home"] }, async () => {
       await app.home.verifySeeMembershipsButton();
     });
   });
-  
+
   test("About MadGym section", async ({ app }) => {
     And("the user sees About MadGym section title");
     await test.step("Verify About MadGym section title", async () => {

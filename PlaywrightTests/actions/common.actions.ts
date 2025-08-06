@@ -20,4 +20,39 @@ export default class CommonActions extends BaseActions {
       browserTitle
     );
   }
+
+  async checkH1(header: string) {
+    const locator = this.commonPage.h1Locator(header);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(header);
+    console.log(`Checked H1: "${header}" is visible and has correct text.`);
+  }
+
+  async checkH2(header: string) {
+    const locator = this.commonPage.h2Locator(header);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(header);
+    console.log(`Checked H2: "${header}" is visible and has correct text.`);
+  }
+
+  async checkH3(header: string) {
+    const locator = this.commonPage.h3Locator(header);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(header);
+    console.log(`Checked H3: "${header}" is visible and has correct text.`);
+  }
+
+  async checkP(text: string) {
+    const locator = this.commonPage.pLocator(text);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(text);
+    console.log(`Checked P: "${text}" is visible and has correct text.`);
+  }
+
+  async checkLi(text: string) {
+  const locator = this.commonPage.liLocator(text);
+  await expect(locator).toBeVisible();
+  await expect(locator).toHaveText(text);
+  console.log(`Checked list item: "${text}"`);
+}
 }
