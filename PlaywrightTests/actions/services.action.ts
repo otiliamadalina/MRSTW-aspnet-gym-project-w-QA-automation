@@ -123,7 +123,62 @@ export default class ServicesActions extends CommonActions {
     await this.page.goBack();
   }
 
-  async verifyPersonalTraining(){
-
+  /// --- Personal TRAINING PAGEEEEE-----
+  
+  async verifyPersonalTrainingHeaderSection() {
+    await expect(this.services.personalTrainingHeader).toBeVisible();
+    await expect(this.services.personalTrainingTitle).toHaveText(
+      strings.services.personalTrainingPage.headerTitle
+    );
+    await expect(this.services.personalTrainingSubtitle).toHaveText(
+      strings.services.personalTrainingPage.headerSubtitle
+    );
   }
+
+  async verifyPersonalTrainingInfoSection() {
+    await expect(this.services.personalTrainingInfo).toBeVisible();
+    await expect(this.services.personalTrainingWhatTitle).toHaveText(
+      strings.services.personalTrainingPage.whatIsTitle
+    );
+    await expect(this.services.personalTrainingWhatText).toHaveText(
+      strings.services.personalTrainingPage.whatIsText
+    );
+    await expect(this.services.personalTrainingImage).toBeVisible();
+  }
+
+  async verifyPersonalTrainingBenefitsSection() {
+    await expect(this.services.personalTrainingBenefits).toBeVisible();
+    await expect(this.services.personalTrainingBenefitsTitle).toHaveText(
+      strings.services.personalTrainingPage.benefitsTitle
+    );
+
+    for (
+      let i = 0;
+      i < strings.services.personalTrainingPage.benefitsList.length;
+      i++
+    ) {
+      const benefitItem = this.services.personalTrainingBenefitsList.nth(i);
+      await expect(benefitItem).toHaveText(
+        strings.services.personalTrainingPage.benefitsList[i]
+      );
+    }
+  }
+
+  async verifyPersonalTrainingContactSectionAndButton() {
+  await expect(this.services.personalTrainingContact).toBeVisible();
+  await expect(this.services.personalTrainingContactText).toHaveText(
+    strings.services.personalTrainingPage.contactText
+  );
+
+  const personalTrainingContactButton = this.services.personalTrainingContactButton;
+  await expect(personalTrainingContactButton).toBeVisible();
+  await expect(personalTrainingContactButton).toHaveText(
+    strings.services.personalTrainingPage.contactButton
+  );
+
+  await personalTrainingContactButton.click();
+  await expect(this.page).toHaveURL(routes.allPages.contactPage);
+  await this.page.goBack();
+}
+
 }

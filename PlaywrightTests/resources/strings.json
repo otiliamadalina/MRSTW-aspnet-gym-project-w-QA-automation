@@ -134,28 +134,38 @@
 
   "services": {
     "servicesTabTitle": "Gym Management - Services",
-    "ourServicesTitle" :"Our Services",
-    "personalTrainingCard":"Personal Training",
-    "meetOurTeam":"Meet our team!",
-    "groupProgramsCard":"Group Programs",
-    "signUpForASession":"Sign up for a session!",
-    "nutritionCoachingCard":"Nutrition Coaching",
-    "createYourDiet":"Create your diet!",
-    "groupProgramsSrc":"/Content/img/group-workouts-1-1-1024x536.jpg",
-    "personalTrainingSrc":"/Content/img/Best-Personal-Trainers-in-Edgewater-MD.png",
-    "nutritionCoachingSrc":"/Content/img/f710044bf79a4b1f5d8b085e5e5d9711_M.jpg",
+    "ourServicesTitle": "Our Services",
+    "personalTrainingCard": "Personal Training",
+    "meetOurTeam": "Meet our team!",
+    "groupProgramsCard": "Group Programs",
+    "signUpForASession": "Sign up for a session!",
+    "nutritionCoachingCard": "Nutrition Coaching",
+    "createYourDiet": "Create your diet!",
+    "groupProgramsSrc": "/Content/img/group-workouts-1-1-1024x536.jpg",
+    "personalTrainingSrc": "/Content/img/Best-Personal-Trainers-in-Edgewater-MD.png",
+    "nutritionCoachingSrc": "/Content/img/f710044bf79a4b1f5d8b085e5e5d9711_M.jpg",
 
     "personalTrainingPage": {
-
+      "pageTitle":"Services - Personal Training",
+      "headerTitle": "Your Personalized Fitness Journey",
+      "headerSubtitle": "Achieve your fitness goals with the help of our expert personal trainers!",
+      "sectionTitle": "Personal Training",
+      "whatIsTitle": "What is Personal Training?",
+      "whatIsText": "Our personal training service is designed to give you tailored workouts and one-on-one guidance. Whether you're new to fitness or looking to push yourself further, our trainers will work with you to create a personalized program that helps you reach your goals faster and more effectively.",
+      "benefitsTitle": "Benefits of Personal Training",
+      "benefitsList": [
+        "Customized workout plans",
+        "Expert trainers for motivation and support",
+        "Faster results with tailored guidance",
+        "Flexible scheduling to fit your needs",
+        "Ongoing assessments and progress tracking"
+      ],
+      "contactText": "Ready to start your fitness transformation?",
+      "contactButton": "Contact Us to Book Your Session"
     },
 
-    "groupProgramsPage": {
+    "groupProgramsPage": {},
 
-    },
-
-    "nutritionCoachingPage": {
-      
-    }
-  
+    "nutritionCoachingPage": {}
   }
 }

@@ -50,7 +50,40 @@ test.describe("Services Page", { tag: ["@smoke", "@services"] }, async () => {
   });
 
   test("Personal Training page", async ({ app }) => {
+    And("the user clicks on Services page");
+    await test.step("Verify Services page is loaded", async () => {
+      await app.services.goToServicesPage();
+      await app.navigation.pageUrlAsExpected(routes.navbarLinks.services);
+    });
 
+    And("the user clicks on Personal Training page");
+    await test.step("Verify Services page is loaded", async () => {
+      await app.services.clickPersonalTrainingCard();
+      await app.navigation.pageUrlAsExpected(
+        routes.allPages.servicePersonalTrainingPage
+      );
+    });
 
+    await test.step("Verify Personal Training Tab Title", async () => {
+      await app.common.browserTabTitleAsExpected(
+        strings.services.personalTrainingPage.pageTitle
+      );
+    });
+
+    await test.step("Verify Personal Training header section", async () => {
+      await app.services.verifyPersonalTrainingHeaderSection();
+    });
+
+    await test.step("Verify Personal Training info section", async () => {
+      await app.services.verifyPersonalTrainingInfoSection();
+    });
+
+    await test.step("Verify Personal Training benefits section", async () => {
+      await app.services.verifyPersonalTrainingBenefitsSection();
+    });
+
+    await test.step("Verify Personal Training contact section and button", async () => {
+      await app.services.verifyPersonalTrainingContactSectionAndButton();
+    });
   });
 });

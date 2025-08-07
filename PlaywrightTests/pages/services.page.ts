@@ -47,6 +47,8 @@ export default class ServicesPage extends BasePage {
     return this.page.locator("#nutritionCoachingTitle");
   }
 
+  // -------- PERSONAL TRAINING PAGEEEEE --------
+
   get personalTrainingHeader() {
     return this.page.locator('#personalTrainingHeader');
   }
