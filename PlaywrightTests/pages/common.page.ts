@@ -26,17 +26,143 @@ export default class CommonPage extends BasePage {
   pLocator(text: string) {
     return this.page.locator("p", { hasText: `${text}` });
   }
-  
+
   liLocator(text: string) {
     return this.page.locator("li", { hasText: `${text}` });
   }
 
-  strongLocator(text: string){
+  strongLocator(text: string) {
     return this.page.locator("strong", { hasText: `${text}` });
   }
 
   getLinkByText(text: string) {
-  return this.page.locator('a', { hasText: `${text}` });
+    return this.page.locator("a", { hasText: `${text}` });
+  }
+
+  get usernameInput() {
+    return this.page.locator('input[name="Login.UserName"]');
+  }
+
+  get passwordInput() {
+    return this.page.locator('input[name="Login.Password"]');
+  }
+
+  get loginButton() {
+    return this.page.locator("#LoginSubmitBtn");
+  }
+
+  userProfileLink(username: string) {
+    return this.page.getByRole("link", { name: username });
+  }
+
+  get userDashButtonDesktop() {
+    return this.page.locator("#userDashboardButtonDesktop");
+  }
+
+  get userDashButtonMobile() {
+    return this.page.locator("#offcanvasSidebar #userDashboardButton");
+  }
+
+  get aboutLink() {
+    return this.page.locator("#aboutLink");
+  }
+
+  get servicesLink() {
+    return this.page.locator("#servicesLink");
+  }
+
+  get membershipLink() {
+    return this.page.locator("#membershipLink");
+  }
+
+  get membereshipLink() {
+    return this.page.locator("#membereshipLink");
+  }
+
+  get contactLink() {
+    return this.page.locator("#contactLink");
+  }
+
+  get adminDashboardButtonDesktop() {
+    return this.page.locator("#adminDashboardButtonDesktop");
+  }
+
+  get adminDashboardButtonMobile() {
+    return this.page.locator("#adminDashboardButtonMobile");
+  }
+
+
+  get authPageLinkDesktop() {
+    return this.page.locator("#authPageLinkDesktop");
+  }
+
+  get authPageLinkMobile() {
+    return this.page.locator("#authPageLinkMobile");
+  }
+
+  get forgotPasswordLink() {
+    return this.page.locator("#forgotPasswordLink");
+  }
+
+  get editProfileButton() {
+    return this.page.locator("#editProfileLink");
+  }
+
+  get resetPasswordLink() {
+    return this.page.locator("#resetPasswordLink");
+  }
+
+  get paymentHistoryLink() {
+    return this.page.locator("#paymentHistoryLink");
+  }
+
+  get orderSuccessLink() {
+    return this.page.locator("#orderSuccessLink");
+  }
+
+  get termsAndConditionsLink() {
+    return this.page.locator("#termsAndCondLink");
+  }
+
+  get adminManageCoachesLink() {
+  return this.page.locator("#adminManageCoaches");
 }
+
+get adminManageMembershipsLink() {
+  return this.page.locator("#adminManageMemberships");
+}
+
+get adminManageDiscountCodesLink() {
+  return this.page.locator("#adminManageDiscountCodes");
+}
+
+get adminListFeedbacksLink() {
+  return this.page.locator("#adminListFeedbacks");
+}
+
+get adminActiveMembershipsLink() {
+  return this.page.locator("#adminActiveMemberships");
+}
+
+get adminOrdersListLink() {
+  return this.page.locator("#adminOrdersList");
+}
+
+get adminManageUsersLink() {
+  return this.page.locator("#adminManageUsers");
+}
+
+get adminFeedbacksLink() {
+  return this.page.locator("#adminFeedbacks");
+}
+
+get adminMembershipsLink() {
+  return this.page.locator("#adminMemberships");
+}
+
+get adminLogoutLink() {
+  return this.page.locator("#adminLogout");
+}
+
 
 }

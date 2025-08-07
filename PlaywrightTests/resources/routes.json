@@ -37,8 +37,9 @@
         "listOfFeedbacksPage":"https://localhost:44336/Admin/ListOfFeedbacks",
         "activeMembershipsPage":"https://localhost:44336/Admin/ListOfActiveMemberships",
         "orderListPage":"https://localhost:44336/Admin/ListOfOrders",
-        "manageUsersPage":"https://localhost:44336/Admin/ListOfUsers"
-
+        "manageUsersPage":"https://localhost:44336/Admin/ListOfUsers",
+        "contactPage":"https://localhost:44336/Feedback/Contact",
+        "resetPasswordPage":"https://localhost:44336/Account/ResetPassword"
 
     }
 }

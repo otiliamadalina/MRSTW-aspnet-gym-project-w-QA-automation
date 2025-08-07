@@ -1,6 +1,8 @@
 import { BrowserContext, Page, expect } from "@playwright/test";
 import CommonPage from "../pages/common.page";
 import BaseActions from "./base.actions";
+import routes from "../resources/routes.json";
+import strings from "../resources/strings.json";
 
 export default class CommonActions extends BaseActions {
   commonPage: CommonPage;
@@ -70,5 +72,81 @@ export default class CommonActions extends BaseActions {
 
     await this.commonPage.page.goBack();
     console.log("Went back to previous page in the same tab");
+  }
+
+  async loginAsUserTemplate(username: string, password: string) {
+    await this.commonPage.usernameInput.fill(username);
+    await this.commonPage.passwordInput.fill(password);
+    await this.commonPage.loginButton.click();
+    await this.page.waitForLoadState("load", { timeout: 10000 });
+    await expect(this.commonPage.userDashButtonDesktop).toBeVisible({
+      timeout: 10000,
+    });
+  }
+
+  async loginAsAdminTemplate(username: string, password: string) {
+    await this.commonPage.usernameInput.fill(username);
+    await this.commonPage.passwordInput.fill(password);
+    await this.commonPage.loginButton.click();
+    await this.page.waitForLoadState("load", { timeout: 10000 });
+    await expect(this.commonPage.adminDashboardButtonDesktop).toBeVisible({
+      timeout: 10000,
+    });
+  }
+
+  async loginAsUser() {
+    const username = strings.loginCredentials.username;
+    const password = strings.loginCredentials.password;
+
+    await this.loginAsUserTemplate(username, password);
+  }
+
+  async loginAsAdmin() {
+    const username = strings.loginCredentials.adminUsername;
+    const password = strings.loginCredentials.adminPassword;
+
+    await this.loginAsAdminTemplate(username, password);
+  }
+
+  async goToUserProfile() {
+    const desktopButton = this.commonPage.userDashButtonDesktop;
+
+    try {
+      await expect(desktopButton).toBeVisible({ timeout: 5000 });
+      await desktopButton.click();
+      await this.page.waitForLoadState("load");
+    } catch (error) {
+      console.error("goToUserProfile (desktop) failed:", error);
+      throw new Error(
+        "User Dashboard desktop button not visible or clickable."
+      );
+    }
+  }
+
+  async goToAdminProfile() {
+    const desktopButton = this.commonPage.adminDashboardButtonDesktop;
+
+    try {
+      await expect(desktopButton).toBeVisible({ timeout: 5000 });
+      await desktopButton.click();
+      await this.page.waitForLoadState("load");
+    } catch (error) {
+      console.error("desktop failed:", error);
+      throw new Error(
+        "admin Dashboard desktop button not visible or clickable."
+      );
+    }
+  }
+
+  async verifyUserIsLoggedIn() {
+    await expect(this.commonPage.userDashButtonDesktop).toBeVisible({
+      timeout: 5000,
+    });
+  }
+
+  async verifyAdminIsLoggedIn() {
+    await expect(this.commonPage.adminDashboardButtonDesktop).toBeVisible({
+      timeout: 5000,
+    });
   }
 }

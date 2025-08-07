@@ -78,5 +78,58 @@
     "ourValues3Strong": "Innovation:",
     "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics.",
     "registerButton":"Register"
+  },
+
+  "loginCredentials": {
+    "username":"otiliamadalina",
+    "password":"otiliamadalina",
+    "adminUsername":"Admin1234",
+    "adminPassword":"Admin1234"
+  },
+
+  "userProfile": {
+    "editProfile":"Edit Profile",
+    "changePassword":"Change Password",
+    "resetPassword":"Send Reset Link",
+    "paymentHistory":"Payment History"
+  },
+
+  "membership": {
+    "checkout":"Choose"
+    
+  },
+    
+  "checkout": {
+    "orderSuccess":"Place Order",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "membershipPlan": "Membership Plan",
+    "membershipDuration": "Membership Duration:",
+    "cardNumber": "Card Number",
+    "cvv": "CVV",
+    "expirationDate": "Expiration Date (MM/YY)",
+    "termsAndConditions": "I agree to the terms and conditions",
+    "placeOrder": "Place Order",
+
+    "id_firstName": "checkoutFirstName",
+    "id_lastName": "checkoutLastName",
+    "id_email": "checkoutEmail",
+    "id_membershipPlan": "checkoutMembership",
+    "id_membershipDuration": "checkoutDuration",
+    "id_cardNumber": "checkoutCardNumber",
+    "id_cvv": "checkoutCVV",
+    "id_expirationDate": "checkoutExpDate",
+    "id_termsAndConditions": "checkoutTerms",
+    "id_placeOrder": "checkoutPlaceOrder",
+
+    "value_firstName": "John",
+    "value_lastName": "Doe",
+    "value_email": "otiliamadalina@example.com",
+    "value_membershipPlan": "Premium Plan",
+    "value_membershipDuration": "3 Months",
+    "value_cardNumber": "4111 1111 1111 1111",
+    "value_cvv": "123",
+    "value_expirationDate": "12/25"
   }
 }
