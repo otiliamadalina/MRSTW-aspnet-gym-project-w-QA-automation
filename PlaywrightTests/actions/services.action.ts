@@ -50,17 +50,17 @@ export default class ServicesActions extends CommonActions {
   // ------- cards titles
 
   async verifyPersonalTrainingTitle() {
-    const personalTrainingTitle = this.services.personalTrainingTitle;
+    const personalTrainingTitle = this.services.personalTrainingCardTitle;
     await expect(personalTrainingTitle).toBeVisible();
   }
 
   async verifyGroupProgramsTitle() {
-    const groupProgramsTitle = this.services.groupProgramsTitle;
+    const groupProgramsTitle = this.services.groupProgramsCardTitle;
     await expect(groupProgramsTitle).toBeVisible();
   }
 
   async verifyNutritionCoachingTitle() {
-    const nutritionCoachingTitle = this.services.nutritionCoachingTitle;
+    const nutritionCoachingTitle = this.services.nutritionCoachingCardTitle;
     await expect(nutritionCoachingTitle).toBeVisible();
   }
 

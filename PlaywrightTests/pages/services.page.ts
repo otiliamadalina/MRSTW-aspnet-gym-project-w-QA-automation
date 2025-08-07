@@ -19,7 +19,7 @@ export default class ServicesPage extends BasePage {
     return this.page.locator("#meetOurTeam");
   }
 
-  get personalTrainingTitle() {
+  get personalTrainingCardTitle() {
     return this.page.locator("#personalTrainingTitle");
   }
 
@@ -31,7 +31,7 @@ export default class ServicesPage extends BasePage {
     return this.page.locator("#signUpForFree");
   }
 
-  get groupProgramsTitle() {
+  get groupProgramsCardTitle() {
     return this.page.locator("#groupProgramsTitle");
   }
 
@@ -43,7 +43,63 @@ export default class ServicesPage extends BasePage {
     return this.page.locator("#createYourDiet");
   }
 
-  get nutritionCoachingTitle() {
+  get nutritionCoachingCardTitle() {
     return this.page.locator("#nutritionCoachingTitle");
+  }
+
+  get personalTrainingHeader() {
+    return this.page.locator('#personalTrainingHeader');
+  }
+
+  get personalTrainingTitle() {
+    return this.page.locator('#personalTrainingTitle');
+  }
+
+  get personalTrainingSubtitle() {
+    return this.page.locator('#personalTrainingSubtitle');
+  }
+
+  get personalTrainingInfo() {
+    return this.page.locator('#personalTrainingInfo');
+  }
+
+  get personalTrainingImage() {
+    return this.page.locator('#personalTrainingImage');
+  }
+
+  get personalTrainingDescription() {
+    return this.page.locator('#personalTrainingDescription');
+  }
+
+  get personalTrainingWhatTitle() {
+    return this.page.locator('#personalTrainingWhatTitle');
+  }
+
+  get personalTrainingWhatText() {
+    return this.page.locator('#personalTrainingWhatText');
+  }
+
+  get personalTrainingBenefits() {
+    return this.page.locator('#personalTrainingBenefits');
+  }
+
+  get personalTrainingBenefitsTitle() {
+    return this.page.locator('#personalTrainingBenefitsTitle');
+  }
+
+  get personalTrainingBenefitsList() {
+    return this.page.locator('#personalTrainingBenefitsList');
+  }
+
+  get personalTrainingContact() {
+    return this.page.locator('#personalTrainingCta');
+  }
+
+  get personalTrainingContactText() {
+    return this.page.locator('#personalTrainingCtaText');
+  }
+
+  get personalTrainingContactButton() {
+    return this.page.locator('#personalTrainingContactButton');
   }
 }
