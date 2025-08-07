@@ -74,7 +74,7 @@ export default class CommonActions extends BaseActions {
     console.log("Went back to previous page in the same tab");
   }
 
-  async login(username: string, password: string) {
+  async loginAsUserTemplate(username: string, password: string) {
     await this.commonPage.usernameInput.fill(username);
     await this.commonPage.passwordInput.fill(password);
     await this.commonPage.loginButton.click();
@@ -84,18 +84,28 @@ export default class CommonActions extends BaseActions {
     });
   }
 
+  async loginAsAdminTemplate(username: string, password: string) {
+    await this.commonPage.usernameInput.fill(username);
+    await this.commonPage.passwordInput.fill(password);
+    await this.commonPage.loginButton.click();
+    await this.page.waitForLoadState("load", { timeout: 10000 });
+    await expect(this.commonPage.adminDashboardButtonDesktop).toBeVisible({
+      timeout: 10000,
+    });
+  }
+
   async loginAsUser() {
     const username = strings.loginCredentials.username;
     const password = strings.loginCredentials.password;
 
-    await this.login(username, password);
+    await this.loginAsUserTemplate(username, password);
   }
 
   async loginAsAdmin() {
     const username = strings.loginCredentials.adminUsername;
     const password = strings.loginCredentials.adminPassword;
 
-    await this.login(username, password);
+    await this.loginAsAdminTemplate(username, password);
   }
 
   async goToUserProfile() {
@@ -130,6 +140,12 @@ export default class CommonActions extends BaseActions {
 
   async verifyUserIsLoggedIn() {
     await expect(this.commonPage.userDashButtonDesktop).toBeVisible({
+      timeout: 5000,
+    });
+  }
+
+  async verifyAdminIsLoggedIn() {
+    await expect(this.commonPage.adminDashboardButtonDesktop).toBeVisible({
       timeout: 5000,
     });
   }

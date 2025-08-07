@@ -137,16 +137,51 @@ test.describe(
     });
 
     test("Main admin pages", async ({ app }) => {
-  And("the admin logs in");
-  await test.step("Login as admin", async () => {
-    await app.navbarFooter.navigateToPageByLinkText(
-      strings.navBar.login,
-      routes.allPages.authLoginPage
-    );
-    await app.navbarFooter.loginAsAdmin(); 
-  });
+      And("the admin logs in");
+      await test.step("Login as admin", async () => {
+        await app.navbarFooter.navigateToPageByLinkText(
+          strings.navBar.login,
+          routes.allPages.authLoginPage
+        );
+        await app.navbarFooter.loginAsAdmin();
+      });
+
+      And("the admin verifies Navbar and Footer on Manage Coaches page");
+      await test.step("Verify Manage Coaches page", async () => {
+        await app.navbarFooter.verifyManageCoachesPage();
+      });
+
+      And("the admin verifies Navbar and Footer on Manage Memberships page");
+      await test.step("Verify Manage Memberships page", async () => {
+        await app.navbarFooter.verifyManageMembershipsPage();
+      });
+
+      And("the admin verifies Navbar and Footer on Manage Discount Codes page");
+      await test.step("Verify Manage Discount Codes page", async () => {
+        await app.navbarFooter.verifyManageDiscountCodesPage();
+      });
+
+      And("the admin verifies Navbar and Footer on Manage Users page");
+      await test.step("Verify Manage Users page", async () => {
+        await app.navbarFooter.verifyManageUsersPage();
+      });
+
+      And("the admin verifies Navbar and Footer on Feedback List page");
+      await test.step("Verify Feedback List page", async () => {
+        await app.navbarFooter.verifyFeedbackListPage();
+      });
+
+      And("the admin verifies Navbar and Footer on Active Memberships page");
+      await test.step("Verify Active Memberships page", async () => {
+        await app.navbarFooter.verifyActiveMembershipsPage();
+      });
+
+      And("the admin verifies Navbar and Footer on Orders List page");
+      await test.step("Verify Orders List page", async () => {
+        await app.navbarFooter.verifyOrdersListPage();
+      });
 
 
+    });
   }
-    );
-});
+);

@@ -488,7 +488,6 @@ export default class navbarFooterActions extends CommonActions {
     await checkoutLink.click();
     await this.page.waitForLoadState("load");
 
-
     const termsAndCondButton = this.commonPage.termsAndConditionsLink;
     await expect(termsAndCondButton).toBeVisible();
     await termsAndCondButton.click();
@@ -500,15 +499,79 @@ export default class navbarFooterActions extends CommonActions {
   }
 
   async verifyManageCoachesPage() {
-  await this.verifyUserIsLoggedIn(); 
-  await this.goToAdminProfile();   
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
 
-  const coachesLink = this.commonPage.;
-  await expect(coachesLink).toBeVisible();
-  await coachesLink.click();
-  await this.page.waitForLoadState("load");
+    await this.commonPage.adminManageCoachesLink.click();
+    await this.page.waitForLoadState("load");
 
-  await this.verifyNavbarAndFooter();
-  await this.goBackMultiple(2);
-}
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
+
+  async verifyManageMembershipsPage() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+
+    await this.commonPage.adminManageMembershipsLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
+
+  async verifyManageDiscountCodesPage() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+
+    await this.commonPage.adminManageDiscountCodesLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
+
+  async verifyManageUsersPage() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+
+    await this.commonPage.adminManageUsersLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
+
+  async verifyFeedbackListPage() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+
+    await this.commonPage.adminListFeedbacksLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
+
+  async verifyActiveMembershipsPage() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+
+    await this.commonPage.adminActiveMembershipsLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
+
+  async verifyOrdersListPage() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+
+    await this.commonPage.adminOrdersListLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
 }
