@@ -22,10 +22,30 @@ test.describe("Services Page", { tag: ["@smoke", "@services"] }, async () => {
 
     And("the user sees main Title");
     await test.step("Verify Services page Tab title and main Title", async () => {
-      await app.common.browserTabTitleAsExpected(strings.services.servicesTabTitle);
+      await app.common.browserTabTitleAsExpected(
+        strings.services.servicesTabTitle
+      );
       await app.services.verifyOurServicesTitle();
     });
 
-    
+    And("the user sees all service titles");
+    await test.step("Verify all service titles are visible", async () => {
+      await app.services.verifyAllServiceTitles();
+    });
+
+    And("the user sees all service images");
+    await test.step("Verify all service images are loaded", async () => {
+      await app.services.verifyAllServiceImages();
+    });
+
+    And("the user hovers over all service cards");
+    await test.step("Verify overlays appear on hover", async () => {
+      await app.services.verifyAllServiceOverlays();
+    });
+
+    And("the user clicks each service card and returns");
+    await test.step("Click each service card and go back", async () => {
+      await app.services.clickAllCardsAndGoBack();
+    });
   });
 });
