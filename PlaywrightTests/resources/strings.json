@@ -77,30 +77,29 @@
     "ourValues2Description": "No hidden fees, clear terms, and instant access to your order history ensure you always know what you're paying for.",
     "ourValues3Strong": "Innovation:",
     "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics.",
-    "registerButton":"Register"
+    "registerButton": "Register"
   },
 
   "loginCredentials": {
-    "username":"otiliamadalina",
-    "password":"otiliamadalina",
-    "adminUsername":"Admin1234",
-    "adminPassword":"Admin1234"
+    "username": "otiliamadalina",
+    "password": "otiliamadalina",
+    "adminUsername": "Admin1234",
+    "adminPassword": "Admin1234"
   },
 
   "userProfile": {
-    "editProfile":"Edit Profile",
-    "changePassword":"Change Password",
-    "resetPassword":"Send Reset Link",
-    "paymentHistory":"Payment History"
+    "editProfile": "Edit Profile",
+    "changePassword": "Change Password",
+    "resetPassword": "Send Reset Link",
+    "paymentHistory": "Payment History"
   },
 
   "membership": {
-    "checkout":"Choose"
-    
+    "checkout": "Choose"
   },
-    
+
   "checkout": {
-    "orderSuccess":"Place Order",
+    "orderSuccess": "Place Order",
     "firstName": "First Name",
     "lastName": "Last Name",
     "email": "Email Address",
@@ -131,5 +130,32 @@
     "value_cardNumber": "4111 1111 1111 1111",
     "value_cvv": "123",
     "value_expirationDate": "12/25"
+  },
+
+  "services": {
+    "servicesTabTitle": "Gym Management - Services",
+    "ourServicesTitle" :"Our Services",
+    "personalTrainingCard":"Personal Training",
+    "meetOurTeam":"Meet our team!",
+    "groupProgramsCard":"Group Programs",
+    "signUpForASession":"Sign up for a session!",
+    "nutritionCoachingCard":"Nutrition Coaching",
+    "createYourDiet":"Create your diet!",
+    "groupProgramsSrc":"/Content/img/group-workouts-1-1-1024x536.jpg",
+    "personalTrainingSrc":"/Content/img/Best-Personal-Trainers-in-Edgewater-MD.png",
+    "nutritionCoachingSrc":"/Content/img/f710044bf79a4b1f5d8b085e5e5d9711_M.jpg",
+
+    "personalTrainingPage": {
+
+    },
+
+    "groupProgramsPage": {
+
+    },
+
+    "nutritionCoachingPage": {
+      
+    }
+  
   }
 }

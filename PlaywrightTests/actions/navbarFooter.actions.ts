@@ -403,7 +403,7 @@ export default class navbarFooterActions extends CommonActions {
   async verifyMembershipCheckoutPage() {
     await this.verifyUserIsLoggedIn();
 
-    const membershipLink = this.commonPage.membershipLink;
+    const membershipLink = this.commonPage.membershipLinkDesktop;
     await expect(membershipLink).toBeVisible();
     await membershipLink.click();
     await this.page.waitForLoadState("load");
@@ -454,7 +454,7 @@ export default class navbarFooterActions extends CommonActions {
   async verifyOrderSuccessPage() {
     await this.verifyUserIsLoggedIn();
 
-    const membershipLink = this.commonPage.membershipLink;
+    const membershipLink = this.commonPage.membershipLinkDesktop;
     await expect(membershipLink).toBeVisible();
     await membershipLink.click();
     await this.page.waitForLoadState("load");
@@ -476,7 +476,7 @@ export default class navbarFooterActions extends CommonActions {
   async verifyTermsAndConditionsPage() {
     await this.verifyUserIsLoggedIn();
 
-    const membershipLink = this.commonPage.membershipLink;
+    const membershipLink = this.commonPage.membershipLinkDesktop;
     await expect(membershipLink).toBeVisible();
     await membershipLink.click();
     await this.page.waitForLoadState("load");

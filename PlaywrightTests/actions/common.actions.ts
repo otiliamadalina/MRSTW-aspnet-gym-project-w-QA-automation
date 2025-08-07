@@ -74,6 +74,25 @@ export default class CommonActions extends BaseActions {
     console.log("Went back to previous page in the same tab");
   }
 
+  async verifyImageSrc(imageSrc: string) {
+    const imageLocator = this.commonPage.getImageBySrc(imageSrc);
+    await expect(imageLocator).toBeVisible();
+    await expect(imageLocator).toHaveAttribute("src", imageSrc);
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
   async loginAsUserTemplate(username: string, password: string) {
     await this.commonPage.usernameInput.fill(username);
     await this.commonPage.passwordInput.fill(password);

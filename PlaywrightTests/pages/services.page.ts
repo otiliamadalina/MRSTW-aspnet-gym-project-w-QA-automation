@@ -2,6 +2,11 @@ import { BrowserContext, Page } from "@playwright/test";
 import BasePage from "./base.page";
 
 export default class ServicesPage extends BasePage {
+    
+  get servicesLinkDesktop() {
+  return this.page.locator("#servicesLinkDesktop");
+}
+
   get ourServicesTitle() {
     return this.page.locator("#ourServicesTitle");
   }

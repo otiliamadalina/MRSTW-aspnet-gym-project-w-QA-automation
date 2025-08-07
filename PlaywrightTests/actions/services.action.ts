@@ -14,4 +14,16 @@ export default class ServicesActions extends CommonActions {
     this.services = new ServicesPage(page, context);
   }
 
+  async goToServicesPage() {
+    const servicesButton = this.services.servicesLinkDesktop;
+    await servicesButton.click();
+    await this.page.waitForLoadState("load", { timeout: 30000 });
+  }
+
+  async verifyOurServicesTitle(){
+    const ourServicesTitle = strings.services.ourServicesTitle;
+    await this.checkH1(ourServicesTitle);
+  }
+
+  
 }

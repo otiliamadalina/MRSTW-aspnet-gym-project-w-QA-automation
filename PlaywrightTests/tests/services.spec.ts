@@ -11,3 +11,20 @@ test.beforeEach(async ({ app }) => {
     await app.common.browserTabTitleAsExpected(strings.home.homeTitle);
   });
 });
+
+test.describe("Services Page", { tag: ["@smoke", "@services"] }, async () => {
+  test("Our Services", async ({ app }) => {
+    And("the user clicks on Services page");
+    await test.step("Verify Services page is loaded", async () => {
+      await app.services.goToServicesPage();
+      await app.navigation.pageUrlAsExpected(routes.navbarLinks.services);
+    });
+
+    And("the user sees main Title");
+    await test.step("Verify Services page Tab title and main Title", async () => {
+      await app.common.browserTabTitleAsExpected(strings.services.servicesTabTitle);
+      await app.services.verifyOurServicesTitle();
+    });
+
+  });
+});
