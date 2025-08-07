@@ -5,6 +5,7 @@ import HomeActions from "./home.actions";
 import CommonActions from "./common.actions";
 import navbarFooterActions from "./navbarFooter.actions";
 import AboutActions from "./about.action";
+import ServicesActions from "./services.action";
 
 export default class App {
   base: BaseActions;
@@ -13,6 +14,7 @@ export default class App {
   home: HomeActions;
   navbarFooter: navbarFooterActions;
   about: AboutActions;
+  services: ServicesActions;
 
   constructor(page: Page, context: BrowserContext) {
     this.base = new BaseActions(page, context);
