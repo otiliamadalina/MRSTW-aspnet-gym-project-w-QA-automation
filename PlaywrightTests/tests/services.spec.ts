@@ -48,4 +48,9 @@ test.describe("Services Page", { tag: ["@smoke", "@services"] }, async () => {
       await app.services.clickAllCardsAndGoBack();
     });
   });
+
+  test("Personal Training page", async ({ app }) => {
+
+
+  });
 });

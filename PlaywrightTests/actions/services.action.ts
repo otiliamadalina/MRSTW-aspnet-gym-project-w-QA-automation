@@ -95,31 +95,35 @@ export default class ServicesActions extends CommonActions {
 
   // ----- CLICK verify
 
-  async clickPersonalTrainingCardAndGoBack() {
+  async clickPersonalTrainingCard() {
     await this.services.personalTrainingCard.click();
     await expect(this.page).toHaveURL(
       routes.allPages.servicePersonalTrainingPage
     );
-    await this.page.goBack();
   }
 
-  async clickGroupProgramsCardAndGoBack() {
+  async clickGroupProgramsCard() {
     await this.services.groupProgramsCard.click();
     await expect(this.page).toHaveURL(routes.allPages.serviceGroupProgramsPage);
-    await this.page.goBack();
   }
 
-  async clickNutritionCoachingCardAndGoBack() {
+  async clickNutritionCoachingCard() {
     await this.services.nutritionCoachingCard.click();
     await expect(this.page).toHaveURL(
       routes.allPages.serviceNutritionCoachingPage
     );
-    await this.page.goBack();
   }
 
   async clickAllCardsAndGoBack() {
-    await this.clickPersonalTrainingCardAndGoBack();
-    await this.clickGroupProgramsCardAndGoBack();
-    await this.clickNutritionCoachingCardAndGoBack();
+    await this.clickPersonalTrainingCard();
+    await this.page.goBack();
+    await this.clickGroupProgramsCard();
+    await this.page.goBack();
+    await this.clickNutritionCoachingCard();
+    await this.page.goBack();
+  }
+
+  async verifyPersonalTraining(){
+
   }
 }
