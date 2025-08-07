@@ -123,15 +123,11 @@ export default class CommonPage extends BasePage {
     return this.page.locator("#paymentHistoryLink");
   }
 
-  get checkoutLink() {
-    return this.page.locator("#checkoutLink");
-  }
-
   get orderSuccessLink() {
     return this.page.locator("#orderSuccessLink");
   }
 
   get termsAndConditionsLink() {
-    return this.page.locator("#termsAndConditionsLink");
+    return this.page.locator("#termsAndCondLink");
   }
 }

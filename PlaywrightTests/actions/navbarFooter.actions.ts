@@ -361,101 +361,141 @@ export default class navbarFooterActions extends CommonActions {
   }
 
   async goBackMultiple(times: number) {
-  for (let i = 0; i < times; i++) {
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+    for (let i = 0; i < times; i++) {
+      await this.page.goBack();
+      await this.page.waitForLoadState("load");
+    }
   }
-}
 
   async verifyResetPasswordPage() {
-  await this.verifyUserIsLoggedIn();
+    await this.verifyUserIsLoggedIn();
 
-  await this.goToUserProfile();
-  const changePasswordLink = this.commonPage.forgotPasswordLink;
-  await expect(changePasswordLink).toBeVisible();
-  await changePasswordLink.click();
-  await this.page.waitForLoadState("load");
+    await this.goToUserProfile();
+    const changePasswordLink = this.commonPage.forgotPasswordLink;
+    await expect(changePasswordLink).toBeVisible();
+    await changePasswordLink.click();
+    await this.page.waitForLoadState("load");
 
-  const resetPasswordLink = this.commonPage.resetPasswordLink;
-  await expect(resetPasswordLink).toBeVisible();
-  await resetPasswordLink.click();
-  await this.page.waitForLoadState("load");
+    const resetPasswordLink = this.commonPage.resetPasswordLink;
+    await expect(resetPasswordLink).toBeVisible();
+    await resetPasswordLink.click();
+    await this.page.waitForLoadState("load");
 
-  await this.verifyNavbarAndFooter();
+    await this.verifyNavbarAndFooter();
 
-  await this.goBackMultiple(3);
-}
+    await this.goBackMultiple(2);
+  }
+
+  async verifyPaymentHistoryPage() {
+    await this.verifyUserIsLoggedIn();
+    await this.goToUserProfile();
+
+    const paymentHistoryLink = this.commonPage.paymentHistoryLink;
+    await expect(paymentHistoryLink).toBeVisible();
+    await paymentHistoryLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+
+    await this.goBackMultiple(2);
+  }
+
+  async verifyMembershipCheckoutPage() {
+    await this.verifyUserIsLoggedIn();
+
+    const membershipLink = this.commonPage.membershipLink;
+    await expect(membershipLink).toBeVisible();
+    await membershipLink.click();
+    await this.page.waitForLoadState("load");
+
+    const checkoutLink = this.page
+      .getByRole("link", { name: strings.membership.checkout })
+      .first();
+    await expect(checkoutLink).toBeVisible();
+    await checkoutLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.verifyNavbarAndFooter();
+
+    await this.goBackMultiple(2);
+  }
+
+  async fillCheckoutFormAndPlaceOrder() {
+    const checkout = strings.checkout;
+
+    await this.page
+      .locator(`#${checkout.id_firstName}`)
+      .fill(checkout.value_firstName);
+    await this.page
+      .locator(`#${checkout.id_lastName}`)
+      .fill(checkout.value_lastName);
+    await this.page.locator(`#${checkout.id_email}`).fill(checkout.value_email);
+
+    await this.page
+      .locator(`#${checkout.id_membershipDuration}`)
+      .selectOption({ label: checkout.value_membershipDuration });
+
+    await this.page
+      .locator(`#${checkout.id_cardNumber}`)
+      .fill(checkout.value_cardNumber);
+    await this.page.locator(`#${checkout.id_cvv}`).fill(checkout.value_cvv);
+    await this.page
+      .locator(`#${checkout.id_expirationDate}`)
+      .fill(checkout.value_expirationDate);
+
+    await this.page.locator(`#${checkout.id_termsAndConditions}`).check();
+    const placeOrderButton = this.commonPage.orderSuccessLink;
+    await expect(placeOrderButton).toBeVisible();
+    await placeOrderButton.click();
+
+    await this.page.waitForLoadState("load");
+  }
+
+  async verifyOrderSuccessPage() {
+    await this.verifyUserIsLoggedIn();
+
+    const membershipLink = this.commonPage.membershipLink;
+    await expect(membershipLink).toBeVisible();
+    await membershipLink.click();
+    await this.page.waitForLoadState("load");
+
+    const checkoutLink = this.page
+      .getByRole("link", { name: strings.membership.checkout })
+      .first();
+    await expect(checkoutLink).toBeVisible();
+    await checkoutLink.click();
+    await this.page.waitForLoadState("load");
+
+    await this.fillCheckoutFormAndPlaceOrder();
+
+    await this.verifyNavbarAndFooter();
+
+    await this.goBackMultiple(3);
+  }
+
+  async verifyTermsAndConditionsPage() {
+    await this.verifyUserIsLoggedIn();
+
+    const membershipLink = this.commonPage.membershipLink;
+    await expect(membershipLink).toBeVisible();
+    await membershipLink.click();
+    await this.page.waitForLoadState("load");
+
+    const checkoutLink = this.page
+      .getByRole("link", { name: strings.membership.checkout })
+      .first();
+    await expect(checkoutLink).toBeVisible();
+    await checkoutLink.click();
+    await this.page.waitForLoadState("load");
 
 
-async verifyPaymentHistoryPage() {
-  await this.verifyUserIsLoggedIn();
-  await this.goToUserProfile();
+    const termsAndCondButton = this.commonPage.termsAndConditionsLink;
+    await expect(termsAndCondButton).toBeVisible();
+    await termsAndCondButton.click();
 
-  const paymentHistoryLink = this.commonPage.paymentHistoryLink;
-  await expect(paymentHistoryLink).toBeVisible();
-  await paymentHistoryLink.click();
-  await this.page.waitForLoadState("load");
+    await this.page.waitForLoadState("load");
+    await this.verifyNavbarAndFooter();
 
-  await this.verifyNavbarAndFooter();
-
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-}
-
-async verifyMembershipCheckoutPage() {
-  await this.verifyUserIsLoggedIn();
-  await this.goToUserProfile();
-
-  const checkoutLink = this.commonPage.checkoutLink;
-  await expect(checkoutLink).toBeVisible();
-  await checkoutLink.click();
-  await this.page.waitForLoadState("load");
-
-  await this.verifyNavbarAndFooter();
-
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-}
-
-async verifyOrderSuccessPage() {
-  await this.verifyUserIsLoggedIn();
-  await this.goToUserProfile();
-
-  const successOrderLink = this.commonPage.orderSuccessLink;
-  await expect(successOrderLink).toBeVisible();
-  await successOrderLink.click();
-  await this.page.waitForLoadState("load");
-
-  await this.verifyNavbarAndFooter();
-
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-}
-
-async verifyTermsAndConditionsPage() {
-  await this.verifyUserIsLoggedIn();
-  await this.goToUserProfile();
-
-  const termsLink = this.commonPage.termsAndConditionsLink;
-  await expect(termsLink).toBeVisible();
-  await termsLink.click();
-  await this.page.waitForLoadState("load");
-
-  await this.verifyNavbarAndFooter();
-
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-  await this.page.goBack();
-  await this.page.waitForLoadState("load");
-}
+    await this.goBackMultiple(3);
+  }
 }

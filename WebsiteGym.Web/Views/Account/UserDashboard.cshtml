@@ -137,7 +137,7 @@
                                         </div>
 
                                         <div class="text-end mt-3 mt-md-0">
-                                             <a href="@Url.Action("Membership", "Home")" class="btn btn-primary">
+                                             <a id="membershipLink" href="@Url.Action("Membership", "Home")" class="btn btn-primary">
                                                   <i class="fas fa-sync-alt me-1"></i> Renew Membership
                                              </a>
                                         </div>
@@ -171,7 +171,7 @@
                                    <a href="@Url.Action("Membership", "Home")" class="btn btn-outline-primary">
                                         <i class="fas fa-exchange-alt mr-1"></i> Change Plan
                                    </a>
-                                   <a href="@Url.Action("PaymentHistory", "Account")" class="btn btn-outline-secondary">
+                                   <a id="paymentHistoryLink" href="@Url.Action("PaymentHistory", "Account")" class="btn btn-outline-secondary">
                                         <i class="fas fa-history mr-1"></i> Payment History
                                    </a>
                               </div>
@@ -181,7 +181,7 @@
                               <div class="text-center py-5">
                                    <h4>No Active Membership</h4>
                                    <p class="text-muted mb-4">You currently don't have an active membership. Choose a plan to get started.</p>
-                                   <a href="@Url.Action("Membership", "Home")" class="btn btn-primary btn-lg">
+                                   <a id="membershipLink" href="@Url.Action("Membership", "Home")" class="btn btn-primary btn-lg">
                                         <i class="fas fa-tag mr-1"></i> View Membership Plans
                                    </a>
                               </div>
