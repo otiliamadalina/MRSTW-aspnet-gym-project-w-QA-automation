@@ -91,13 +91,6 @@ export default class CommonPage extends BasePage {
     return this.page.locator("#adminDashboardButtonMobile");
   }
 
-  get userDashboardButtonDesktop() {
-    return this.page.locator("#userDashboardButtonDesktop");
-  }
-
-  get userDashboardButtonMobile() {
-    return this.page.locator("#userDashboardButtonMobile");
-  }
 
   get authPageLinkDesktop() {
     return this.page.locator("#authPageLinkDesktop");
@@ -130,4 +123,46 @@ export default class CommonPage extends BasePage {
   get termsAndConditionsLink() {
     return this.page.locator("#termsAndCondLink");
   }
+
+  get adminManageCoachesLink() {
+  return this.page.locator("#adminManageCoaches");
+}
+
+get adminManageMembershipsLink() {
+  return this.page.locator("#adminManageMemberships");
+}
+
+get adminManageDiscountCodesLink() {
+  return this.page.locator("#adminManageDiscountCodes");
+}
+
+get adminListFeedbacksLink() {
+  return this.page.locator("#adminListFeedbacks");
+}
+
+get adminActiveMembershipsLink() {
+  return this.page.locator("#adminActiveMemberships");
+}
+
+get adminOrdersListLink() {
+  return this.page.locator("#adminOrdersList");
+}
+
+get adminManageUsersLink() {
+  return this.page.locator("#adminManageUsers");
+}
+
+get adminFeedbacksLink() {
+  return this.page.locator("#adminFeedbacks");
+}
+
+get adminMembershipsLink() {
+  return this.page.locator("#adminMemberships");
+}
+
+get adminLogoutLink() {
+  return this.page.locator("#adminLogout");
+}
+
+
 }

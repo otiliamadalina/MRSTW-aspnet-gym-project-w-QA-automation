@@ -113,6 +113,21 @@ export default class CommonActions extends BaseActions {
     }
   }
 
+  async goToAdminProfile() {
+    const desktopButton = this.commonPage.adminDashboardButtonDesktop;
+
+    try {
+      await expect(desktopButton).toBeVisible({ timeout: 5000 });
+      await desktopButton.click();
+      await this.page.waitForLoadState("load");
+    } catch (error) {
+      console.error("desktop failed:", error);
+      throw new Error(
+        "admin Dashboard desktop button not visible or clickable."
+      );
+    }
+  }
+
   async verifyUserIsLoggedIn() {
     await expect(this.commonPage.userDashButtonDesktop).toBeVisible({
       timeout: 5000,

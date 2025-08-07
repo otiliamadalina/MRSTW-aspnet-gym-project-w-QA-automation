@@ -498,4 +498,17 @@ export default class navbarFooterActions extends CommonActions {
 
     await this.goBackMultiple(3);
   }
+
+  async verifyManageCoachesPage() {
+  await this.verifyUserIsLoggedIn(); 
+  await this.goToAdminProfile();   
+
+  const coachesLink = this.commonPage.;
+  await expect(coachesLink).toBeVisible();
+  await coachesLink.click();
+  await this.page.waitForLoadState("load");
+
+  await this.verifyNavbarAndFooter();
+  await this.goBackMultiple(2);
+}
 }

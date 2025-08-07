@@ -135,5 +135,18 @@ test.describe(
         await app.navbarFooter.verifyTermsAndConditionsPage();
       });
     });
+
+    test("Main admin pages", async ({ app }) => {
+  And("the admin logs in");
+  await test.step("Login as admin", async () => {
+    await app.navbarFooter.navigateToPageByLinkText(
+      strings.navBar.login,
+      routes.allPages.authLoginPage
+    );
+    await app.navbarFooter.loginAsAdmin(); 
+  });
+
+
   }
-);
+    );
+});
