@@ -92,4 +92,30 @@ export default class ServicesActions extends CommonActions {
     await this.verifyGroupProgramsOverlay();
     await this.verifyNutritionCoachingOverlay();
   }
+
+  // ----- CLICK verify
+  
+  async clickPersonalTrainingCardAndGoBack() {
+    await this.services.personalTrainingCard.click();
+    await expect(this.services.personalTrainingTitle).toBeVisible();
+    await this.page.goBack();
+  }
+
+  async clickGroupProgramsCardAndGoBack() {
+    await this.services.groupProgramsCard.click();
+    await expect(this.services.groupProgramsTitle).toBeVisible();
+    await this.page.goBack();
+  }
+
+  async clickNutritionCoachingCardAndGoBack() {
+    await this.services.nutritionCoachingCard.click();
+    await expect(this.services.nutritionCoachingTitle).toBeVisible();
+    await this.page.goBack();
+  }
+
+  async clickAllCardsAndGoBack() {
+    await this.clickPersonalTrainingCardAndGoBack();
+    await this.clickGroupProgramsCardAndGoBack();
+    await this.clickNutritionCoachingCardAndGoBack();
+  }
 }
