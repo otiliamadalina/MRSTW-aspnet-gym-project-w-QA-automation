@@ -100,6 +100,11 @@ test.describe(
         await app.navbarFooter.loginAsUser();
       });
 
+      And("the user verifies Navbar and Footer on User Dashboard");
+      await test.step("Verify User Dashboard page", async () => {
+        await app.navbarFooter.verifyUserDashboardFlow();
+      });
+
       And("the user verifies Navbar and Footer on Edit Profile page");
       await test.step("Verify Edit Profile page", async () => {
         await app.navbarFooter.verifyEditProfilePage();
@@ -146,6 +151,11 @@ test.describe(
         await app.navbarFooter.loginAsAdmin();
       });
 
+      And("the user verifies Navbar and Footer on Admin Dashboard");
+      await test.step("Verify Admin Dashboard page", async () => {
+        await app.navbarFooter.verifyAdminDashboardFlow();
+      });
+
       And("the admin verifies Navbar and Footer on Manage Coaches page");
       await test.step("Verify Manage Coaches page", async () => {
         await app.navbarFooter.verifyManageCoachesPage();
@@ -180,8 +190,6 @@ test.describe(
       await test.step("Verify Orders List page", async () => {
         await app.navbarFooter.verifyOrdersListPage();
       });
-
-
     });
   }
 );
