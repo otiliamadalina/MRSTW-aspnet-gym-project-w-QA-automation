@@ -583,7 +583,7 @@ export default class navbarFooterActions extends CommonActions {
 
   await this.verifyNavbarAndFooter();
 
-  await this.goBackMultiple(2); 
+  await this.goBackMultiple(1); 
 }
 
 async verifyAdminDashboardFlow() {
@@ -593,7 +593,7 @@ await this.goToAdminProfile();
 
   await this.verifyNavbarAndFooter();
 
-  await this.goBackMultiple(2); 
+  await this.goBackMultiple(1); 
 }
 
 }
