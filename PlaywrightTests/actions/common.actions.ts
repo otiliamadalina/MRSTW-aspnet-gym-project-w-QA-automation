@@ -78,9 +78,11 @@ export default class CommonActions extends BaseActions {
     await this.commonPage.usernameInput.fill(username);
     await this.commonPage.passwordInput.fill(password);
     await this.commonPage.loginButton.click();
-    await this.page.waitForLoadState('load', { timeout: 10000 });
-  await expect(this.page.locator('#userDashboardButtonDesktop')).toBeVisible({ timeout: 10000 });
-}
+    await this.page.waitForLoadState("load", { timeout: 10000 });
+    await expect(this.commonPage.userDashButtonDesktop).toBeVisible({
+      timeout: 10000,
+    });
+  }
 
   async loginAsUser() {
     const username = strings.loginCredentials.username;
@@ -96,22 +98,24 @@ export default class CommonActions extends BaseActions {
     await this.login(username, password);
   }
 
- async goToUserProfile() {
-  const desktopButton = this.commonPage.userDashButtonDesktop;
+  async goToUserProfile() {
+    const desktopButton = this.commonPage.userDashButtonDesktop;
 
-  try {
-    await expect(desktopButton).toBeVisible({ timeout: 5000 });
-    await desktopButton.click();
-    await this.page.waitForLoadState('load');
-  } catch (error) {
-    console.error('goToUserProfile (desktop) failed:', error);
-    throw new Error('User Dashboard desktop button not visible or clickable.');
+    try {
+      await expect(desktopButton).toBeVisible({ timeout: 5000 });
+      await desktopButton.click();
+      await this.page.waitForLoadState("load");
+    } catch (error) {
+      console.error("goToUserProfile (desktop) failed:", error);
+      throw new Error(
+        "User Dashboard desktop button not visible or clickable."
+      );
+    }
   }
-}
 
-async verifyUserIsLoggedIn() {
-  await expect(this.commonPage.userDashButtonDesktop).toBeVisible({ timeout: 5000 });
-}
-
-
+  async verifyUserIsLoggedIn() {
+    await expect(this.commonPage.userDashButtonDesktop).toBeVisible({
+      timeout: 5000,
+    });
+  }
 }

@@ -52,17 +52,17 @@ export default class navbarFooterActions extends CommonActions {
     await this.checkNavbarTextLinks(strings.navBar.membership);
     await this.checkNavbarTextLinks(strings.navBar.contact);
 
-   const loginLocator = this.page.getByRole("link", {
-    name: strings.navBar.login,
-    exact: true,
-  });
+    const loginLocator = this.page.getByRole("link", {
+      name: strings.navBar.login,
+      exact: true,
+    });
 
-  if (await loginLocator.isVisible()) {
-    await this.checkNavbarTextLinks(strings.navBar.login);
-  } else {
-    console.warn("Login link is nottttttt visible");
+    if (await loginLocator.isVisible()) {
+      await this.checkNavbarTextLinks(strings.navBar.login);
+    } else {
+      console.warn("Login link is nottttttt visible");
+    }
   }
-}
 
   async verifyNavbarLinks() {
     const links = this.navbarFooter.navbarLinks;
@@ -171,19 +171,6 @@ export default class navbarFooterActions extends CommonActions {
     await this.page.goBack();
     await this.page.waitForLoadState("load");
     await expect(this.page).toHaveURL(routes.homeLinks.home);
-  }
-
-  async loginAndGoToUserProfile() {
-    await this.verifyPageWithCommonLayout(
-      strings.navBar.login,
-      routes.allPages.authLoginPage
-    );
-
-    await this.loginAsUser();
-
-    await this.goToUserProfile();
-
-    await this.verifyNavbarAndFooter();
   }
 
   async verifyPersonalTrainingFlow() {
@@ -304,6 +291,16 @@ export default class navbarFooterActions extends CommonActions {
     await expect(this.page).toHaveURL(routes.homeLinks.home);
   }
 
+  async loginAndGoToUserProfile() {
+    await this.verifyPageWithCommonLayout(
+      strings.navBar.login,
+      routes.allPages.authLoginPage
+    );
+    await this.loginAsUser();
+    await this.goToUserProfile();
+    await this.verifyNavbarAndFooter();
+  }
+
   async verifyLoginFlow() {
     const loginLink = this.page.getByRole("link", {
       name: strings.navBar.login,
@@ -349,10 +346,11 @@ export default class navbarFooterActions extends CommonActions {
     await this.verifyUserIsLoggedIn();
     await this.goToUserProfile();
 
-    await this.navigateToPageByLinkText(
-      strings.userProfile.changePassword,
-      routes.allPages.forgotPasswordPage
-    );
+    const changePasswordLink = this.commonPage.forgotPasswordLink;
+    await expect(changePasswordLink).toBeVisible();
+    await changePasswordLink.click();
+    await this.page.waitForLoadState("load");
+
     await this.verifyNavbarAndFooter();
 
     await this.page.goBack();
@@ -361,98 +359,103 @@ export default class navbarFooterActions extends CommonActions {
     await this.page.goBack();
     await this.page.waitForLoadState("load");
   }
+
+  async goBackMultiple(times: number) {
+  for (let i = 0; i < times; i++) {
+    await this.page.goBack();
+    await this.page.waitForLoadState("load");
+  }
+}
 
   async verifyResetPasswordPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
+  await this.verifyUserIsLoggedIn();
 
-    await this.navigateToPageByLinkText(
-      strings.userProfile.resetPassword,
-      routes.allPages.resetPasswordPage
-    );
-    await this.verifyNavbarAndFooter();
+  await this.goToUserProfile();
+  const changePasswordLink = this.commonPage.forgotPasswordLink;
+  await expect(changePasswordLink).toBeVisible();
+  await changePasswordLink.click();
+  await this.page.waitForLoadState("load");
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  const resetPasswordLink = this.commonPage.resetPasswordLink;
+  await expect(resetPasswordLink).toBeVisible();
+  await resetPasswordLink.click();
+  await this.page.waitForLoadState("load");
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  await this.verifyNavbarAndFooter();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-  }
+  await this.goBackMultiple(3);
+}
 
-  async verifyPaymentHistoryPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
 
-    await this.navigateToPageByLinkText(
-      strings.userProfile.paymentHistory,
-      routes.allPages.paymentHistoryPage
-    );
-    await this.verifyNavbarAndFooter();
+async verifyPaymentHistoryPage() {
+  await this.verifyUserIsLoggedIn();
+  await this.goToUserProfile();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  const paymentHistoryLink = this.commonPage.paymentHistoryLink;
+  await expect(paymentHistoryLink).toBeVisible();
+  await paymentHistoryLink.click();
+  await this.page.waitForLoadState("load");
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-  }
+  await this.verifyNavbarAndFooter();
 
-  async verifyMembershipCheckoutPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+}
 
-    await this.navigateToPageByLinkText(
-      strings.membership.checkout,
-      routes.allPages.checkoutPage
-    );
-    await this.verifyNavbarAndFooter();
+async verifyMembershipCheckoutPage() {
+  await this.verifyUserIsLoggedIn();
+  await this.goToUserProfile();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  const checkoutLink = this.commonPage.checkoutLink;
+  await expect(checkoutLink).toBeVisible();
+  await checkoutLink.click();
+  await this.page.waitForLoadState("load");
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-  }
+  await this.verifyNavbarAndFooter();
 
-  async verifyOrderSuccessPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+}
 
-    await this.navigateToPageByLinkText(
-      strings.checkout.orderSuccess,
-      routes.allPages.successOrderPage
-    );
-    await this.verifyNavbarAndFooter();
+async verifyOrderSuccessPage() {
+  await this.verifyUserIsLoggedIn();
+  await this.goToUserProfile();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  const successOrderLink = this.commonPage.orderSuccessLink;
+  await expect(successOrderLink).toBeVisible();
+  await successOrderLink.click();
+  await this.page.waitForLoadState("load");
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  await this.verifyNavbarAndFooter();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-  }
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+}
 
-  async verifyTermsAndConditionsPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
+async verifyTermsAndConditionsPage() {
+  await this.verifyUserIsLoggedIn();
+  await this.goToUserProfile();
 
-    await this.navigateToPageByLinkText(
-      strings.checkout.termsAndConditions,
-      routes.allPages.termsAndCondPage
-    );
-    await this.verifyNavbarAndFooter();
+  const termsLink = this.commonPage.termsAndConditionsLink;
+  await expect(termsLink).toBeVisible();
+  await termsLink.click();
+  await this.page.waitForLoadState("load");
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  await this.verifyNavbarAndFooter();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-  }
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+  await this.page.goBack();
+  await this.page.waitForLoadState("load");
+}
 }

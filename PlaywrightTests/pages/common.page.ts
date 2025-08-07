@@ -26,18 +26,18 @@ export default class CommonPage extends BasePage {
   pLocator(text: string) {
     return this.page.locator("p", { hasText: `${text}` });
   }
-  
+
   liLocator(text: string) {
     return this.page.locator("li", { hasText: `${text}` });
   }
 
-  strongLocator(text: string){
+  strongLocator(text: string) {
     return this.page.locator("strong", { hasText: `${text}` });
   }
 
   getLinkByText(text: string) {
-  return this.page.locator('a', { hasText: `${text}` });
-}
+    return this.page.locator("a", { hasText: `${text}` });
+  }
 
   get usernameInput() {
     return this.page.locator('input[name="Login.UserName"]');
@@ -48,25 +48,90 @@ export default class CommonPage extends BasePage {
   }
 
   get loginButton() {
-    return this.page.locator('#LoginSubmitBtn');
+    return this.page.locator("#LoginSubmitBtn");
   }
 
   userProfileLink(username: string) {
-  return this.page.getByRole('link', { name: username });
-}
+    return this.page.getByRole("link", { name: username });
+  }
 
-get userDashButtonDesktop() {
-  return this.page.locator('#userDashboardButtonDesktop');
-}
+  get userDashButtonDesktop() {
+    return this.page.locator("#userDashboardButtonDesktop");
+  }
 
-get userDashButtonMobile() {
-  return this.page.locator('#offcanvasSidebar #userDashboardButton');
-}
+  get userDashButtonMobile() {
+    return this.page.locator("#offcanvasSidebar #userDashboardButton");
+  }
 
-get editProfileButton() {
-  return this.page.locator('#editProfileLink');
-}
+  get aboutLink() {
+    return this.page.locator("#aboutLink");
+  }
 
+  get servicesLink() {
+    return this.page.locator("#servicesLink");
+  }
 
+  get membershipLink() {
+    return this.page.locator("#membershipLink");
+  }
 
+  get membereshipLink() {
+    return this.page.locator("#membereshipLink");
+  }
+
+  get contactLink() {
+    return this.page.locator("#contactLink");
+  }
+
+  get adminDashboardButtonDesktop() {
+    return this.page.locator("#adminDashboardButtonDesktop");
+  }
+
+  get adminDashboardButtonMobile() {
+    return this.page.locator("#adminDashboardButtonMobile");
+  }
+
+  get userDashboardButtonDesktop() {
+    return this.page.locator("#userDashboardButtonDesktop");
+  }
+
+  get userDashboardButtonMobile() {
+    return this.page.locator("#userDashboardButtonMobile");
+  }
+
+  get authPageLinkDesktop() {
+    return this.page.locator("#authPageLinkDesktop");
+  }
+
+  get authPageLinkMobile() {
+    return this.page.locator("#authPageLinkMobile");
+  }
+
+  get forgotPasswordLink() {
+    return this.page.locator("#forgotPasswordLink");
+  }
+
+  get editProfileButton() {
+    return this.page.locator("#editProfileLink");
+  }
+
+  get resetPasswordLink() {
+    return this.page.locator("#resetPasswordLink");
+  }
+
+  get paymentHistoryLink() {
+    return this.page.locator("#paymentHistoryLink");
+  }
+
+  get checkoutLink() {
+    return this.page.locator("#checkoutLink");
+  }
+
+  get orderSuccessLink() {
+    return this.page.locator("#orderSuccessLink");
+  }
+
+  get termsAndConditionsLink() {
+    return this.page.locator("#termsAndConditionsLink");
+  }
 }
