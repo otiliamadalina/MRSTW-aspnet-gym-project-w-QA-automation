@@ -90,7 +90,7 @@ export default class ServicesPage extends BasePage {
   }
 
   get personalTrainingBenefitsList() {
-    return this.page.locator('#personalTrainingBenefitsList');
+    return this.page.locator('#personalTrainingBenefitsList li');
   }
 
   get personalTrainingContact() {

@@ -124,7 +124,7 @@ export default class ServicesActions extends CommonActions {
   }
 
   /// --- Personal TRAINING PAGEEEEE-----
-  
+
   async verifyPersonalTrainingHeaderSection() {
     await expect(this.services.personalTrainingHeader).toBeVisible();
     await expect(this.services.personalTrainingTitle).toHaveText(
@@ -147,22 +147,20 @@ export default class ServicesActions extends CommonActions {
   }
 
   async verifyPersonalTrainingBenefitsSection() {
-    await expect(this.services.personalTrainingBenefits).toBeVisible();
-    await expect(this.services.personalTrainingBenefitsTitle).toHaveText(
-      strings.services.personalTrainingPage.benefitsTitle
-    );
+  await expect(this.services.personalTrainingBenefits).toBeVisible();
+  await expect(this.services.personalTrainingBenefitsTitle).toHaveText(
+    strings.services.personalTrainingPage.benefitsTitle
+  );
 
-    for (
-      let i = 0;
-      i < strings.services.personalTrainingPage.benefitsList.length;
-      i++
-    ) {
-      const benefitItem = this.services.personalTrainingBenefitsList.nth(i);
-      await expect(benefitItem).toHaveText(
-        strings.services.personalTrainingPage.benefitsList[i]
-      );
-    }
-  }
+  const benefitItems = this.services.personalTrainingBenefitsList;
+  const expectedBenefits = strings.services.personalTrainingPage.benefitsList;
+
+  for (let i = 0; i < expectedBenefits.length; i++) {
+  await expect(benefitItems.nth(i)).toContainText(expectedBenefits[i]);
+}
+
+}
+
 
   async verifyPersonalTrainingContactSectionAndButton() {
   await expect(this.services.personalTrainingContact).toBeVisible();
