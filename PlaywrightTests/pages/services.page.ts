@@ -2,10 +2,9 @@ import { BrowserContext, Page } from "@playwright/test";
 import BasePage from "./base.page";
 
 export default class ServicesPage extends BasePage {
-    
   get servicesLinkDesktop() {
-  return this.page.locator("#servicesLinkDesktop");
-}
+    return this.page.locator("#servicesLinkDesktop");
+  }
 
   get ourServicesTitle() {
     return this.page.locator("#ourServicesTitle");
@@ -50,58 +49,108 @@ export default class ServicesPage extends BasePage {
   // -------- PERSONAL TRAINING PAGEEEEE --------
 
   get personalTrainingHeader() {
-    return this.page.locator('#personalTrainingHeader');
+    return this.page.locator("#personalTrainingHeader");
   }
 
   get personalTrainingTitle() {
-    return this.page.locator('#personalTrainingTitle');
+    return this.page.locator("#personalTrainingTitle");
   }
 
   get personalTrainingSubtitle() {
-    return this.page.locator('#personalTrainingSubtitle');
+    return this.page.locator("#personalTrainingSubtitle");
   }
 
   get personalTrainingInfo() {
-    return this.page.locator('#personalTrainingInfo');
+    return this.page.locator("#personalTrainingInfo");
   }
 
   get personalTrainingImage() {
-    return this.page.locator('#personalTrainingImage');
+    return this.page.locator("#personalTrainingImage");
   }
 
   get personalTrainingDescription() {
-    return this.page.locator('#personalTrainingDescription');
+    return this.page.locator("#personalTrainingDescription");
   }
 
   get personalTrainingWhatTitle() {
-    return this.page.locator('#personalTrainingWhatTitle');
+    return this.page.locator("#personalTrainingWhatTitle");
   }
 
   get personalTrainingWhatText() {
-    return this.page.locator('#personalTrainingWhatText');
+    return this.page.locator("#personalTrainingWhatText");
   }
 
   get personalTrainingBenefits() {
-    return this.page.locator('#personalTrainingBenefits');
+    return this.page.locator("#personalTrainingBenefits");
   }
 
   get personalTrainingBenefitsTitle() {
-    return this.page.locator('#personalTrainingBenefitsTitle');
+    return this.page.locator("#personalTrainingBenefitsTitle");
   }
 
   get personalTrainingBenefitsList() {
-    return this.page.locator('#personalTrainingBenefitsList li');
+    return this.page.locator("#personalTrainingBenefitsList li");
   }
 
   get personalTrainingContact() {
-    return this.page.locator('#personalTrainingContact');
+    return this.page.locator("#personalTrainingContact");
   }
 
   get personalTrainingContactText() {
-    return this.page.locator('#personalTrainingContactText');
+    return this.page.locator("#personalTrainingContactText");
   }
 
   get personalTrainingContactButton() {
-    return this.page.locator('#personalTrainingContactButton');
+    return this.page.locator("#personalTrainingContactButton");
+  }
+
+  // -------- GROUP Programss
+
+  get groupProgramsHeader() {
+    return this.page.locator("#groupProgramsHeader");
+  }
+
+  get groupProgramsTitle() {
+    return this.page.locator("#groupProgramsTitle");
+  }
+
+  get groupProgramsSubtitle() {
+    return this.page.locator("#groupProgramsSubtitle");
+  }
+
+  get groupProgramsInfo() {
+    return this.page.locator("#groupProgramsInfo");
+  }
+
+  get groupProgramsImage() {
+    return this.page.locator("#groupProgramsImage");
+  }
+
+  get groupProgramsDescription() {
+    return this.page.locator("#groupProgramsDescription");
+  }
+
+  get groupProgramsWhatTitle() {
+    return this.page.locator("#groupProgramsWhatTitle");
+  }
+
+  get groupProgramsWhatText() {
+    return this.page.locator("#roupProgramsWhatText");
+  }
+
+  get groupProgramsBenefitsList() {
+    return this.page.locator("#groupProgramsBenefitsList");
+  }
+
+  get groupProgramsContact() {
+    return this.page.locator("#groupProgramsContact");
+  }
+
+  get groupProgramsContactText() {
+    return this.page.locator("#groupProgramsContactText");
+  }
+
+  get groupProgramsContactButton() {
+    return this.page.locator("#groupProgramsContactButton");
   }
 }
