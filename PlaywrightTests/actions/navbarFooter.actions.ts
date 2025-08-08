@@ -112,41 +112,6 @@ export default class navbarFooterActions extends CommonActions {
     await expect(this.page).toHaveURL(routes.homeLinks.home);
   }
 
-  // async verifyAboutPage() {
-  //   await this.verifyCommonLayoutAndNavigation(
-  //     strings.navBar.about,
-  //     routes.allPages.aboutPage
-  //   );
-  // }
-
-  async verifyServicesPage() {
-    await this.verifyCommonLayoutAndNavigation(
-      strings.navBar.services,
-      routes.allPages.servicesMainPage
-    );
-  }
-
-  async verifyMembershipPage() {
-    await this.verifyCommonLayoutAndNavigation(
-      strings.navBar.membership,
-      routes.allPages.membershipPage
-    );
-  }
-
-  async verifyContactPage() {
-    await this.verifyCommonLayoutAndNavigation(
-      strings.navBar.contact,
-      routes.allPages.contactPage
-    );
-  }
-
-  async verifyLoginPage() {
-    await this.verifyCommonLayoutAndNavigation(
-      strings.navBar.login,
-      routes.allPages.authLoginPage
-    );
-  }
-
   async verifyNavbarAndFooter() {
     await this.locateNavbar();
     await this.locateLogo();
@@ -325,46 +290,30 @@ export default class navbarFooterActions extends CommonActions {
 
   ///////// Login AS USER
 
-  async verifyEditProfilePage() {
+  async verifyUserPagesWithTwoClicks(locator: Locator) {
     await this.verifyUserIsLoggedIn();
     await this.goToUserProfile();
 
-    await expect(this.commonPage.editProfileButton).toBeVisible();
-    await this.commonPage.editProfileButton.click();
+    await expect(locator).toBeVisible();
+    await locator.click();
     await this.page.waitForLoadState("load");
+
+    console.log("URL:", this.page.url());
 
     await this.verifyNavbarAndFooter();
+    await this.goBackMultiple(2);
+  }
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+  async verifyEditProfilePage() {
+    await this.verifyUserPagesWithTwoClicks(this.commonPage.editProfileButton);
   }
 
   async verifyChangePasswordPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
-
-    const changePasswordLink = this.commonPage.forgotPasswordLink;
-    await expect(changePasswordLink).toBeVisible();
-    await changePasswordLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
+    await this.verifyUserPagesWithTwoClicks(this.commonPage.forgotPasswordLink);
   }
 
-  async goBackMultiple(times: number) {
-    for (let i = 0; i < times; i++) {
-      await this.page.goBack();
-      await this.page.waitForLoadState("load");
-    }
+  async verifyPaymentHistoryPage() {
+    await this.verifyUserPagesWithTwoClicks(this.commonPage.paymentHistoryLink);
   }
 
   async verifyResetPasswordPage() {
@@ -386,20 +335,6 @@ export default class navbarFooterActions extends CommonActions {
     await this.goBackMultiple(2);
   }
 
-  async verifyPaymentHistoryPage() {
-    await this.verifyUserIsLoggedIn();
-    await this.goToUserProfile();
-
-    const paymentHistoryLink = this.commonPage.paymentHistoryLink;
-    await expect(paymentHistoryLink).toBeVisible();
-    await paymentHistoryLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-
-    await this.goBackMultiple(2);
-  }
-
   async verifyMembershipCheckoutPage() {
     await this.verifyUserIsLoggedIn();
 
@@ -414,6 +349,8 @@ export default class navbarFooterActions extends CommonActions {
     await expect(checkoutLink).toBeVisible();
     await checkoutLink.click();
     await this.page.waitForLoadState("load");
+
+    console.log("URL:", this.page.url());
 
     await this.verifyNavbarAndFooter();
 
@@ -498,7 +435,7 @@ export default class navbarFooterActions extends CommonActions {
     await this.goBackMultiple(3);
   }
 
-async verifyPage(locator: Locator) {
+  async verifyAdminPagesWithTwoClicks(locator: Locator) {
     await this.verifyAdminIsLoggedIn();
     await this.goToAdminProfile();
 
@@ -509,74 +446,46 @@ async verifyPage(locator: Locator) {
     await this.goBackMultiple(2);
   }
 
-
-
-
-
   async verifyManageCoachesPage() {
-    await this.verifyPage(this.commonPage.adminManageCoachesLink);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminManageCoachesLink
+    );
   }
 
-
-
-
   async verifyManageMembershipsPage() {
-    await this.verifyPage(this.commonPage.adminManageMembershipsLink);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminManageMembershipsLink
+    );
   }
 
   async verifyManageDiscountCodesPage() {
-    await this.verifyAdminIsLoggedIn();
-    await this.goToAdminProfile();
-
-    await this.commonPage.adminManageDiscountCodesLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-    await this.goBackMultiple(2);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminManageDiscountCodesLink
+    );
   }
 
   async verifyManageUsersPage() {
-    await this.verifyAdminIsLoggedIn();
-    await this.goToAdminProfile();
-
-    await this.commonPage.adminManageUsersLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-    await this.goBackMultiple(2);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminManageUsersLink
+    );
   }
 
   async verifyFeedbackListPage() {
-    await this.verifyAdminIsLoggedIn();
-    await this.goToAdminProfile();
-
-    await this.commonPage.adminListFeedbacksLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-    await this.goBackMultiple(2);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminListFeedbacksLink
+    );
   }
 
   async verifyActiveMembershipsPage() {
-    await this.verifyAdminIsLoggedIn();
-    await this.goToAdminProfile();
-
-    await this.commonPage.adminActiveMembershipsLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-    await this.goBackMultiple(2);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminActiveMembershipsLink
+    );
   }
 
   async verifyOrdersListPage() {
-    await this.verifyAdminIsLoggedIn();
-    await this.goToAdminProfile();
-
-    await this.commonPage.adminOrdersListLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-    await this.goBackMultiple(2);
+    await this.verifyAdminPagesWithTwoClicks(
+      this.commonPage.adminOrdersListLink
+    );
   }
 
   async verifyUserDashboardFlow() {

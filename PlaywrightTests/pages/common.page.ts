@@ -44,6 +44,16 @@ export default class CommonPage extends BasePage {
 }
 
 
+
+
+
+
+
+
+
+
+
+
   //-------- Auth
   get usernameInput() {
     return this.page.locator('input[name="Login.UserName"]');

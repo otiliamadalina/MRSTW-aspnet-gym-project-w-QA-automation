@@ -151,11 +151,8 @@ export default class ServicesActions extends CommonActions {
     await expect(info).toBeVisible();
     await expect(whatTitle).toHaveText(whatIsTitle);
     await expect(whatText).toHaveText(whatIsText);
-
     await this.verifyImageSrc(image);
 
-    //DE APELAT METODA PENTRU IMAGE
-    // await expect(this.services.personalTrainingImage).toBeVisible();
   }
 
   async verifyBenefitsSection(

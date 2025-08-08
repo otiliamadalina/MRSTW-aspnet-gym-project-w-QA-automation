@@ -81,7 +81,12 @@ export default class CommonActions extends BaseActions {
 
   }
 
-
+   async goBackMultiple(times: number) {
+    for (let i = 0; i < times; i++) {
+      await this.page.goBack();
+      await this.page.waitForLoadState("load");
+    }
+  }
 
 
 

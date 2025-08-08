@@ -143,11 +143,11 @@ export default class ServicesPage extends BasePage {
   }
 
   get groupProgramsWhatText() {
-    return this.page.locator("#roupProgramsWhatText");
+    return this.page.locator("#groupProgramsWhatText");
   }
 
   get groupProgramsBenefitsList() {
-    return this.page.locator("#groupProgramsBenefitsList");
+    return this.page.locator("#groupProgramsBenefitsList li");
   }
 
   get groupProgramsContact() {
@@ -205,7 +205,7 @@ export default class ServicesPage extends BasePage {
   }
 
   get nutritionCoachingBenefitsList() {
-    return this.page.locator("#nutritionCoachingBenefitsList");
+    return this.page.locator("#nutritionCoachingBenefitsList li");
   }
 
   get nutritionCoachingContact() {

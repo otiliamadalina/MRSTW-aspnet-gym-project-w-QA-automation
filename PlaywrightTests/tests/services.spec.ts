@@ -125,9 +125,9 @@ test.describe(
 
       And("the user clicks on Group Programs page");
       await test.step("Verify Group Programs is loaded", async () => {
-        await app.services.clickPersonalTrainingCard();
+        await app.services.clickGroupProgramsCard();
         await app.navigation.pageUrlAsExpected(
-          routes.allPages.servicePersonalTrainingPage
+          routes.allPages.serviceGroupProgramsPage
         );
       });
 

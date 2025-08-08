@@ -74,12 +74,18 @@ test.describe(
 
       And("the user verifies Navbar and Footer on Services page");
       await test.step("Verify Navbar and Footer on Services page", async () => {
-        await app.navbarFooter.verifyServicesPage();
+        await app.navbarFooter.verifyCommonLayoutAndNavigation(
+      strings.navBar.services,
+      routes.allPages.servicesMainPage
+    );
       });
 
       And("the user verifies Navbar and Footer on Membership page");
       await test.step("Verify Navbar and Footer on Membership page", async () => {
-        await app.navbarFooter.verifyMembershipPage();
+        await app.navbarFooter.verifyCommonLayoutAndNavigation(
+      strings.navBar.membership,
+      routes.allPages.membershipPage
+    );
       });
 
       And("the user verifies Navbar and Footer on Contact page");
@@ -92,7 +98,10 @@ test.describe(
 
       And("the user verifies Navbar and Footer on Login page");
       await test.step("Verify Navbar and Footer on Login page", async () => {
-        await app.navbarFooter.verifyLoginPage();
+        await app.navbarFooter.verifyCommonLayoutAndNavigation(
+      strings.navBar.login,
+      routes.allPages.authLoginPage
+    );
       });
     });
 
