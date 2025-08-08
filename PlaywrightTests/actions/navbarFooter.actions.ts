@@ -577,23 +577,22 @@ export default class navbarFooterActions extends CommonActions {
 
   async verifyUserDashboardFlow() {
     await this.verifyUserIsLoggedIn();
-  await this.goToUserProfile();
+    await this.goToUserProfile();
 
-  await this.page.waitForLoadState("load");
+    await this.page.waitForLoadState("load");
 
-  await this.verifyNavbarAndFooter();
+    await this.verifyNavbarAndFooter();
 
-  await this.goBackMultiple(1); 
-}
+    await this.goBackMultiple(1);
+  }
 
-async verifyAdminDashboardFlow() {
-await this.verifyAdminIsLoggedIn();
-await this.goToAdminProfile();
-  await this.page.waitForLoadState("load");
+  async verifyAdminDashboardFlow() {
+    await this.verifyAdminIsLoggedIn();
+    await this.goToAdminProfile();
+    await this.page.waitForLoadState("load");
 
-  await this.verifyNavbarAndFooter();
+    await this.verifyNavbarAndFooter();
 
-  await this.goBackMultiple(1); 
-}
-
+    await this.goBackMultiple(1);
+  }
 }

@@ -94,11 +94,11 @@ export default class ServicesPage extends BasePage {
   }
 
   get personalTrainingContact() {
-    return this.page.locator('#personalTrainingCta');
+    return this.page.locator('#personalTrainingContact');
   }
 
   get personalTrainingContactText() {
-    return this.page.locator('#personalTrainingCtaText');
+    return this.page.locator('#personalTrainingContactText');
   }
 
   get personalTrainingContactButton() {
