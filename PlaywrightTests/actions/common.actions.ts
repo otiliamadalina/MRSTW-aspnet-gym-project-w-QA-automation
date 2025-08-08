@@ -135,9 +135,9 @@ export default class CommonActions extends BaseActions {
       await desktopButton.click();
       await this.page.waitForLoadState("load");
     } catch (error) {
-      console.error("goToUserProfile (desktop) failed:", error);
+      console.error("failed", error);
       throw new Error(
-        "User Dashboard desktop button not visible or clickable."
+        "Uuser Dashboard desktop button not visible"
       );
     }
   }
@@ -150,9 +150,9 @@ export default class CommonActions extends BaseActions {
       await desktopButton.click();
       await this.page.waitForLoadState("load");
     } catch (error) {
-      console.error("desktop failed:", error);
+      console.error("fail", error);
       throw new Error(
-        "admin Dashboard desktop button not visible or clickable."
+        "admin Dashboard desktop button not visible"
       );
     }
   }

@@ -14,7 +14,7 @@ test.beforeEach(async ({ app }) => {
 
 test.describe(
   "Navbar&Footer tests on Home page",
-  { tag: ["@smoke", "@navbarFooter"] },
+  { tag: ["@regression", "@navbarFooter"] },
   async () => {
     test("Verify Logo", async ({ app }) => {
       And("the user sees Navigation bar");
@@ -61,12 +61,15 @@ test.describe(
 
 test.describe(
   "Navbar&Footer tests on Other pages",
-  { tag: ["@smoke", "@navbarFooter"] },
+  { tag: ["@regression", "@navbarFooter"] },
   async () => {
     test("Main links", async ({ app }) => {
       And("the user verifies Navbar and Footer on About page");
       await test.step("Verify Navbar and Footer on About page", async () => {
-        await app.navbarFooter.verifyAboutPage();
+        await app.navbarFooter.verifyCommonLayoutAndNavigation(
+      strings.navBar.about,
+      routes.allPages.aboutPage
+    );
       });
 
       And("the user verifies Navbar and Footer on Services page");
@@ -81,7 +84,10 @@ test.describe(
 
       And("the user verifies Navbar and Footer on Contact page");
       await test.step("Verify Navbar and Footer on Contact page", async () => {
-        await app.navbarFooter.verifyContactPage();
+        await app.navbarFooter.verifyCommonLayoutAndNavigation(
+      strings.navBar.contact,
+      routes.allPages.contactPage
+    );
       });
 
       And("the user verifies Navbar and Footer on Login page");

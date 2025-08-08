@@ -2,7 +2,7 @@ import BaseActions from "./base.actions";
 import HomePage from "../pages/home.page";
 import routes from "../resources/routes.json";
 import strings from "../resources/strings.json";
-import { BrowserContext, expect, Page } from "@playwright/test";
+import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 import NavbarFooterPage from "../pages/navbarFooter.page";
 import CommonActions from "./common.actions";
 
@@ -112,12 +112,12 @@ export default class navbarFooterActions extends CommonActions {
     await expect(this.page).toHaveURL(routes.homeLinks.home);
   }
 
-  async verifyAboutPage() {
-    await this.verifyCommonLayoutAndNavigation(
-      strings.navBar.about,
-      routes.allPages.aboutPage
-    );
-  }
+  // async verifyAboutPage() {
+  //   await this.verifyCommonLayoutAndNavigation(
+  //     strings.navBar.about,
+  //     routes.allPages.aboutPage
+  //   );
+  // }
 
   async verifyServicesPage() {
     await this.verifyCommonLayoutAndNavigation(
@@ -498,26 +498,30 @@ export default class navbarFooterActions extends CommonActions {
     await this.goBackMultiple(3);
   }
 
-  async verifyManageCoachesPage() {
+async verifyPage(locator: Locator) {
     await this.verifyAdminIsLoggedIn();
     await this.goToAdminProfile();
 
-    await this.commonPage.adminManageCoachesLink.click();
+    await locator.click();
     await this.page.waitForLoadState("load");
 
     await this.verifyNavbarAndFooter();
     await this.goBackMultiple(2);
   }
 
+
+
+
+
+  async verifyManageCoachesPage() {
+    await this.verifyPage(this.commonPage.adminManageCoachesLink);
+  }
+
+
+
+
   async verifyManageMembershipsPage() {
-    await this.verifyAdminIsLoggedIn();
-    await this.goToAdminProfile();
-
-    await this.commonPage.adminManageMembershipsLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.verifyNavbarAndFooter();
-    await this.goBackMultiple(2);
+    await this.verifyPage(this.commonPage.adminManageMembershipsLink);
   }
 
   async verifyManageDiscountCodesPage() {

@@ -149,7 +149,6 @@
       "pageTitle":"Services - Personal Training",
       "headerTitle": "Your Personalized Fitness Journey",
       "headerSubtitle": "Achieve your fitness goals with the help of our expert personal trainers!",
-      "sectionTitle": "Personal Training",
       "whatIsTitle": "What is Personal Training?",
       "whatIsText": "Our personal training service is designed to give you tailored workouts and one-on-one guidance. Whether you're new to fitness or looking to push yourself further, our trainers will work with you to create a personalized program that helps you reach your goals faster and more effectively.",
       "benefitsTitle": "Benefits of Personal Training",
@@ -164,7 +163,23 @@
       "contactButton": "Contact Us to Book Your Session"
     },
 
-    "groupProgramsPage": {},
+    "groupProgramsPage": {
+      "pageTitle":"Services - Group Programs",
+      "headerTitle": "Group Programs",
+      "headerSubtitle": "Join our exciting group programs and train with others!",
+      "whatIsTitle": "What We Offer",
+      "whatIsText": "Our group programs are designed for all fitness levels. Whether you're a beginner or an advanced athlete, we have something for you. Join a group and get motivated by working out with others!",
+      "benefitsTitle": "Benefits of Group Programs",
+      "benefitsList": [
+        "Motivation from peers",
+        "Variety in workouts",
+        "Affordable pricing",
+        "Fun and engaging environment",
+        "Expert guidance from certified trainers"
+      ],
+      "contactText": "Ready to start your fitness transformation?",
+      "contactButton": "Contact Us to Book Your Session"
+    },
 
     "nutritionCoachingPage": {}
   }
