@@ -122,6 +122,14 @@ export default class ServicesPage extends BasePage {
     return this.page.locator("#groupProgramsInfo");
   }
 
+  get groupProgramsBenefits() {
+    return this.page.locator("#groupProgramsBenefits");
+  }
+
+  get groupProgramsBenefitsTitle() {
+    return this.page.locator("#groupProgramsBenefitsTitle");
+  }
+
   get groupProgramsImage() {
     return this.page.locator("#groupProgramsImage");
   }
@@ -152,5 +160,63 @@ export default class ServicesPage extends BasePage {
 
   get groupProgramsContactButton() {
     return this.page.locator("#groupProgramsContactButton");
+  }
+
+  // -------- NUTRITION COAching
+
+  get nutritionCoachingHeader() {
+    return this.page.locator("#nutritionCoachingHeader");
+  }
+
+  get nutritionCoachingTitle() {
+    return this.page.locator("#nutritionCoachingTitle");
+  }
+
+  get nutritionCoachingSubtitle() {
+    return this.page.locator("#nutritionCoachingSubtitle");
+  }
+
+  get nutritionCoachingInfo() {
+    return this.page.locator("#nutritionCoachingInfo");
+  }
+
+  get nutritionCoachingImage() {
+    return this.page.locator("#nutritionCoachingImage");
+  }
+
+  get nutritionCoachingDescription() {
+    return this.page.locator("#nutritionCoachingDescription");
+  }
+
+  get nutritionCoachingWhatTitle() {
+    return this.page.locator("#nutritionCoachingWhatTitle");
+  }
+
+  get nutritionCoachingWhatText() {
+    return this.page.locator("#nutritionCoachingWhatText");
+  }
+
+  get nutritionCoachingBenefits() {
+    return this.page.locator("#nutritionCoachingBenefits");
+  }
+
+  get nutritionCoachingBenefitsTitle() {
+    return this.page.locator("#nutritionCoachingBenefitsTitle");
+  }
+
+  get nutritionCoachingBenefitsList() {
+    return this.page.locator("#nutritionCoachingBenefitsList");
+  }
+
+  get nutritionCoachingContact() {
+    return this.page.locator("#nutritionCoachingContact");
+  }
+
+  get nutritionCoachingContactText() {
+    return this.page.locator("#nutritionCoachingContactText");
+  }
+
+  get nutritionCoachingContactButton() {
+    return this.page.locator("#nutritionCoachingContactButton");
   }
 }

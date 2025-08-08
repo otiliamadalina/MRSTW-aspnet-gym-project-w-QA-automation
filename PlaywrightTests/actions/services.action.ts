@@ -2,11 +2,14 @@ import BaseActions from "./base.actions";
 import HomePage from "../pages/home.page";
 import routes from "../resources/routes.json";
 import strings from "../resources/strings.json";
-import { BrowserContext, expect, Page } from "@playwright/test";
+import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 import CommonActions from "./common.actions";
 import ServicesPage from "../pages/services.page";
 
 export default class ServicesActions extends CommonActions {
+  personalTrainingInfo(personalTrainingInfo: any, personalTrainingWhatTitle: any, whatIsTitle: any, personalTrainingWhatText: any, imageSrc: any, whatIsText: any) {
+    throw new Error("Method not implemented.");
+  }
   services: ServicesPage;
 
   constructor(page: Page, context: BrowserContext) {
@@ -125,56 +128,71 @@ export default class ServicesActions extends CommonActions {
 
   /// --- Personal TRAINING PAGEEEEE-----
 
-  async verifyPersonalTrainingHeaderSection() {
-    await expect(this.services.personalTrainingHeader).toBeVisible();
-    await expect(this.services.personalTrainingTitle).toHaveText(
-      strings.services.personalTrainingPage.headerTitle
-    );
-    await expect(this.services.personalTrainingSubtitle).toHaveText(
-      strings.services.personalTrainingPage.headerSubtitle
-    );
+  async verifyServicesHeaderSection(
+    header: Locator,
+    title: Locator,
+    subtitle: Locator,
+    headerTitle: string,
+    headerSubtitle: string
+  ) {
+    await expect(header).toBeVisible();
+    await expect(title).toHaveText(headerTitle);
+    await expect(subtitle).toHaveText(headerSubtitle);
   }
 
-  async verifyPersonalTrainingInfoSection() {
-    await expect(this.services.personalTrainingInfo).toBeVisible();
-    await expect(this.services.personalTrainingWhatTitle).toHaveText(
-      strings.services.personalTrainingPage.whatIsTitle
-    );
-    await expect(this.services.personalTrainingWhatText).toHaveText(
-      strings.services.personalTrainingPage.whatIsText
-    );
-    await expect(this.services.personalTrainingImage).toBeVisible();
+  async verifyInfoSection(
+    info: Locator,
+    whatTitle: Locator,
+    whatIsTitle: string,
+    whatText: Locator,
+    image: string,
+    whatIsText: string
+  ) {
+    await expect(info).toBeVisible();
+    await expect(whatTitle).toHaveText(whatIsTitle);
+    await expect(whatText).toHaveText(whatIsText);
+
+    await this.verifyImageSrc(image);
+
+    //DE APELAT METODA PENTRU IMAGE
+    // await expect(this.services.personalTrainingImage).toBeVisible();
   }
 
-  async verifyPersonalTrainingBenefitsSection() {
-    await expect(this.services.personalTrainingBenefits).toBeVisible();
-    await expect(this.services.personalTrainingBenefitsTitle).toHaveText(
-      strings.services.personalTrainingPage.benefitsTitle
-    );
+  async verifyBenefitsSection(
+    benefits: Locator,
+    benefitsTitle: Locator,
+    benefitTitle: string,
+    benefitsList: Locator,
+    benefitList: string[]
+  ) {
+    await expect(benefits).toBeVisible();
+    await expect(benefitsTitle).toHaveText(benefitTitle);
 
-    const benefitItems = this.services.personalTrainingBenefitsList;
-    const expectedBenefits = strings.services.personalTrainingPage.benefitsList;
+    const benefitItems = benefitsList;
+    const expectedBenefits = benefitList;
 
     for (let i = 0; i < expectedBenefits.length; i++) {
       await expect(benefitItems.nth(i)).toContainText(expectedBenefits[i]);
     }
   }
 
-  async verifyPersonalTrainingContactSectionAndButton() {
-    await expect(this.services.personalTrainingContact).toBeVisible();
-    await expect(this.services.personalTrainingContactText).toHaveText(
-      strings.services.personalTrainingPage.contactText
-    );
+  async verifyContactSectionAndButton(
+    contact: Locator,
+    contactText: Locator,
+    contactTexts: string,
+    contactButton: Locator,
+    contactButtonText: string,
+    contactPage: string
+  ) {
+    await expect(contact).toBeVisible();
+    await expect(contactText).toHaveText(contactTexts);
 
-    const personalTrainingContactButton =
-      this.services.personalTrainingContactButton;
-    await expect(personalTrainingContactButton).toBeVisible();
-    await expect(personalTrainingContactButton).toHaveText(
-      strings.services.personalTrainingPage.contactButton
-    );
+    const contactButtons = contactButton;
+    await expect(contactButtons).toBeVisible();
+    await expect(contactButtons).toHaveText(contactButtonText);
 
-    await personalTrainingContactButton.click();
-    await expect(this.page).toHaveURL(routes.allPages.contactPage);
+    await contactButtons.click();
+    await expect(this.page).toHaveURL(contactPage);
     await this.page.goBack();
   }
 }
