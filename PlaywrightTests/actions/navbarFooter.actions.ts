@@ -5,6 +5,8 @@ import strings from "../resources/strings.json";
 import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 import NavbarFooterPage from "../pages/navbarFooter.page";
 import CommonActions from "./common.actions";
+import ServicesPage from "../pages/services.page";
+import ServicesActions from "./services.action";
 
 export default class navbarFooterActions extends CommonActions {
   navbarFooter: NavbarFooterPage;
@@ -14,6 +16,7 @@ export default class navbarFooterActions extends CommonActions {
     this.navbarFooter = new NavbarFooterPage(page, context);
   }
 
+  /// general TESTS FOR NAV BAR and FOOTER
   async locateNavbar() {
     await expect(this.navbarFooter.navbar).toBeVisible();
     return this.navbarFooter.navbar;
@@ -85,10 +88,20 @@ export default class navbarFooterActions extends CommonActions {
 
   async verifyFooterText() {
     const footerText = strings.footer;
-    const footerParagraph = this.navbarFooter.pLocator(footerText);
+    const footerParagraph = this.commonPage.pLocator(footerText);
 
     await expect(footerParagraph).toBeVisible();
     await expect(footerParagraph).toHaveText(footerText);
+  }
+
+  async verifyNavbarAndFooter() {
+    await this.locateNavbar();
+    await this.locateLogo();
+    await this.verifyLogoImg();
+    await this.verifyLogoText();
+    await this.verifyNavbarTextLinks();
+
+    await this.verifyFooterText();
   }
 
   async verifyCommonLayoutAndNavigation(linkText: string, expectedUrl: string) {
@@ -112,16 +125,6 @@ export default class navbarFooterActions extends CommonActions {
     await expect(this.page).toHaveURL(routes.homeLinks.home);
   }
 
-  async verifyNavbarAndFooter() {
-    await this.locateNavbar();
-    await this.locateLogo();
-    await this.verifyLogoImg();
-    await this.verifyLogoText();
-    await this.verifyNavbarTextLinks();
-
-    await this.verifyFooterText();
-  }
-
   async navigateToPageByLinkText(linkText: string, expectedUrl: string) {
     const link = this.page.getByRole("link", { name: linkText, exact: true });
     await expect(link).toBeVisible();
@@ -138,26 +141,38 @@ export default class navbarFooterActions extends CommonActions {
     await expect(this.page).toHaveURL(routes.homeLinks.home);
   }
 
+  // 3 SERVICES Pages
+
+  async clickPersonalTrainingCard() {
+    await this.navbarFooter.personalTrainingCard.click();
+    await expect(this.page).toHaveURL(
+      routes.allPages.servicePersonalTrainingPage
+    );
+  }
+
+  async clickGroupProgramsCard() {
+    await this.navbarFooter.groupProgramsCard.click();
+    await expect(this.page).toHaveURL(routes.allPages.serviceGroupProgramsPage);
+  }
+
+  async clickNutritionCoachingCard() {
+    await this.navbarFooter.nutritionCoachingCard.click();
+    await expect(this.page).toHaveURL(
+      routes.allPages.serviceNutritionCoachingPage
+    );
+  }
+
   async verifyPersonalTrainingFlow() {
     await this.navigateToPageByLinkText(
       strings.navBar.services,
       routes.allPages.servicesMainPage
     );
 
-    await this.navigateToPageByLinkText(
-      strings.home.ourServicesCards.personalTraining,
-      routes.allPages.servicePersonalTrainingPage
-    );
+    await this.clickPersonalTrainingCard();
 
     await this.verifyNavbarAndFooter();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-    await expect(this.page).toHaveURL(routes.allPages.servicesMainPage);
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-    await expect(this.page).toHaveURL(routes.homeLinks.home);
+    await this.goBackMultiple(2);
   }
 
   async verifyNutritionCoachingFlow() {
@@ -166,20 +181,11 @@ export default class navbarFooterActions extends CommonActions {
       routes.allPages.servicesMainPage
     );
 
-    await this.navigateToPageByLinkText(
-      strings.home.ourServicesCards.nutritionCoaching,
-      routes.allPages.serviceNutritionCoachingPage
-    );
+    await this.clickNutritionCoachingCard();
 
     await this.verifyNavbarAndFooter();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-    await expect(this.page).toHaveURL(routes.allPages.servicesMainPage);
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-    await expect(this.page).toHaveURL(routes.homeLinks.home);
+    await this.goBackMultiple(2);
   }
 
   async verifyGroupClassesFlow() {
@@ -188,21 +194,14 @@ export default class navbarFooterActions extends CommonActions {
       routes.allPages.servicesMainPage
     );
 
-    await this.navigateToPageByLinkText(
-      strings.home.ourServicesCards.groupClasses,
-      routes.allPages.serviceGroupProgramsPage
-    );
+    await this.clickGroupProgramsCard();
 
     await this.verifyNavbarAndFooter();
 
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-    await expect(this.page).toHaveURL(routes.allPages.servicesMainPage);
-
-    await this.page.goBack();
-    await this.page.waitForLoadState("load");
-    await expect(this.page).toHaveURL(routes.homeLinks.home);
+    await this.goBackMultiple(2);
   }
+
+  // -------------------------------------------------------------
 
   async verifyAboutFlow() {
     await this.navigateToPageByLinkText(
@@ -256,17 +255,7 @@ export default class navbarFooterActions extends CommonActions {
     await expect(this.page).toHaveURL(routes.homeLinks.home);
   }
 
-  async loginAndGoToUserProfile() {
-    await this.verifyPageWithCommonLayout(
-      strings.navBar.login,
-      routes.allPages.authLoginPage
-    );
-    await this.loginAsUser();
-    await this.goToUserProfile();
-    await this.verifyNavbarAndFooter();
-  }
-
-  async verifyLoginFlow() {
+   async verifyLoginFlow() {
     const loginLink = this.page.getByRole("link", {
       name: strings.navBar.login,
       exact: true,
@@ -288,7 +277,23 @@ export default class navbarFooterActions extends CommonActions {
     }
   }
 
+
+  // ---------------------------------------------------------------------------
+
+
+ 
+
   ///////// Login AS USER
+  
+  async loginAndGoToUserProfile() {
+    await this.verifyPageWithCommonLayout(
+      strings.navBar.login,
+      routes.allPages.authLoginPage
+    );
+    await this.loginAsUser();
+    await this.goToUserProfile();
+    await this.verifyNavbarAndFooter();
+  }
 
   async verifyUserPagesWithTwoClicks(locator: Locator) {
     await this.verifyUserIsLoggedIn();
@@ -435,6 +440,10 @@ export default class navbarFooterActions extends CommonActions {
     await this.goBackMultiple(3);
   }
 
+
+  /// LOGIN AS ADMINN
+
+  
   async verifyAdminPagesWithTwoClicks(locator: Locator) {
     await this.verifyAdminIsLoggedIn();
     await this.goToAdminProfile();

@@ -60,59 +60,38 @@ test.describe(
       });
 
       And("the user clicks on Personal Training page");
-      await test.step("Verify Services page is loaded", async () => {
+      await test.step("Verify Personal Training page is loaded", async () => {
         await app.services.clickPersonalTrainingCard();
         await app.navigation.pageUrlAsExpected(
           routes.allPages.servicePersonalTrainingPage
         );
       });
 
+      And("the user sees the correct browser tab title");
       await test.step("Verify Personal Training Tab Title", async () => {
         await app.common.browserTabTitleAsExpected(
           strings.services.personalTrainingPage.pageTitle
         );
       });
 
+      And("the user sees the header section");
       await test.step("Verify Personal Training header section", async () => {
-        await app.services.verifyServicesHeaderSection(
-          app.services.services.personalTrainingHeader,
-          app.services.services.personalTrainingTitle,
-          app.services.services.personalTrainingSubtitle,
-          strings.services.personalTrainingPage.headerTitle,
-          strings.services.personalTrainingPage.headerSubtitle
-        );
+        await app.services.verifyPersonalTrainingHeaderSection();
       });
 
+      And("the user sees the info section");
       await test.step("Verify Personal Training info section", async () => {
-        await app.services.verifyInfoSection(
-          app.services.services.personalTrainingInfo,
-          app.services.services.personalTrainingWhatTitle,
-          strings.services.personalTrainingPage.whatIsTitle,
-          app.services.services.personalTrainingWhatText,
-          strings.services.personalTrainingSrc,
-          strings.services.personalTrainingPage.whatIsText
-        );
+        await app.services.verifyPersonalTrainingInfoSection();
       });
 
+      And("the user sees the benefits section");
       await test.step("Verify Personal Training benefits section", async () => {
-        await app.services.verifyBenefitsSection(
-          app.services.services.personalTrainingBenefits,
-          app.services.services.personalTrainingBenefitsTitle,
-          strings.services.personalTrainingPage.benefitsTitle,
-          app.services.services.personalTrainingBenefitsList,
-          strings.services.personalTrainingPage.benefitsList
-        );
+        await app.services.verifyPersonalTrainingBenefitsSection();
       });
 
+      And("the user sees the contact section and button");
       await test.step("Verify Personal Training contact section and button", async () => {
-        await app.services.verifyContactSectionAndButton(
-          app.services.services.personalTrainingContact,
-          app.services.services.personalTrainingContactText,
-          strings.services.personalTrainingPage.contactText,
-          app.services.services.personalTrainingContactButton,
-          strings.services.personalTrainingPage.contactButton,
-          routes.allPages.contactPage
-        );
+        await app.services.verifyPersonalTrainingContactSection();
       });
     });
 
@@ -124,59 +103,38 @@ test.describe(
       });
 
       And("the user clicks on Group Programs page");
-      await test.step("Verify Group Programs is loaded", async () => {
+      await test.step("Verify Group Programs page is loaded", async () => {
         await app.services.clickGroupProgramsCard();
         await app.navigation.pageUrlAsExpected(
           routes.allPages.serviceGroupProgramsPage
         );
       });
 
+      And("the user sees the correct browser tab title");
       await test.step("Verify Group Programs Tab Title", async () => {
         await app.common.browserTabTitleAsExpected(
           strings.services.groupProgramsPage.pageTitle
         );
       });
 
+      And("the user sees the header section");
       await test.step("Verify Group Programs header section", async () => {
-        await app.services.verifyServicesHeaderSection(
-          app.services.services.groupProgramsHeader,
-          app.services.services.groupProgramsTitle,
-          app.services.services.groupProgramsSubtitle,
-          strings.services.groupProgramsPage.headerTitle,
-          strings.services.groupProgramsPage.headerSubtitle
-        );
+        await app.services.verifyGroupProgramsHeaderSection();
       });
 
+      And("the user sees the info section");
       await test.step("Verify Group Programs info section", async () => {
-        await app.services.verifyInfoSection(
-          app.services.services.groupProgramsInfo,
-          app.services.services.groupProgramsWhatTitle,
-          strings.services.groupProgramsPage.whatIsTitle,
-          app.services.services.groupProgramsWhatText,
-          strings.services.groupProgramsSrc,
-          strings.services.groupProgramsPage.whatIsText
-        );
+        await app.services.verifyGroupProgramsInfoSection();
       });
 
+      And("the user sees the benefits section");
       await test.step("Verify Group Programs benefits section", async () => {
-        await app.services.verifyBenefitsSection(
-          app.services.services.groupProgramsBenefits,
-          app.services.services.groupProgramsBenefitsTitle,
-          strings.services.groupProgramsPage.benefitsTitle,
-          app.services.services.groupProgramsBenefitsList,
-          strings.services.groupProgramsPage.benefitsList
-        );
+        await app.services.verifyGroupProgramsBenefitsSection();
       });
 
+      And("the user sees the contact section and button");
       await test.step("Verify Group Programs contact section and button", async () => {
-        await app.services.verifyContactSectionAndButton(
-          app.services.services.groupProgramsContact,
-          app.services.services.groupProgramsContactText,
-          strings.services.groupProgramsPage.contactText,
-          app.services.services.groupProgramsContactButton,
-          strings.services.groupProgramsPage.contactButton,
-          routes.allPages.contactPage
-        );
+        await app.services.verifyGroupProgramsContactSection();
       });
     });
 
@@ -188,59 +146,38 @@ test.describe(
       });
 
       And("the user clicks on Nutrition Coaching page");
-      await test.step("Verify Nutrition Coaching is loaded", async () => {
+      await test.step("Verify Nutrition Coaching page is loaded", async () => {
         await app.services.clickNutritionCoachingCard();
         await app.navigation.pageUrlAsExpected(
           routes.allPages.serviceNutritionCoachingPage
         );
       });
 
+      And("the user sees the correct browser tab title");
       await test.step("Verify Nutrition Coaching Tab Title", async () => {
         await app.common.browserTabTitleAsExpected(
           strings.services.nutritionCoachingPage.pageTitle
         );
       });
 
+      And("the user sees the header section");
       await test.step("Verify Nutrition Coaching header section", async () => {
-        await app.services.verifyServicesHeaderSection(
-          app.services.services.nutritionCoachingHeader,
-          app.services.services.nutritionCoachingTitle,
-          app.services.services.nutritionCoachingSubtitle,
-          strings.services.nutritionCoachingPage.headerTitle,
-          strings.services.nutritionCoachingPage.headerSubtitle
-        );
+        await app.services.verifyNutritionCoachingHeaderSection();
       });
 
+      And("the user sees the info section");
       await test.step("Verify Nutrition Coaching info section", async () => {
-        await app.services.verifyInfoSection(
-          app.services.services.nutritionCoachingInfo,
-          app.services.services.nutritionCoachingWhatTitle,
-          strings.services.nutritionCoachingPage.whatIsTitle,
-          app.services.services.nutritionCoachingWhatText,
-          strings.services.nutritionCoachingSrc,
-          strings.services.nutritionCoachingPage.whatIsText
-        );
+        await app.services.verifyNutritionCoachingInfoSection();
       });
 
+      And("the user sees the benefits section");
       await test.step("Verify Nutrition Coaching benefits section", async () => {
-        await app.services.verifyBenefitsSection(
-          app.services.services.nutritionCoachingBenefits,
-          app.services.services.nutritionCoachingBenefitsTitle,
-          strings.services.nutritionCoachingPage.benefitsTitle,
-          app.services.services.nutritionCoachingBenefitsList,
-          strings.services.nutritionCoachingPage.benefitsList
-        );
+        await app.services.verifyNutritionCoachingBenefitsSection();
       });
 
+      And("the user sees the contact section and button");
       await test.step("Verify Nutrition Coaching contact section and button", async () => {
-        await app.services.verifyContactSectionAndButton(
-          app.services.services.nutritionCoachingContact,
-          app.services.services.nutritionCoachingContactText,
-          strings.services.nutritionCoachingPage.contactText,
-          app.services.services.nutritionCoachingContactButton,
-          strings.services.nutritionCoachingPage.contactButton,
-          routes.allPages.contactPage
-        );
+        await app.services.verifyNutritionCoachingContactSection();
       });
     });
   }

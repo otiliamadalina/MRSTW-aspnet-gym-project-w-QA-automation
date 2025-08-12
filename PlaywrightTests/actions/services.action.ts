@@ -7,7 +7,14 @@ import CommonActions from "./common.actions";
 import ServicesPage from "../pages/services.page";
 
 export default class ServicesActions extends CommonActions {
-  personalTrainingInfo(personalTrainingInfo: any, personalTrainingWhatTitle: any, whatIsTitle: any, personalTrainingWhatText: any, imageSrc: any, whatIsText: any) {
+  personalTrainingInfo(
+    personalTrainingInfo: any,
+    personalTrainingWhatTitle: any,
+    whatIsTitle: any,
+    personalTrainingWhatText: any,
+    imageSrc: any,
+    whatIsText: any
+  ) {
     throw new Error("Method not implemented.");
   }
   services: ServicesPage;
@@ -126,70 +133,191 @@ export default class ServicesActions extends CommonActions {
     await this.page.goBack();
   }
 
-  /// --- Personal TRAINING PAGEEEEE-----
-
-  async verifyServicesHeaderSection(
+  async checkHeaderSection(
     header: Locator,
     title: Locator,
     subtitle: Locator,
-    headerTitle: string,
-    headerSubtitle: string
+    expectedTitle: string,
+    expectedSubtitle: string
   ) {
     await expect(header).toBeVisible();
-    await expect(title).toHaveText(headerTitle);
-    await expect(subtitle).toHaveText(headerSubtitle);
+    await expect(title).toHaveText(expectedTitle);
+    await expect(subtitle).toHaveText(expectedSubtitle);
   }
 
-  async verifyInfoSection(
-    info: Locator,
-    whatTitle: Locator,
-    whatIsTitle: string,
-    whatText: Locator,
-    image: string,
-    whatIsText: string
+  async checkInfoSection(
+    section: Locator,
+    title: Locator,
+    expectedTitle: string,
+    text: Locator,
+    expectedText: string,
+    expectedImageSrc: string
   ) {
-    await expect(info).toBeVisible();
-    await expect(whatTitle).toHaveText(whatIsTitle);
-    await expect(whatText).toHaveText(whatIsText);
-    await this.verifyImageSrc(image);
-
+    await expect(section).toBeVisible();
+    await expect(title).toHaveText(expectedTitle);
+    await expect(text).toHaveText(expectedText);
+    await this.verifyImageSrc(expectedImageSrc);
   }
 
-  async verifyBenefitsSection(
-    benefits: Locator,
-    benefitsTitle: Locator,
-    benefitTitle: string,
-    benefitsList: Locator,
-    benefitList: string[]
+  async checkBenefitsSection(
+    section: Locator,
+    title: Locator,
+    expectedTitle: string,
+    items: Locator,
+    expectedItems: string[]
   ) {
-    await expect(benefits).toBeVisible();
-    await expect(benefitsTitle).toHaveText(benefitTitle);
+    await expect(section).toBeVisible();
+    await expect(title).toHaveText(expectedTitle);
 
-    const benefitItems = benefitsList;
-    const expectedBenefits = benefitList;
+    const count = await items.count();
+    expect(count).toBe(expectedItems.length);
 
-    for (let i = 0; i < expectedBenefits.length; i++) {
-      await expect(benefitItems.nth(i)).toContainText(expectedBenefits[i]);
+    for (let i = 0; i < expectedItems.length; i++) {
+      await expect(items.nth(i)).toContainText(expectedItems[i]);
     }
   }
 
-  async verifyContactSectionAndButton(
-    contact: Locator,
-    contactText: Locator,
-    contactTexts: string,
-    contactButton: Locator,
-    contactButtonText: string,
-    contactPage: string
+  async checkContactSectionAndButton(
+    section: Locator,
+    text: Locator,
+    expectedText: string,
+    button: Locator,
+    expectedButtonText: string,
+    expectedUrl: string
   ) {
-    await expect(contact).toBeVisible();
-    await expect(contactText).toHaveText(contactTexts);
+    await expect(section).toBeVisible();
+    await expect(text).toHaveText(expectedText);
+    await expect(button).toBeVisible();
+    await expect(button).toHaveText(expectedButtonText);
 
-    const contactButtons = contactButton;
-    await expect(contactButtons).toBeVisible();
-    await expect(contactButtons).toHaveText(contactButtonText);
-
-    await contactButtons.click();
-    await expect(this.page).toHaveURL(contactPage);
+    await button.click();
+    await expect(this.page).toHaveURL(expectedUrl);
     await this.page.goBack();
+  }
+
+  async verifyPersonalTrainingHeaderSection() {
+    await this.checkHeaderSection(
+      this.services.personalTrainingHeader,
+      this.services.personalTrainingTitle,
+      this.services.personalTrainingSubtitle,
+      strings.services.personalTrainingPage.headerTitle,
+      strings.services.personalTrainingPage.headerSubtitle
+    );
+  }
+
+  async verifyPersonalTrainingInfoSection() {
+    await this.checkInfoSection(
+      this.services.personalTrainingInfo,
+      this.services.personalTrainingWhatTitle,
+      strings.services.personalTrainingPage.whatIsTitle,
+      this.services.personalTrainingWhatText,
+      strings.services.personalTrainingPage.whatIsText,
+      strings.services.personalTrainingSrc
+    );
+  }
+
+  async verifyPersonalTrainingBenefitsSection() {
+    await this.checkBenefitsSection(
+      this.services.personalTrainingBenefits,
+      this.services.personalTrainingBenefitsTitle,
+      strings.services.personalTrainingPage.benefitsTitle,
+      this.services.personalTrainingBenefitsList,
+      strings.services.personalTrainingPage.benefitsList
+    );
+  }
+
+  async verifyPersonalTrainingContactSection() {
+    await this.checkContactSectionAndButton(
+      this.services.personalTrainingContact,
+      this.services.personalTrainingContactText,
+      strings.services.personalTrainingPage.contactText,
+      this.services.personalTrainingContactButton,
+      strings.services.personalTrainingPage.contactButton,
+      routes.allPages.contactPage
+    );
+  }
+
+  async verifyGroupProgramsHeaderSection() {
+    await this.checkHeaderSection(
+      this.services.groupProgramsHeader,
+      this.services.groupProgramsTitle,
+      this.services.groupProgramsSubtitle,
+      strings.services.groupProgramsPage.headerTitle,
+      strings.services.groupProgramsPage.headerSubtitle
+    );
+  }
+
+  async verifyGroupProgramsInfoSection() {
+    await this.checkInfoSection(
+      this.services.groupProgramsInfo,
+      this.services.groupProgramsWhatTitle,
+      strings.services.groupProgramsPage.whatIsTitle,
+      this.services.groupProgramsWhatText,
+      strings.services.groupProgramsPage.whatIsText,
+      strings.services.groupProgramsSrc
+    );
+  }
+
+  async verifyGroupProgramsBenefitsSection() {
+    await this.checkBenefitsSection(
+      this.services.groupProgramsBenefits,
+      this.services.groupProgramsBenefitsTitle,
+      strings.services.groupProgramsPage.benefitsTitle,
+      this.services.groupProgramsBenefitsList,
+      strings.services.groupProgramsPage.benefitsList
+    );
+  }
+
+  async verifyGroupProgramsContactSection() {
+    await this.checkContactSectionAndButton(
+      this.services.groupProgramsContact,
+      this.services.groupProgramsContactText,
+      strings.services.groupProgramsPage.contactText,
+      this.services.groupProgramsContactButton,
+      strings.services.groupProgramsPage.contactButton,
+      routes.allPages.contactPage
+    );
+  }
+
+  async verifyNutritionCoachingHeaderSection() {
+    await this.checkHeaderSection(
+      this.services.nutritionCoachingHeader,
+      this.services.nutritionCoachingTitle,
+      this.services.nutritionCoachingSubtitle,
+      strings.services.nutritionCoachingPage.headerTitle,
+      strings.services.nutritionCoachingPage.headerSubtitle
+    );
+  }
+
+  async verifyNutritionCoachingInfoSection() {
+    await this.checkInfoSection(
+      this.services.nutritionCoachingInfo,
+      this.services.nutritionCoachingWhatTitle,
+      strings.services.nutritionCoachingPage.whatIsTitle,
+      this.services.nutritionCoachingWhatText,
+      strings.services.nutritionCoachingPage.whatIsText,
+      strings.services.nutritionCoachingSrc
+    );
+  }
+
+  async verifyNutritionCoachingBenefitsSection() {
+    await this.checkBenefitsSection(
+      this.services.nutritionCoachingBenefits,
+      this.services.nutritionCoachingBenefitsTitle,
+      strings.services.nutritionCoachingPage.benefitsTitle,
+      this.services.nutritionCoachingBenefitsList,
+      strings.services.nutritionCoachingPage.benefitsList
+    );
+  }
+
+  async verifyNutritionCoachingContactSection() {
+    await this.checkContactSectionAndButton(
+      this.services.nutritionCoachingContact,
+      this.services.nutritionCoachingContactText,
+      strings.services.nutritionCoachingPage.contactText,
+      this.services.nutritionCoachingContactButton,
+      strings.services.nutritionCoachingPage.contactButton,
+      routes.allPages.contactPage
+    );
   }
 }

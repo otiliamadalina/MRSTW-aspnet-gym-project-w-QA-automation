@@ -7,6 +7,10 @@ export default class HomePage extends BasePage {
     return this.page.locator("#heroCarousel .carousel-item img");
   }
 
+  get heroBanner() {
+    return this.page.locator("#hero");
+  }
+
   joinNowHref(href: string) {
     return this.page.locator(`a.btn.btn-primary.btn-lg[href='${href}']`);
   }

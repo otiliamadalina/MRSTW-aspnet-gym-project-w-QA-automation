@@ -28,7 +28,15 @@ export default class NavbarFooterPage extends BasePage {
     return this.page.locator(`footer.bg-dark.text-white.text-center.py-3`);
   }
 
-  pLocator(text: string) {
-    return this.page.locator("p", { hasText: `${text}` });
+  get personalTrainingCard() {
+    return this.page.locator("#personalTrainingCard");
+  }
+
+  get groupProgramsCard() {
+    return this.page.locator("#groupProgramsCard");
+  }
+
+  get nutritionCoachingCard() {
+    return this.page.locator("#nutritionCoachingCard");
   }
 }
