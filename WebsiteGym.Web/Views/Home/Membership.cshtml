@@ -35,7 +35,7 @@
                                     }
                                 </div>
                                 <h5 class="card-title text-danger">$@membership.Price/month</h5>
-                                <a href="@Url.Action("CheckoutMembership", "Checkout", new { membershipId = membership.Id })" class="btn btn-primary mt-auto" style="margin: 0 auto; display: block;">Choose</a>
+                                <a data-testid="checkoutLink-@membership.Id" href="@Url.Action("CheckoutMembership", "Checkout", new { membershipId = membership.Id })" class="btn btn-primary mt-auto" style="margin: 0 auto; display: block;">Choose</a>
                             </div>
                         </div>
                     </div>

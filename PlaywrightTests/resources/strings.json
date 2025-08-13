@@ -1,0 +1,202 @@
+{
+  "home": {
+    "homeTitle": "Gym Management - Home",
+    "heroSection": {
+      "heroTitle": "Push Your Limits",
+      "heroDescription": "Experience the best training programs tailored to your needs.",
+      "joinNow": "Join Now ↓"
+    },
+
+    "ourServicesCards": {
+      "ourServicesTitle": "Our Services",
+      "personalTraining": "Personal Training",
+      "personalTrainingDescription": "One-on-one coaching with expert trainers.",
+      "groupClasses": "Group Classes",
+      "groupClassesDescription": "Exciting HIIT, yoga, and strength classes.",
+      "nutritionCoaching": "Nutrition Coaching",
+      "nutritionCoachingDescription": "Personalized meal plans for better results.",
+      "seeServicesButton": "See Services"
+    },
+
+    "ourMembershipsCards": {
+      "ourMembershipsTitle": "Our Memberships",
+      "basicCardTitle": "Basic",
+      "basicCardDescription": "Access to limited features.",
+      "basicCardPrice": "$10,00/month",
+      "eliteCardTitle": "Elite",
+      "eliteCardDescription": "Access to all features.",
+      "eliteCardPrice": "$50,00/month",
+      "premiumCardTitle": "Premium",
+      "premiumCardDescription": "Limited access",
+      "premiumCardPrice": "$30,00/month",
+      "seeMembershipsButton": "See Memberships"
+    },
+
+    "aboutSection": {
+      "aboutTitle": "About MadGym",
+      "aboutDescription": "Welcome to GymMaster, your all-in-one fitness membership platform designed to simplify and energize your journey to better health.",
+      "learnMoreButton": "Learn More"
+    }
+  },
+
+  "navBar": {
+    "logoSrc": "/Content/img/Logo.png",
+    "logoImageTitle": "Gym Logo",
+    "logoTextTitle": "MADGYM",
+    "about": "About",
+    "services": "Services",
+    "membership": "Membership",
+    "contact": "Contact",
+    "login": "Login"
+  },
+
+  "footer": "© 2025 MadGym. All Rights Reserved.",
+
+  "aboutPage": {
+    "aboutUsTitle": "About Us",
+    "aboutUsParagraph": "Welcome to GymMaster, your all-in-one fitness membership platform designed to simplify and energize your journey to better health. Founded on the belief that staying motivated shouldn't be hard work, GymMaster brings together cutting-edge features and a supportive community so you can focus on what matters most: your workout.",
+    "ourMissionTitle": "Our Mission",
+    "ourMissionParagraph": "At GymMaster, we strive to make fitness accessible, engaging, and seamless. Whether you're signing up for your first program or renewing a long-term membership, our streamlined registration and checkout process, complete with instant QR-code check-ins lets you skip the paperwork and get straight to the gym floor.",
+    "meetTheTeamTitle": "Meet the Team",
+    "meetTheTeamParagraph": "Behind GymMaster is a dedicated group of developers, fitness enthusiasts, and customer advocates. We're united by a simple goal: remove barriers between you and your best self. From software updates to discount code launches, our team works around the clock to bring you features that matter.",
+    "joinUsTodayTitle": "Join Us Today",
+    "joinUsTodayParagraph": "Ready to elevate your workout experience? Register, pick your plan, and start your fitness journey with GymMaster - where every rep, class, and milestone is just a click away. Let's build a healthier, happier community together.",
+    "whatWeOfferTitle": "What We Offer",
+    "whatWeOffer1Strong": "Flexible Plans:",
+    "whatWeOffer1Description": "Choose from our memberships, with built-in discount support so you get the best value every time.",
+    "whatWeOffer2Strong": "Real-Time Dashboard:",
+    "whatWeOffer2Description": "Track your plan's expiration countdown, access your personal progress bar, and view past orders and activity, all from your personalized dashboard.",
+    "whatWeOffer3Strong": "Secure & Reliable:",
+    "whatWeOffer3Description": "We use industry-standard encryption for your data and never share your information. Password resets, email verification, and role-based access keep your profile and payments safe.",
+    "whatWeOffer4Strong": "Admin Control:",
+    "whatWeOffer4Description": "Gym owners and managers can effortlessly view revenue reports, manage memberships, and respond to user feedback right from our intuitive admin panel.",
+    "ourValuesTitle": "Our Values",
+    "ourValues1Strong": "Community:",
+    "ourValues1Description": "Fitness thrives in a supportive environment. GymMaster fosters connection through feedback channels and shared achievements.",
+    "ourValues2Strong": "Transparency:",
+    "ourValues2Description": "No hidden fees, clear terms, and instant access to your order history ensure you always know what you're paying for.",
+    "ourValues3Strong": "Innovation:",
+    "ourValues3Description": "From QR check-ins to automated expiration alerts, we integrate the latest technology so you can focus on your goals, not logistics.",
+    "registerButton": "Register"
+  },
+
+  "loginCredentials": {
+    "username": "otiliamadalina",
+    "password": "otiliamadalina",
+    "adminUsername": "Admin1234",
+    "adminPassword": "Admin1234"
+  },
+
+  "userProfile": {
+    "editProfile": "Edit Profile",
+    "changePassword": "Change Password",
+    "resetPassword": "Send Reset Link",
+    "paymentHistory": "Payment History"
+  },
+
+  "membership": {
+    "checkout": "Choose"
+  },
+
+  "checkout": {
+    "orderSuccess": "Place Order",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "membershipPlan": "Membership Plan",
+    "membershipDuration": "Membership Duration:",
+    "cardNumber": "Card Number",
+    "cvv": "CVV",
+    "expirationDate": "Expiration Date (MM/YY)",
+    "termsAndConditions": "I agree to the terms and conditions",
+    "placeOrder": "Place Order",
+
+    "id_firstName": "checkoutFirstName",
+    "id_lastName": "checkoutLastName",
+    "id_email": "checkoutEmail",
+    "id_membershipPlan": "checkoutMembership",
+    "id_membershipDuration": "checkoutDuration",
+    "id_cardNumber": "checkoutCardNumber",
+    "id_cvv": "checkoutCVV",
+    "id_expirationDate": "checkoutExpDate",
+    "id_termsAndConditions": "checkoutTerms",
+    "id_placeOrder": "checkoutPlaceOrder",
+
+    "value_firstName": "John",
+    "value_lastName": "Doe",
+    "value_email": "otiliamadalina@example.com",
+    "value_membershipPlan": "Premium Plan",
+    "value_membershipDuration": "3 Months",
+    "value_cardNumber": "4111 1111 1111 1111",
+    "value_cvv": "123",
+    "value_expirationDate": "12/25"
+  },
+
+  "services": {
+    "servicesTabTitle": "Gym Management - Services",
+    "ourServicesTitle": "Our Services",
+    "personalTrainingCard": "Personal Training",
+    "meetOurTeam": "Meet our team!",
+    "groupProgramsCard": "Group Programs",
+    "signUpForASession": "Sign up for a session!",
+    "nutritionCoachingCard": "Nutrition Coaching",
+    "createYourDiet": "Create your diet!",
+    "groupProgramsSrc": "/Content/img/group-workouts-1-1-1024x536.jpg",
+    "personalTrainingSrc": "/Content/img/Best-Personal-Trainers-in-Edgewater-MD.png",
+    "nutritionCoachingSrc": "/Content/img/f710044bf79a4b1f5d8b085e5e5d9711_M.jpg",
+
+    "personalTrainingPage": {
+      "pageTitle": "Services - Personal Training",
+      "headerTitle": "Your Personalized Fitness Journey",
+      "headerSubtitle": "Achieve your fitness goals with the help of our expert personal trainers!",
+      "whatIsTitle": "What is Personal Training?",
+      "whatIsText": "Our personal training service is designed to give you tailored workouts and one-on-one guidance. Whether you're new to fitness or looking to push yourself further, our trainers will work with you to create a personalized program that helps you reach your goals faster and more effectively.",
+      "benefitsTitle": "Benefits of Personal Training",
+      "benefitsList": [
+        "Customized workout plans",
+        "Expert trainers for motivation and support",
+        "Faster results with tailored guidance",
+        "Flexible scheduling to fit your needs",
+        "Ongoing assessments and progress tracking"
+      ],
+      "contactText": "Ready to start your fitness transformation?",
+      "contactButton": "Contact Us to Book Your Session"
+    },
+
+    "groupProgramsPage": {
+      "pageTitle": "Services - Group Programs",
+      "headerTitle": "Group Programs",
+      "headerSubtitle": "Join our exciting group programs and train with others!",
+      "whatIsTitle": "What We Offer",
+      "whatIsText": "Our group programs are designed for all fitness levels. Whether you're a beginner or an advanced athlete, we have something for you. Join a group and get motivated by working out with others!",
+      "benefitsTitle": "Benefits of Group Programs",
+      "benefitsList": [
+        "Motivation from peers",
+        "Variety in workouts",
+        "Affordable pricing",
+        "Fun and engaging environment",
+        "Expert guidance from certified trainers"
+      ],
+      "contactText": "Ready to start your fitness transformation?",
+      "contactButton": "Contact Us to Book Your Session"
+    },
+
+    "nutritionCoachingPage": {
+      "pageTitle": "Services - Nutrition Coaching",
+      "headerTitle": "Personalized Nutrition Coaching",
+      "headerSubtitle": "Get expert advice and a customized meal plan to fuel your fitness journey!",
+      "whatIsTitle": "What is Nutrition Coaching?",
+      "whatIsText": "Our nutrition coaching program is designed to help you build a healthy relationship with food. Whether your goal is weight loss, muscle gain, or overall wellness, our certified nutritionists will create a personalized meal plan and provide ongoing support to ensure you achieve sustainable results.",
+      "benefitsTitle": "Benefits of Nutrition Coaching",
+      "benefitsList": [
+        "Personalized meal plans tailored to your goals",
+        "Expert guidance from certified nutritionists",
+        "Improved energy levels and performance",
+        "Long-term sustainable healthy eating habits",
+        "Regular check-ins to track progress and adjust plans"
+      ],
+      "contactText": "Ready to take control of your diet?",
+      "contactButton": "Book Your Consultation"
+    }
+  }
+}

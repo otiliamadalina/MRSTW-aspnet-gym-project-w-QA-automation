@@ -23,13 +23,13 @@
 
                     <!-- Standard Navbar Links (Hidden on Mobile) -->
                     <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
-                         <ul class="navbar-nav ms-auto">
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Home")">Services</a></li>
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Membership", "Home")">Membership</a></li>
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
-                              <li class=" nav-item"><a class="btn btn-outline-light rounded-pill px-4" href="@Url.Action("AdminDash", "Admin")">ADMIN</a></li>
-                         </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" id="aboutLinkDesktop" href="@Url.Action("About", "Home")">About</a></li>
+                            <li class="nav-item"><a class="nav-link" id="servicesLinkDesktop" href="@Url.Action("Services", "Home")">Services</a></li>
+                            <li class="nav-item"><a class="nav-link" id="membershipLinkDesktop" href="@Url.Action("Membership", "Home")">Membership</a></li>
+                            <li class="nav-item"><a class="nav-link" id="contactLinkDesktop" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
+                            <li class="nav-item"><a class="btn btn-outline-light rounded-pill px-4" id="adminDashboardButtonDesktop" href="@Url.Action("AdminDash", "Admin")">ADMIN</a></li>
+                        </ul>
                     </div>
                </div>
           </nav>
@@ -41,13 +41,13 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                </div>
                <div class="offcanvas-body">
-                    <ul class="list-unstyled">
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Home")">Services</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Membership", "Home")">Membership</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
-                         <li class=" nav-item"><a class="btn btn-outline-light rounded-pill px-4" href="@Url.Action("AdminDash", "Admin")">ADMIN</a></li>
-                    </ul>
+                   <ul class="list-unstyled">
+                       <li class="nav-item"><a class="nav-link" id="aboutLinkMobile" href="@Url.Action("About", "Home")">About</a></li>
+                       <li class="nav-item"><a class="nav-link" id="servicesLinkMobile" href="@Url.Action("Services", "Home")">Services</a></li>
+                       <li class="nav-item"><a class="nav-link" id="membershipLinkMobile" href="@Url.Action("Membership", "Home")">Membership</a></li>
+                       <li class="nav-item"><a class="nav-link" id="contactLinkMobile" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
+                       <li class="nav-item"><a class="btn btn-outline-light rounded-pill px-4" id="adminDashboardButtonMobile" href="@Url.Action("AdminDash", "Admin")">ADMIN</a></li>
+                   </ul>
                </div>
           </div>
      }
@@ -68,13 +68,13 @@
 
                     <!-- Standard Navbar Links (Hidden on Mobile) -->
                     <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
-                         <ul class="navbar-nav ms-auto">
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Home")">Services</a></li>
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Membership", "Home")">Membership</a></li>
-                              <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
-                              <li class=" nav-item"><a class="btn btn-outline-light rounded-pill px-4" href="@Url.Action("UserDashboard", "Account")">@Session["UserName"]</a></li>
-                         </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" id="aboutLinkDesktop" href="@Url.Action("About", "Home")">About</a></li>
+                            <li class="nav-item"><a class="nav-link" id="servicesLinkDesktop" href="@Url.Action("Services", "Home")">Services</a></li>
+                            <li class="nav-item"><a class="nav-link" id="membershipLinkDesktop" href="@Url.Action("Membership", "Home")">Membership</a></li>
+                            <li class="nav-item"><a class="nav-link" id="contactLinkDesktop" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
+                            <li class="nav-item"><a id="userDashboardButtonDesktop" class="btn btn-outline-light rounded-pill px-4" href="@Url.Action("UserDashboard", "Account")">@Session["UserName"]</a></li>
+                        </ul>
                     </div>
                </div>
           </nav>
@@ -86,13 +86,13 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                </div>
                <div class="offcanvas-body">
-                    <ul class="list-unstyled">
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Home")">Services</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Membership", "Home")">Membership</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
-                         <li class=" nav-item"><a class="btn btn-outline-light rounded-pill px-4" href="@Url.Action("UserDashboard", "Account")">@Session["UserName"]</a></li>
-                    </ul>
+                   <ul class="list-unstyled">
+                       <li class="nav-item"><a class="nav-link" id="aboutLinkMobile" href="@Url.Action("About", "Home")">About</a></li>
+                       <li class="nav-item"><a class="nav-link" id="servicesLinkMobile" href="@Url.Action("Services", "Home")">Services</a></li>
+                       <li class="nav-item"><a class="nav-link" id="membershipLinkMobile" href="@Url.Action("Membership", "Home")">Membership</a></li>
+                       <li class="nav-item"><a class="nav-link" id="contactLinkMobile" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
+                       <li class="nav-item"><a id="userDashboardButtonMobile" class="btn btn-outline-light rounded-pill px-4" href="@Url.Action("UserDashboard", "Account")">@Session["UserName"]</a></li>
+                   </ul>
                </div>
           </div>
      }
@@ -114,13 +114,13 @@
 
                <!-- Standard Navbar Links (Hidden on Mobile) -->
                <div class="collapse navbar-collapse d-none d-lg-flex" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Home")">Services</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Membership", "Home")">Membership</a></li>
-                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
-                         <li class="nav-item"><a class="btn btn-primary" href="@Url.Action("AuthPage", "Home")">Login</a></li>
-                    </ul>
+                   <ul class="navbar-nav ms-auto">
+                       <li class="nav-item"><a class="nav-link" id="aboutLinkDesktop" href="@Url.Action("About", "Home")">About</a></li>
+                       <li class="nav-item"><a class="nav-link" id="servicesLinkDesktop" href="@Url.Action("Services", "Home")">Services</a></li>
+                       <li class="nav-item"><a class="nav-link" id="membershipLinkDesktop" href="@Url.Action("Membership", "Home")">Membership</a></li>
+                       <li class="nav-item"><a class="nav-link" id="contactLinkDesktop" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
+                       <li class="nav-item"><a class="btn btn-primary" id="authPageLinkDesktop" href="@Url.Action("AuthPage", "Home")">Login</a></li>
+                   </ul>
                </div>
           </div>
      </nav>
@@ -132,13 +132,13 @@
                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-               <ul class="list-unstyled">
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("About", "Home")">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Services", "Home")">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Membership", "Home")">Membership</a></li>
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
-                    <li class="nav-item"><a class="btn btn-primary" href="@Url.Action("AuthPage", "Home")">Login</a></li>
-               </ul>
+              <ul class="list-unstyled">
+                  <li class="nav-item"><a class="nav-link" id="aboutLinkMobile" href="@Url.Action("About", "Home")">About</a></li>
+                  <li class="nav-item"><a class="nav-link" id="servicesLinkMobile" href="@Url.Action("Services", "Home")">Services</a></li>
+                  <li class="nav-item"><a class="nav-link" id="membershipLinkMobile" href="@Url.Action("Membership", "Home")">Membership</a></li>
+                  <li class="nav-item"><a class="nav-link" id="contactLinkMobile" href="@Url.Action("Contact", "Feedback")">Contact</a></li>
+                  <li class="nav-item"><a class="btn btn-primary" id="authPageLinkMobile" href="@Url.Action("AuthPage", "Home")">Login</a></li>
+              </ul>
           </div>
      </div>
      }

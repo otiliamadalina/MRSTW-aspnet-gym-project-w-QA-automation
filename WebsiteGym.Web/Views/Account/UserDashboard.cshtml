@@ -21,7 +21,8 @@
                               {
                                    <span>You don't have an active membership. <a href="@Url.Action("Membership", "Home")" class="text-white"><u>Get started today!</u></a></span>
                               }
-                         </p>
+                         </p> Edit Profile
+                              
                     </div>
                </div>
           </div>
@@ -62,7 +63,7 @@
                          </div>
 
                          <div class="mt-4">
-                              <a href="@Url.Action("EditUserProfile", "Account")" class="btn btn-primary btn-block">
+                              <a id="editProfileLink" href="@Url.Action("EditUserProfile", "Account")" class="btn btn-primary btn-block">
                                    <i class="fas fa-user-edit mr-1"></i> Edit Profile
                               </a>
                          </div>
@@ -76,19 +77,19 @@
                     </div>
                     <div class="card-body">
                          <div class="list-group">
-                              <a href="@Url.Action("Membership", "Home")" class="list-group-item list-group-item-action d-flex align-items-center">
+                              <a id="membershipLink"href="@Url.Action("Membership", "Home")" class="list-group-item list-group-item-action d-flex align-items-center">
                                    <i class="fas fa-id-card text-primary mr-3"></i>
                                    <span>Membership Plans</span>
                               </a>
-                              <a href="@Url.Action("ForgotPassword", "Account")" class="list-group-item list-group-item-action d-flex align-items-center">
+                              <a id="forgotPasswordLink" href="@Url.Action("ForgotPassword", "Account")" class="list-group-item list-group-item-action d-flex align-items-center">
                                    <i class="fas fa-key text-primary mr-3"></i>
                                    <span>Change Password</span>
                               </a>
-                              <a href="@Url.Action("Contact", "Feedback")" class="list-group-item list-group-item-action d-flex align-items-center">
+                              <a id="contactLink" href="@Url.Action("Contact", "Feedback")" class="list-group-item list-group-item-action d-flex align-items-center">
                                    <i class="fas fa-comment text-primary mr-3"></i>
                                    <span>Send Feedback</span>
                               </a>
-                              <a href="@Url.Action("Logout", "Account")" class="list-group-item list-group-item-action d-flex align-items-center text-danger">
+                              <a id="logoutLink" href="@Url.Action("Logout", "Account")" class="list-group-item list-group-item-action d-flex align-items-center text-danger">
                                    <i class="fas fa-sign-out-alt me-3 text-danger"></i>
                                    <span>Log Out</span>
                               </a>
@@ -136,7 +137,7 @@
                                         </div>
 
                                         <div class="text-end mt-3 mt-md-0">
-                                             <a href="@Url.Action("Membership", "Home")" class="btn btn-primary">
+                                             <a id="membershipLink" href="@Url.Action("Membership", "Home")" class="btn btn-primary">
                                                   <i class="fas fa-sync-alt me-1"></i> Renew Membership
                                              </a>
                                         </div>
@@ -170,7 +171,7 @@
                                    <a href="@Url.Action("Membership", "Home")" class="btn btn-outline-primary">
                                         <i class="fas fa-exchange-alt mr-1"></i> Change Plan
                                    </a>
-                                   <a href="@Url.Action("PaymentHistory", "Account")" class="btn btn-outline-secondary">
+                                   <a id="paymentHistoryLink" href="@Url.Action("PaymentHistory", "Account")" class="btn btn-outline-secondary">
                                         <i class="fas fa-history mr-1"></i> Payment History
                                    </a>
                               </div>
@@ -180,7 +181,7 @@
                               <div class="text-center py-5">
                                    <h4>No Active Membership</h4>
                                    <p class="text-muted mb-4">You currently don't have an active membership. Choose a plan to get started.</p>
-                                   <a href="@Url.Action("Membership", "Home")" class="btn btn-primary btn-lg">
+                                   <a id="membershipLink" href="@Url.Action("Membership", "Home")" class="btn btn-primary btn-lg">
                                         <i class="fas fa-tag mr-1"></i> View Membership Plans
                                    </a>
                               </div>

@@ -1,7 +1,6 @@
 name: Run Playwright Tests on IIS Express
 
 on:
-  workflow_dispatch: {}
   push:
     branches: [ main ]
   pull_request:
