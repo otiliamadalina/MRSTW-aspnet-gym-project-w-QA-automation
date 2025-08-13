@@ -23,20 +23,20 @@ export default class AuthPage extends BasePage {
   get registerUsernameField() {
     return this.page.locator("#registerUsernameField");
   }
-  get RegisterUserName() {
-    return this.page.locator("#RegisterUserName");
+  get registerUserName() {
+    return this.page.locator("#registerUserName");
   }
   get registerEmailField() {
     return this.page.locator("#registerEmailField");
   }
-  get RegisterEmail() {
-    return this.page.locator("#RegisterEmail");
+  get registerEmail() {
+    return this.page.locator("#registerEmail");
   }
   get registerPasswordField() {
     return this.page.locator("#registerPasswordField");
   }
-  get RegisterPassword() {
-    return this.page.locator("#RegisterPassword");
+  get registerPassword() {
+    return this.page.locator("#registerPassword");
   }
   get registerSubmitBtn() {
     return this.page.locator("#registerSubmitBtn");
@@ -59,8 +59,8 @@ export default class AuthPage extends BasePage {
   get usernameField() {
     return this.page.locator("#usernameField");
   }
-  get LoginUserName() {
-    return this.page.locator("#LoginUserName");
+  get loginUserName() {
+    return this.page.locator("#loginUserName");
   }
   get passwordField() {
     return this.page.locator("#passwordField");
