@@ -74,6 +74,30 @@ export default class CommonActions extends BaseActions {
     console.log("Went back to previous page in the same tab");
   }
 
+  async verifyImageSrc(imageSrc: string) {
+    const imageLocator = this.commonPage.getImageBySrc(imageSrc);
+    await expect(imageLocator).toBeVisible();
+    await expect(imageLocator).toHaveAttribute("src", imageSrc);
+
+  }
+
+   async goBackMultiple(times: number) {
+    for (let i = 0; i < times; i++) {
+      await this.page.goBack();
+      await this.page.waitForLoadState("load");
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
   async loginAsUserTemplate(username: string, password: string) {
     await this.commonPage.usernameInput.fill(username);
     await this.commonPage.passwordInput.fill(password);
@@ -116,9 +140,9 @@ export default class CommonActions extends BaseActions {
       await desktopButton.click();
       await this.page.waitForLoadState("load");
     } catch (error) {
-      console.error("goToUserProfile (desktop) failed:", error);
+      console.error("failed", error);
       throw new Error(
-        "User Dashboard desktop button not visible or clickable."
+        "Uuser Dashboard desktop button not visible"
       );
     }
   }
@@ -131,9 +155,9 @@ export default class CommonActions extends BaseActions {
       await desktopButton.click();
       await this.page.waitForLoadState("load");
     } catch (error) {
-      console.error("desktop failed:", error);
+      console.error("fail", error);
       throw new Error(
-        "admin Dashboard desktop button not visible or clickable."
+        "admin Dashboard desktop button not visible"
       );
     }
   }

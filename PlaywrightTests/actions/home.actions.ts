@@ -15,7 +15,9 @@ export default class HomeActions extends CommonActions {
 
   // -------- Hero Section
   async verifyHeroCarousel() {
-    const heroCarouselImages = this.home.heroCarousel;
+    const heroCarouselImages = await this.home.heroCarousel;
+    await expect(await this.home.heroBanner).toBeVisible();
+    
     const count = await heroCarouselImages.count();
 
     for (let i = 0; i < count; i++) {

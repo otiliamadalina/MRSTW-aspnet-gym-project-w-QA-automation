@@ -14,7 +14,7 @@ test.beforeEach(async ({ app }) => {
 
 test.describe(
   "Navbar&Footer tests on Home page",
-  { tag: ["@smoke", "@navbarFooter"] },
+  { tag: ["@regression", "@navbarFooter"] },
   async () => {
     test("Verify Logo", async ({ app }) => {
       And("the user sees Navigation bar");
@@ -61,34 +61,60 @@ test.describe(
 
 test.describe(
   "Navbar&Footer tests on Other pages",
-  { tag: ["@smoke", "@navbarFooter"] },
+  { tag: ["@regression", "@navbarFooter"] },
   async () => {
     test("Main links", async ({ app }) => {
       And("the user verifies Navbar and Footer on About page");
       await test.step("Verify Navbar and Footer on About page", async () => {
-        await app.navbarFooter.verifyAboutPage();
+        await app.navbarFooter.verifyAboutFlow();
       });
 
       And("the user verifies Navbar and Footer on Services page");
       await test.step("Verify Navbar and Footer on Services page", async () => {
-        await app.navbarFooter.verifyServicesPage();
+        await app.navbarFooter.verifyServicesFlow();
       });
+
+
+
+      And("the user verifies Navbar and Footer on Services - Personal Training page");
+      await test.step("Verify Navbar and Footer on Services page - Personal Training page", async () => {
+        await app.navbarFooter.verifyPersonalTrainingFlow(
+    );
+      });
+
+      And("the user verifies Navbar and Footer on Services - Group Programs page");
+      await test.step("Verify Navbar and Footer on Services page - Group Programs page", async () => {
+        await app.navbarFooter.verifyGroupClassesFlow();
+      });
+
+      And("the user verifies Navbar and Footer on Services - Nutrition Coaching page");
+      await test.step("Verify Navbar and Footer on Services page - Nutrition Coaching page", async () => {
+        await app.navbarFooter.verifyNutritionCoachingFlow();
+      });
+
+
+
+
+
+
+
 
       And("the user verifies Navbar and Footer on Membership page");
       await test.step("Verify Navbar and Footer on Membership page", async () => {
-        await app.navbarFooter.verifyMembershipPage();
+        await app.navbarFooter.verifyMembershipFlow();
       });
 
       And("the user verifies Navbar and Footer on Contact page");
       await test.step("Verify Navbar and Footer on Contact page", async () => {
-        await app.navbarFooter.verifyContactPage();
+        await app.navbarFooter.verifyContactFlow();
       });
 
       And("the user verifies Navbar and Footer on Login page");
       await test.step("Verify Navbar and Footer on Login page", async () => {
-        await app.navbarFooter.verifyLoginPage();
+        await app.navbarFooter.verifyLoginFlow();
       });
     });
+
 
     test("Main user pages", async ({ app }) => {
       And("the user logs in");

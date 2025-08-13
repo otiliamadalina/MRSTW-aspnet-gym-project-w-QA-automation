@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Services - Group Programs</title>
     <link rel="stylesheet" href="~/Content/GroupPrograms.css">
     <link rel="stylesheet" href="~/Content/home_style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="group-programs-header">
-        <h1>Group Programs</h1>
-        <p>Join our exciting group programs and train with others!</p>
+    <div class="group-programs-header" id="groupProgramsHeader">
+        <h1 id="groupProgramsTitle"> Group Programs</h1>
+        <p id="groupProgramsSubtitle">Join our exciting group programs and train with others!</p>
     </div>
 
-    <section class="group-programs-info container my-5">
+    <section class="group-programs-info container my-5" id="groupProgramsInfo">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0">
                 <img src="@Url.Content("~/Content/img/group-workouts-1-1-1024x536.jpg")" alt="Group Programs"
                      class="img-fluid rounded"
+                     id="groupProgramsImage"
                      style="max-height: 400px; object-fit: cover; width: 100%;">
             </div>
-            <div class="col-md-6">
-                <h2>What We Offer</h2>
-                <p>Our group programs are designed for all fitness levels. Whether you're a beginner or an advanced athlete, we have something for you. Join a group and get motivated by working out with others!</p>
+            <div class="col-md-6" id="groupProgramsDescription">
+                <h2 id="groupProgramsWhatTitle">What We Offer</h2>
+                <p id="groupProgramsWhatText">Our group programs are designed for all fitness levels. Whether you're a beginner or an advanced athlete, we have something for you. Join a group and get motivated by working out with others!</p>
             </div>
         </div>
     </section>
 
-    <div class="group-programs-benefits">
-        <h2>Benefits of Group Programs</h2>
-        <ul>
+    <div class="group-programs-benefits" id="groupProgramsBenefits">
+        <h2 id="groupProgramsBenefitsTitle">Benefits of Group Programs</h2>
+        <ul id="groupProgramsBenefitsList">
             <li>Motivation from peers</li>
             <li>Variety in workouts</li>
             <li>Affordable pricing</li>
@@ -36,9 +38,9 @@
         </ul>
     </div>
 
-    <div class="group-programs-cta">
-        <p>Ready to start your fitness transformation?</p>
-        <a href="@Url.Action("Contact", "Home")" class="btn-cta">Contact Us to Book Your Session</a>
+    <div class="group-programs-cta" id="groupProgramsContact">
+        <p id="groupProgramsContactText">Ready to start your fitness transformation?</p>
+        <a href="@Url.Action("Contact", "Feedback")" class="btn-cta" id="groupProgramsContactButton">Contact Us to Book Your Session</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
