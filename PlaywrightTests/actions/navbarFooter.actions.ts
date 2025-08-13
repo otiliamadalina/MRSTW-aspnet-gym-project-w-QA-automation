@@ -8,12 +8,16 @@ import CommonActions from "./common.actions";
 import ServicesPage from "../pages/services.page";
 import ServicesActions from "./services.action";
 
-export default class navbarFooterActions extends CommonActions {
+export default class navbarFooterActions extends ServicesActions {
   navbarFooter: NavbarFooterPage;
+  home: HomePage;
+  services: ServicesPage;
 
   constructor(page: Page, context: BrowserContext) {
     super(page, context);
     this.navbarFooter = new NavbarFooterPage(page, context);
+    this.home = new HomePage(page, context);
+    this.services = new ServicesPage(page, context)
   }
 
   /// general TESTS FOR NAV BAR and FOOTER
@@ -63,7 +67,7 @@ export default class navbarFooterActions extends CommonActions {
     if (await loginLocator.isVisible()) {
       await this.checkNavbarTextLinks(strings.navBar.login);
     } else {
-      console.warn("Login link is nottttttt visible");
+      console.log("Login link is nottttttt visible");
     }
   }
 
@@ -143,24 +147,24 @@ export default class navbarFooterActions extends CommonActions {
 
   // 3 SERVICES Pages
 
-  async clickPersonalTrainingCard() {
-    await this.navbarFooter.personalTrainingCard.click();
-    await expect(this.page).toHaveURL(
-      routes.allPages.servicePersonalTrainingPage
-    );
-  }
+  // async clickPersonalTrainingCard() {
+  //   await this.navbarFooter.personalTrainingCard.click();
+  //   await expect(this.page).toHaveURL(
+  //     routes.allPages.servicePersonalTrainingPage
+  //   );
+  // }
 
-  async clickGroupProgramsCard() {
-    await this.navbarFooter.groupProgramsCard.click();
-    await expect(this.page).toHaveURL(routes.allPages.serviceGroupProgramsPage);
-  }
+  // async clickGroupProgramsCard() {
+  //   await this.navbarFooter.groupProgramsCard.click();
+  //   await expect(this.page).toHaveURL(routes.allPages.serviceGroupProgramsPage);
+  // }
 
-  async clickNutritionCoachingCard() {
-    await this.navbarFooter.nutritionCoachingCard.click();
-    await expect(this.page).toHaveURL(
-      routes.allPages.serviceNutritionCoachingPage
-    );
-  }
+  // async clickNutritionCoachingCard() {
+  //   await this.navbarFooter.nutritionCoachingCard.click();
+  //   await expect(this.page).toHaveURL(
+  //     routes.allPages.serviceNutritionCoachingPage
+  //   );
+  // }
 
   async verifyPersonalTrainingFlow() {
     await this.navigateToPageByLinkText(
