@@ -17,7 +17,7 @@ export default class navbarFooterActions extends ServicesActions {
     super(page, context);
     this.navbarFooter = new NavbarFooterPage(page, context);
     this.home = new HomePage(page, context);
-    this.services = new ServicesPage(page, context)
+    this.services = new ServicesPage(page, context);
   }
 
   /// general TESTS FOR NAV BAR and FOOTER

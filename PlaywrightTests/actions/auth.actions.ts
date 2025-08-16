@@ -13,4 +13,9 @@ export default class AuthActions extends CommonActions {
     super(page, context);
     this.auth = new AuthPage(page, context);
   }
+
+  async navigateToAuthPage() {
+    
+
+  }
 }

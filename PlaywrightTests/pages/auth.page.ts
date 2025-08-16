@@ -65,8 +65,8 @@ export default class AuthPage extends BasePage {
   get passwordField() {
     return this.page.locator("#passwordField");
   }
-  get LoginPassword() {
-    return this.page.locator("#LoginPassword");
+  get loginPassword() {
+    return this.page.locator("#loginPassword");
   }
   get loginSubmitBtn() {
     return this.page.locator("#loginSubmitBtn");
