@@ -13,7 +13,16 @@ test.beforeEach(async ({ app }) => {
 
   And("the user accesses Auth page");
   await test.step("Navigate to Auth page", async () => {
-    await app.navbarFooter.navigateToPageByLinkText(strings.navBar.login,
-        routes.allPages.authLoginPage);
+    await app.navbarFooter.navigateToPageByLinkText(
+      strings.navBar.login,
+      routes.allPages.authLoginPage
+    );
+     await app.navigation.pageUrlAsExpected(routes.navbarLinks.login);
+    await app.common.browserTabTitleAsExpected(strings.auth.authTabTitle);
+  });
+});
+
+test.describe("Auth page tests", { tag: ["@regression", "@auth"] }, async () => {
+  test("Page title", async ({ app }) => {
   });
 });

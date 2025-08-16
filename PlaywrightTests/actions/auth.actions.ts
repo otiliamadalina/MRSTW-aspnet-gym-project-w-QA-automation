@@ -14,8 +14,7 @@ export default class AuthActions extends CommonActions {
     this.auth = new AuthPage(page, context);
   }
 
-  async navigateToAuthPage() {
-    
-
-  }
+  async locateMadGymImageContainer() {
+  await expect(this.auth.madGymImageContainter).toBeVisible();
+}
 }
