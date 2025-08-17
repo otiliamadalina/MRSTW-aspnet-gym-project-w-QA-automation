@@ -17,12 +17,158 @@ test.beforeEach(async ({ app }) => {
       strings.navBar.login,
       routes.allPages.authLoginPage
     );
-     await app.navigation.pageUrlAsExpected(routes.navbarLinks.login);
+    await app.navigation.pageUrlAsExpected(routes.navbarLinks.login);
     await app.common.browserTabTitleAsExpected(strings.auth.authTabTitle);
   });
 });
 
-test.describe("Auth page tests", { tag: ["@regression", "@auth"] }, async () => {
-  test("Page title", async ({ app }) => {
-  });
-});
+test.describe(
+  "Auth page tests",
+  { tag: ["@regression", "@auth"] },
+  async () => {
+    test("Login form section", async ({ app }) => {
+      And("the user sees the MAD GYM image container");
+      await test.step("Verify MAD GYM image container is visible", async () => {
+        await app.auth.verifyMadGymImageContainter();
+      });
+
+      And("the user sees the MAD GYM title");
+      await test.step("Verify MAD GYM title is correct", async () => {
+        await app.auth.verifyMadGymText();
+      });
+
+      And("the user sees the unlock subtext");
+      await test.step("Verify unlock subtext is correct", async () => {
+        await app.auth.verifyUnlockSubtext();
+      });
+
+      And("the user sees the login form container");
+      await test.step("Verify login form container is visible", async () => {
+        await app.auth.verifyLoginFormContainer();
+      });
+
+      And("the user sees the Welcome title");
+      await test.step("Verify welcome title is correct", async () => {
+        await app.auth.verifyWelcomeText();
+      });
+
+      And("the user sees the login subtext");
+      await test.step("Verify login subtext is correct", async () => {
+        await app.auth.verifyLoginSubtext();
+      });
+
+      And("the user sees the username input");
+      await test.step("Verify login username input", async () => {
+        await app.auth.verifyLoginUserName();
+      });
+
+      And("the user sees the password input");
+      await test.step("Verify login password input", async () => {
+        await app.auth.verifyLoginPassword();
+      });
+
+      And("the user sees the LOGIN button");
+      await test.step("Verify login submit button", async () => {
+        await app.auth.verifyLoginSubmitBtn();
+      });
+    });
+
+    test("Social login section", async ({ app }) => {
+      And("the user sees the OR subtext");
+      await test.step("Verify OR subtext", async () => {
+        await app.auth.verifyOrSubtext();
+      });
+
+      And("the user sees the Google button");
+      await test.step("Verify Google login button", async () => {
+        await app.auth.verifyGoogleBtn();
+      });
+
+      And("the user sees the Facebook button");
+      await test.step("Verify Facebook login button", async () => {
+        await app.auth.verifyFacebookBtn();
+      });
+
+      And("the user sees the Apple button");
+      await test.step("Verify Apple login button", async () => {
+        await app.auth.verifyAppleBtn();
+      });
+    });
+
+    test("Login form links", async ({ app }) => {
+      And("the user sees the 'Don't have an account?' text");
+      await test.step("Verify register now subtext", async () => {
+        await app.auth.verifyRegisterNowSubtext();
+      });
+
+      And("the user sees and clicks the Register Now link");
+      await test.step("Verify register link and navigation", async () => {
+        await app.auth.verifyRegisterLink();
+      });
+
+      And("the user sees the 'Forgot password?' text");
+      await test.step("Verify forgot password subtext", async () => {
+        await app.auth.verifyForgotPasswordSubtext();
+      });
+
+      And("the user sees and clicks the Reset Password link");
+      await test.step("Verify forgot password link and navigation", async () => {
+        await app.auth.verifyForgotPasswordLink();
+      });
+    });
+
+    test("Register form section", async ({ app }) => {
+      And("the user sees the register form container");
+      await test.step("Verify register form container is visible", async () => {
+        await app.auth.verifyRegisterFormContainer();
+      });
+
+      And("the user sees the Join Us title");
+      await test.step("Verify Join Us title is correct", async () => {
+        await app.auth.verifyJoinUsText();
+      });
+
+      And("the user sees the Create Account text");
+      await test.step("Verify Create Account text is correct", async () => {
+        await app.auth.verifyCreateAccText();
+      });
+
+      And("the user sees the username input");
+      await test.step("Verify register username input", async () => {
+        await app.auth.verifyRegisterUserName();
+      });
+
+      And("the user sees the email input");
+      await test.step("Verify register email input", async () => {
+        await app.auth.verifyRegisterEmail();
+      });
+
+      And("the user sees the password input");
+      await test.step("Verify register password input", async () => {
+        await app.auth.verifyRegisterPassword();
+      });
+
+      And("the user sees the REGISTER button");
+      await test.step("Verify register submit button", async () => {
+        await app.auth.verifyRegisterSubmitBtn();
+      });
+    });
+
+    test("Register form links", async ({ app }) => {
+      And("the user sees the register form container");
+      await test.step("Verify register form container is visible", async () => {
+        await app.auth.verifyRegisterFormContainer();
+      });
+
+      And("the user sees the 'Already have an account?' text");
+      await test.step("Verify have account subtext", async () => {
+        await app.auth.verifyHaveAccSubtext();
+      });
+
+      And("the user sees and clicks the Login link");
+      await test.step("Verify login link and navigation", async () => {
+        await app.auth.verifyLoginLink();
+      });
+    });
+  }
+);

@@ -227,9 +227,6 @@
     "loginButton": "LOGIN",
 
     "orText": "OR",
-    "googleButton": "Google",
-    "facebookButton": "Facebook",
-    "appleButton": "Apple",
     "dontHaveAccText": "Don't have an account?",
     "registerNowLink": "Register Now",
     "forgotPasswordText": "Forgot password?",

@@ -54,38 +54,38 @@
                    {
                        @Html.AntiForgeryToken()
                        @Html.ValidationSummary(true)
-                       <div id="registerUsernameField" class="mb-3">
+                       <div class="mb-3">
                            @Html.TextBoxFor(m => m.Register.UserName, new
                            {
                                placeholder = "Username",
                                title = "Please enter your username",
                                type = "text",
                                value = "",
-                               id = "r+egisterUserName",
+                               id = "registerUsernameField",
                                @class = "form-control",
                            })
                        </div>
 
-                       <div id="registerEmailField" class="mb-3">
+                       <div class="mb-3">
                            @Html.TextBoxFor(m => m.Register.Email, new
                            {
                                placeholder = "E-mail",
                                title = "Please enter your email 'example@gmail.com'",
                                Type = "email",
                                value = "",
-                               id = "registerEmail",
+                               id = "registerEmailField",
                                @class = "form-control",
                            })
                        </div>
 
-                       <div id="registerPasswordField" class="mb-3">
+                       <div class="mb-3">
                            @Html.TextBoxFor(m => m.Register.Password, new
                            {
                                placeholder = "Password",
                                Type = "password",
                                title = "Please enter your password",
                                value = "",
-                               id = "registerPassword",
+                               id = "registerPasswordField",
                                @class = "form-control",
                            })
                        </div>
