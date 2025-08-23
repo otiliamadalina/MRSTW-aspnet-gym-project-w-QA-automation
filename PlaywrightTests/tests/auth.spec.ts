@@ -104,6 +104,7 @@ test.describe(
       And("the user sees and clicks the Register Now link");
       await test.step("Verify register link and navigation", async () => {
         await app.auth.verifyRegisterLink();
+        // TODO: to add click on link and go back
       });
 
       And("the user sees the 'Forgot password?' text");
@@ -114,6 +115,7 @@ test.describe(
       And("the user sees and clicks the Reset Password link");
       await test.step("Verify forgot password link and navigation", async () => {
         await app.auth.verifyForgotPasswordLink();
+        // TODO: to add click on link and go back
       });
     });
 
@@ -168,7 +170,20 @@ test.describe(
       And("the user sees and clicks the Login link");
       await test.step("Verify login link and navigation", async () => {
         await app.auth.verifyLoginLink();
+        //TODO: to add click on login link and go back
       });
     });
   }
+);
+
+test.describe(
+  "Credentials for Login",
+  { tag: ["@regression", "@auth"] },
+  async () => {}
+);
+
+test.describe(
+  "Credentials for Register",
+  { tag: ["@regression", "@auth"] },
+  async () => {}
 );
