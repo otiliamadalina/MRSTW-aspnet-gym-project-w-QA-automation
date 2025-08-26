@@ -1,15 +1,74 @@
-name: Playwright Tests
+name: Run Playwright Tests on IIS Express
+
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+
 jobs:
   test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    env:
+      WEB_PROJECT_PATH: ${{ github.workspace }}\WebsiteGym.Web
+      IIS_EXPRESS_PATH: 'C:\Program Files\IIS Express\iisexpress.exe'
+      IIS_PORT: 5000
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Start IIS Express on port 5000
+      shell: pwsh
+      run: |
+        Write-Host "Starting IIS Express with path: $env:WEB_PROJECT_PATH and port: 5000"
+        Start-Process -FilePath $env:IIS_EXPRESS_PATH -ArgumentList "/path:`"$env:WEB_PROJECT_PATH`" /port:5000" -NoNewWindow
+        Write-Host "Waiting for IIS Express to start..."
+        $maxAttempts = 15
+        $attempt = 0
+        do {
+          Start-Sleep -Seconds 2
+          $isListening = netstat -ano | Select-String ":5000"
+          $attempt++
+          if ($isListening) {
+            Write-Host "Port 5000 is now listening."
+            break
+          } else {
+            Write-Host "Port 5000 not open yet, retrying... attempt $attempt of $maxAttempts"
+          }
+        } while ($attempt -lt $maxAttempts)
+
+        if (-not $isListening) {
+          Write-Error "Port 5000 is NOT open after $maxAttempts attempts"
+          exit 1
+        }
+
+    - name: Test IIS Express HTTP endpoint
+      shell: pwsh
+      run: |
+        try {
+          $response = Invoke-WebRequest http://localhost:5000/ -UseBasicParsing -TimeoutSec 10
+          if ($response.StatusCode -eq 200) {
+            Write-Host "IIS Express responded with status 200 OK"
+          } else {
+            Write-Error "Unexpected status code: $($response.StatusCode)"
+            exit 1
+          }
+        } catch {
+          Write-Error "Failed to connect to IIS Express: $_"
+          exit 1
+        }
+
+    - name: Install dependencies
+      run: npm ci
+      working-directory: PlaywrightTests
+
+    - name: Run Playwright tests
+      run: npx playwright test
+      working-directory: PlaywrightTests
+
+    - name: Kill IIS Express
+      if: always()
+      shell: pwsh
+      run: |
+        Get-Process iisexpress -ErrorAction SilentlyContinue | Stop-Process -Force
