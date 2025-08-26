@@ -30,7 +30,8 @@
       "premiumCardTitle": "Premium",
       "premiumCardDescription": "Limited access",
       "premiumCardPrice": "$30,00/month",
-      "seeMembershipsButton": "See Memberships"
+      "seeMembershipsButton": "See Memberships",
+      "chooseButton":"Choose"
     },
 
     "aboutSection": {

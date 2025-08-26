@@ -27,75 +27,65 @@ test.describe(
   { tag: ["@regression", "@membership"] },
   async () => {
     test("Cards section", async ({ app }) => {
-      And("the user sees Cards");
-      await test.step("Verify Cards are visible", async () => {
-        await app.membership.locateMembershipCards();
-      });
-
-       And("the user sees First card Title");
+      And("the user sees First card Title");
       await test.step("Verify First card Title", async () => {
-
+        await app.membership.checkMembership1Header();
       });
 
       And("the user sees First card Details");
       await test.step("Verify First card Details", async () => {
-
+        await app.membership.checkMembership1Details();
       });
 
       And("the user sees First card Price");
       await test.step("Verify First card Price", async () => {
-
+        await app.membership.checkMembership1Price();
       });
 
       And("the user sees First card Button");
       await test.step("Verify First card Button", async () => {
-
+        await app.membership.checkMembership1Button();
       });
 
       And("the user sees Second card Title");
       await test.step("Verify Second card Title", async () => {
-
+        await app.membership.checkMembership2Header();
       });
 
       And("the user sees Second card Details");
       await test.step("Verify Second card Details", async () => {
-
+        await app.membership.checkMembership2Details();
       });
 
       And("the user sees Second card Price");
       await test.step("Verify Second card Price", async () => {
-
+        await app.membership.checkMembership2Price();
       });
 
       And("the user sees Second card Button");
       await test.step("Verify Second card Button", async () => {
-
+        await app.membership.checkMembership2Button();
+      });
 
       And("the user sees Third card Title");
       await test.step("Verify Third card Title", async () => {
-
+        await app.membership.checkMembership3Header();
       });
 
       And("the user sees Third card Details");
       await test.step("Verify Third card Details", async () => {
-
+        await app.membership.checkMembership3Details();
       });
 
       And("the user sees Third card Price");
       await test.step("Verify Third card Price", async () => {
-
+        await app.membership.checkMembership3Price();
       });
 
       And("the user sees Third card Button");
       await test.step("Verify Third card Button", async () => {
-
+        await app.membership.checkMembership3Button();
       });
-    });
-
-
-
-
-
     });
 
     test("Description section", async ({ app }) => {
@@ -114,7 +104,7 @@ test.describe(
       });
 
     });
-    
+
     test("Description section", async ({ app }) => {
     });
   }
