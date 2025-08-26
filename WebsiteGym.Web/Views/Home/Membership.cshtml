@@ -16,26 +16,46 @@
 <body>
 
     <!-- Cards Section -->
-    <section id="plans" class="container my-1" style="padding-top: 100px;">
-        <div class="row">
+    <section class="container my-1" style="padding-top: 100px;">
+        <div id="membershipCards" class="row">
             @if (Model != null && Model.Any())
             {
                 foreach (var membership in Model)
                 {
                     <div class="col-md-4 mt-3">
-                        <div class="card text-center d-flex flex-column h-100">
-                            <div class="card-header membership-card-header bg-primary text-white" style="font-size: 1.5em;">
+                        <div id="membership-@membership.Id" class="card text-center d-flex flex-column h-100">
+
+                            <!-- Header -->
+                            <div id="membership-@membership.Id-header"
+                                 class="card-header membership-card-header bg-primary text-white"
+                                 style="font-size: 1.5em;">
                                 @membership.MembershipName
                             </div>
-                            <div class="card-body d-flex flex-column">
-                                <div class="card-text flex-grow-1 text-dark">
+
+                            <!-- Body -->
+                            <div id="membership-@membership.Id-body" class="card-body d-flex flex-column">
+
+                                <!-- Details -->
+                                <div id="membership-@membership.Id-details" class="card-text flex-grow-1 text-dark">
                                     @foreach (var line in membership.Details.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None))
                                     {
                                         <p>@line</p>
                                     }
                                 </div>
-                                <h5 class="card-title text-danger">$@membership.Price/month</h5>
-                                <a data-testid="checkoutLink-@membership.Id" href="@Url.Action("CheckoutMembership", "Checkout", new { membershipId = membership.Id })" class="btn btn-primary mt-auto" style="margin: 0 auto; display: block;">Choose</a>
+
+                                <!-- Price -->
+                                <h5 id="membership-@membership.Id-price" class="card-title text-danger">
+                                    $@membership.Price/month
+                                </h5>
+
+                                <!-- Button -->
+                                <a id="membership-@membership.Id-button"
+                                   data-testid="checkoutLink-@membership.Id"
+                                   href="@Url.Action("CheckoutMembership", "Checkout", new { membershipId = membership.Id })"
+                                   class="btn btn-primary mt-auto"
+                                   style="margin: 0 auto; display: block;">
+                                    Choose
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -49,6 +69,7 @@
             }
         </div>
     </section>
+
 
 
     <section class="container my-5 text-black">
