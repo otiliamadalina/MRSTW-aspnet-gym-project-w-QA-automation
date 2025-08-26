@@ -88,26 +88,22 @@
     "adminPassword": "Admin1234"
   },
 
-  "loginWrongCredentials":{
-  "wrongUser": "userInexistent",
+  "loginWrongCredentials": {
+    "wrongUser": "userInexistent",
     "wrongPassword": "gresit123"
   },
 
-  "registerCredentials" :{
-    "registerUsername":"userTest",
-    "registerEmail":"userTest@gmail.com",
-    "registerPassword":"userTest123"
+  "registerCredentials": {
+    "registerUsername": "userTest",
+    "registerEmail": "userTest@gmail.com",
+    "registerPassword": "userTest123"
   },
 
-  "registerWrongCredentials" :{
-    "registerUsername":"test",
-    "registerEmail":"test",
-    "registerPassword":"test"
+  "registerWrongCredentials": {
+    "registerUsername": "test",
+    "registerEmail": "test",
+    "registerPassword": "test"
   },
-
-
-
-
 
   "userProfile": {
     "editProfile": "Edit Profile",
@@ -255,9 +251,9 @@
   },
 
   "authErrors": {
- "invalidCredentials" :"Invalid username or password",
-    
- "blankFields": {
+    "invalidCredentials": "Invalid username or password",
+
+    "blankFields": {
       "username": "Username is required",
       "email": "Email is required",
       "password": "Password is required"

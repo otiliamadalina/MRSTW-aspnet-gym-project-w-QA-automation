@@ -11,15 +11,15 @@ test.beforeEach(async ({ app }) => {
     await app.common.browserTabTitleAsExpected(strings.home.homeTitle);
   });
 
-//   And("the user accesses Auth page");
-//   await test.step("Navigate to Auth page", async () => {
-//     await app.navbarFooter.navigateToPageByLinkText(
-//       strings.navBar.login,
-//       routes.allPages.authLoginPage
-//     );
-//     await app.navigation.pageUrlAsExpected(routes.navbarLinks.login);
-//     await app.common.browserTabTitleAsExpected(strings.auth.authTabTitle);
-//   });
+  And("the user accesses Membership page");
+  await test.step("Navigate to Auth page", async () => {
+    await app.navbarFooter.navigateToPageByLinkText(
+      strings.navBar.membership,
+      routes.allPages.membershipPage
+    );
+    await app.navigation.pageUrlAsExpected(routes.navbarLinks.membership);
+    await app.common.browserTabTitleAsExpected(strings.auth.authTabTitle);
+  });
 });
 
 test.describe(
