@@ -19,6 +19,7 @@
     },
 
     "ourMembershipsCards": {
+      "membershipTabTitle":"Memberships",
       "ourMembershipsTitle": "Our Memberships",
       "basicCardTitle": "Basic",
       "basicCardDescription": "Access to limited features.",

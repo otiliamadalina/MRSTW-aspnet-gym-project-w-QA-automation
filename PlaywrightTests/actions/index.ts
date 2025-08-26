@@ -7,7 +7,7 @@ import navbarFooterActions from "./navbarFooter.actions";
 import AboutActions from "./about.action";
 import ServicesActions from "./services.action";
 import AuthActions from "./auth.actions";
-import MembershipActions from "./membership.actioin";
+import MembershipActions from "./membership.actions";
 
 export default class App {
   base: BaseActions;

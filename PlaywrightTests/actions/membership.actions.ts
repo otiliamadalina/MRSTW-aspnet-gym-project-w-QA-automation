@@ -4,7 +4,6 @@ import routes from "../resources/routes.json";
 import strings from "../resources/strings.json";
 import { BrowserContext, expect, Page } from "@playwright/test";
 import CommonActions from "./common.actions";
-import AuthPage from "../pages/auth.page";
 import MembershipPage from "../pages/membership.page";
 
 export default class MembershipActions extends CommonActions {
@@ -13,6 +12,10 @@ export default class MembershipActions extends CommonActions {
   constructor(page: Page, context: BrowserContext) {
     super(page, context);
     this.membership = new MembershipPage(page, context);
+  }
+
+  async locateMembershipCards(){
+    await expect(this.membership.membershipCards).toBeVisible();
   }
 
 }
