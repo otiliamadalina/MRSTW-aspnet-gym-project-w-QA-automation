@@ -1,8 +1,6 @@
 import { BrowserContext, Page, expect } from "@playwright/test";
 import CommonPage from "../pages/common.page";
 import BaseActions from "./base.actions";
-import routes from "../resources/routes.json";
-import strings from "../resources/strings.json";
 
 export default class CommonActions extends BaseActions {
   commonPage: CommonPage;
