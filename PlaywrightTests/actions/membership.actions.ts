@@ -104,7 +104,16 @@ export default class MembershipActions extends CommonActions {
   }
 
 
-  async verifyMembershipBenefitsHeader() {}
+  async verifyMembershipBenefitsHeader() {
+    await this.checkH2(strings.home.ourMembershipsCards.benefitsHeader);
+  }
 
-  async verifyMembershipsParagraphs() {}
+  async verifyMembershipsParagraphs() {
+  await this.checkP(strings.home.ourMembershipsCards.eachMembership);
+  await this.checkP(strings.home.ourMembershipsCards.flexibleMemberships);
+  await this.checkP(strings.home.ourMembershipsCards.weLookForward);
+  }
+
+
+  
 }

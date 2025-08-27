@@ -18,7 +18,9 @@ test.beforeEach(async ({ app }) => {
       routes.allPages.membershipPage
     );
     await app.navigation.pageUrlAsExpected(routes.navbarLinks.membership);
-    await app.common.browserTabTitleAsExpected(strings.home.ourMembershipsCards.membershipTabTitle);
+    await app.common.browserTabTitleAsExpected(
+      strings.home.ourMembershipsCards.membershipTabTitle
+    );
   });
 });
 
@@ -89,6 +91,15 @@ test.describe(
     });
 
     test("Description section", async ({ app }) => {
+      And("the user sees Membership Benefits Header");
+      await test.step("Verify Membership Benefits Header", async () => {
+        await app.membership.verifyMembershipBenefitsHeader();
+      });
+
+      And("the user sees Membership Paragraphs");
+      await test.step("Verify Membership Paragraphs", async () => {
+        await app.membership.verifyMembershipsParagraphs();
+      });
     });
   }
 );
@@ -102,10 +113,8 @@ test.describe(
       await test.step("", async () => {
         await app.membership.locateMembershipCards();
       });
-
     });
 
-    test("Description section", async ({ app }) => {
-    });
+    test("Description section", async ({ app }) => {});
   }
 );

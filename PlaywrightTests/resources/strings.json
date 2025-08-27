@@ -31,7 +31,11 @@
       "premiumCardDescription": "Limited access",
       "premiumCardPrice": "$30,00/month",
       "seeMembershipsButton": "See Memberships",
-      "chooseButton":"Choose"
+      "chooseButton":"Choose",
+      "benefitsHeader":"Membership Benefits",
+      "eachMembership":"Each membership offers a set of benefits to help you achieve your fitness goals. No matter which plan you choose, you'll enjoy a motivating environment and top-notch equipment to enhance your gym experience.",
+      "flexibleMemberships":"Our memberships are flexible and cater to the needs of all types of users, from beginners to experienced athletes.",
+      "weLookForward":"We look forward to seeing you!"
     },
 
     "aboutSection": {
