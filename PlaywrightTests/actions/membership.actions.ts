@@ -167,4 +167,40 @@ async verifyChooseButtonAsAdmin() {
   await this.page.waitForURL(routes.allPages.membershipPage);
 }
 
+// -------=-=-=-=- CHECKout Page
+
+
+async verifyOrderCheckoutHeader() {}
+
+async verifyBillingDetailsHeader() {}
+
+async verifyUserInfoFields() {}  
+
+async verifyMembershipPlanLabel() {}
+
+async verifyBasicMembershipOption() {}
+
+async verifyMembershipDurationDropdown() {}
+
+async verifyPaymentMethodHeader() {}
+
+async verifyCardInfoFields() {}  
+
+async verifyExpirationDateField() {}
+
+async verifyTermsCheckbox() {}
+
+async verifyPlaceOrderButton() {}
+
+async verifyOrderSummaryHeader() {}
+
+async verifyDiscountCodeField() {}
+
+async verifySubtotal() {}
+
+async verifyTotal() {}
+
+async verifyApplyButton() {}
+
+
 }

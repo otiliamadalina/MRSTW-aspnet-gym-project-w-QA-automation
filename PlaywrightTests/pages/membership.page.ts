@@ -76,5 +76,9 @@ export default class MembershipPage extends BasePage {
   get membership3Button() {
     return this.page.locator("#membership-6-button");
   }
+
+  // Checkout Page:
+
+  
   
 }
