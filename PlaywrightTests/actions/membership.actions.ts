@@ -316,7 +316,7 @@ export default class MembershipActions extends CommonActions {
   }
 
   async changeMembershipPlan(plan: string) {
-    const dropdown = this.membership.membershipDropdown; 
+    const dropdown = this.membership.membershipDropdown;
 
     await dropdown.click();
     await dropdown.selectOption(plan);
@@ -325,10 +325,10 @@ export default class MembershipActions extends CommonActions {
     expect(selectedValue).toBe(plan);
 
     console.log(`Membership plan changed to: ${plan}`);
-}
+  }
 
   async changeMembershipDuration(duration: string) {
-    const dropdown = this.membership.durationDropdown; 
+    const dropdown = this.membership.durationDropdown;
 
     await dropdown.click();
     await dropdown.selectOption(duration);
@@ -337,29 +337,38 @@ export default class MembershipActions extends CommonActions {
     expect(selectedValue).toBe(duration);
 
     console.log(`Membership duration changed to: ${duration}`);
-}
+  }
 
-async verifyMembershipDurationDropdown() {
+  async verifyMembershipDurationDropdown() {
     await this.changeMembershipDuration(strings.checkout.oneMonth);
     await this.changeMembershipDuration(strings.checkout.threeMonths);
     await this.changeMembershipDuration(strings.checkout.sixMonths);
   }
 
-
   async verifyCardInfoFieldsAndLabels() {
-await expect(this.membership.cardNumberField).toHaveText(
-      strings.checkout.firstName
+    await expect(this.membership.cardNumberLabel).toHaveText(
+      strings.checkout.cardNumber
     );
-    await expect(this.membership.lastNameLabel).toHaveText(
-      strings.checkout.lastName
+    await expect(this.membership.cvvLabel).toHaveText(strings.checkout.cvv);
+    await expect(this.membership.expDateLabel).toHaveText(
+      strings.checkout.expirationDate
     );
-    await expect(this.membership.emailLabel).toHaveText(strings.checkout.email);
 
+    await expect(this.membership.cardNumberField).toBeVisible();
+    await expect(this.membership.cvvField).toBeVisible();
+    await expect(this.membership.expDateField).toBeVisible();
   }
 
-  async verifyExpirationDateField() {}
+  async verifyTermsCheckbox() {
+    await expect(this.membership.termsCheckbox).toBeVisible();
 
-  async verifyTermsCheckbox() {}
+    const isChecked = await this.membership.termsCheckbox.isChecked();
+    if (!isChecked) {
+        await this.membership.termsCheckbox.check();
+    }
+
+    await expect(this.membership.termsCheckbox).toBeChecked();
+  }
 
   async verifyPlaceOrderButton() {}
 
