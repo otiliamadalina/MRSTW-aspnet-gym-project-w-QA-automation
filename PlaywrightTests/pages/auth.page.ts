@@ -160,4 +160,8 @@ export default class AuthPage extends BasePage {
   get loginErrorMessage() {
     return this.page.locator("#loginErrorMessage");
   }
+
+  get logoutUser(){
+    return this.page.locator('#logoutLink');
+  }
 }

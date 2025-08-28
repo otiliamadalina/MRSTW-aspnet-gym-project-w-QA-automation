@@ -5,13 +5,19 @@ import strings from "../resources/strings.json";
 import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 import CommonActions from "./common.actions";
 import MembershipPage from "../pages/membership.page";
+import AuthActions from "./auth.actions";
+import navbarFooterActions from "./navbarFooter.actions";
 
 export default class MembershipActions extends CommonActions {
   membership: MembershipPage;
+  auth: AuthActions; 
+  navbarFooter: navbarFooterActions;
 
   constructor(page: Page, context: BrowserContext) {
     super(page, context);
     this.membership = new MembershipPage(page, context);
+    this.auth = new AuthActions(page, context); 
+    this.navbarFooter = new navbarFooterActions(page, context);
   }
 
   async locateMembershipCards() {
@@ -113,7 +119,52 @@ export default class MembershipActions extends CommonActions {
   await this.checkP(strings.home.ourMembershipsCards.flexibleMemberships);
   await this.checkP(strings.home.ourMembershipsCards.weLookForward);
   }
-
-
   
+  async verifyChooseButtonAsUser() {
+
+    await this.navbarFooter.navigateToPageByLinkText(strings.navBar.login, routes.allPages.authLoginPage);
+  await this.auth.loginAsUser();
+  await this.navbarFooter.navigateToPageByLinkText(
+    strings.navBar.membership,
+    routes.allPages.membershipPage
+  );
+
+  await this.membership.membership1Button.click();
+  await this.goBackMultiple(1);
+  await this.page.waitForURL(routes.allPages.membershipPage);
+
+  await this.membership.membership2Button.click();
+  await this.goBackMultiple(1);
+  await this.page.waitForURL(routes.allPages.membershipPage);
+
+  await this.membership.membership3Button.click();
+  await this.goBackMultiple(1);
+  await this.page.waitForURL(routes.allPages.membershipPage);
+}
+
+async verifyChooseButtonAsAdmin() {
+  await this.auth.logoutAsUser();
+  await this.navbarFooter.navigateToPageByLinkText(strings.navBar.login, routes.allPages.authLoginPage);
+  await this.auth.loginAsAdmin();
+  await this.navbarFooter.navigateToPageByLinkText(
+    strings.navBar.membership,
+    routes.allPages.membershipPage
+  );
+
+  await this.membership.membership1Button.click();
+  await this.page.waitForURL(routes.allPages.adminDashboardPage);
+  await this.goBackMultiple(1);
+  await this.page.waitForURL(routes.allPages.membershipPage);
+
+  await this.membership.membership2Button.click();
+  await this.page.waitForURL(routes.allPages.adminDashboardPage);
+  await this.goBackMultiple(1);
+  await this.page.waitForURL(routes.allPages.membershipPage);
+
+  await this.membership.membership3Button.click();
+  await this.page.waitForURL(routes.allPages.adminDashboardPage);
+  await this.goBackMultiple(1);
+  await this.page.waitForURL(routes.allPages.membershipPage);
+}
+
 }

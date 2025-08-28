@@ -12,13 +12,11 @@ import AuthActions from "./auth.actions";
 export default class navbarFooterActions extends AuthActions {
   navbarFooter: NavbarFooterPage;
   home: HomePage;
-  services: ServicesPage;
 
   constructor(page: Page, context: BrowserContext) {
     super(page, context);
     this.navbarFooter = new NavbarFooterPage(page, context);
     this.home = new HomePage(page, context);
-    this.services = new ServicesPage(page, context);
   }
 
   /// general TESTS FOR NAV BAR and FOOTER

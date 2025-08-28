@@ -201,6 +201,14 @@ export default class AuthActions extends CommonActions {
     await expect(link).toContainText(strings.auth.resetPasswordLink);
   }
 
+
+
+
+
+
+
+
+  
   async loginAsUserTemplate(username: string, password: string) {
     await this.auth.usernameInput.fill(username);
     await this.auth.passwordInput.fill(password);
@@ -229,6 +237,12 @@ export default class AuthActions extends CommonActions {
     await expect(this.page).toHaveURL("https://localhost:44336/");
   }
 
+  async logoutAsUser() {
+    await this.goToUserProfile();
+    await this.auth.logoutUser.click();
+  }
+
+
   async loginAsAdmin() {
     const username = strings.loginCredentials.adminUsername;
     const password = strings.loginCredentials.adminPassword;
@@ -236,6 +250,13 @@ export default class AuthActions extends CommonActions {
     await this.loginAsAdminTemplate(username, password);
     await expect(this.page).toHaveURL("https://localhost:44336/");
   }
+
+
+
+
+
+
+
 
   async loginWithWrongUser() {
     await this.auth.loginUserName.fill(strings.loginWrongCredentials.wrongUser);

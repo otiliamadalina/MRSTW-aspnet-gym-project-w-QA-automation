@@ -101,6 +101,22 @@ test.describe(
         await app.membership.verifyMembershipsParagraphs();
       });
     });
+
+    test("Verify Choose buttons for different user roles", async ({ app }) => {
+      And(
+        "the authenticated user clicks on all Choose buttons and is redirected to Checkout page"
+      );
+      await test.step("Verify Choose buttons as user", async () => {
+        await app.membership.verifyChooseButtonAsUser();
+      });
+
+      And(
+        "the admin clicks on all Choose buttons and is redirected to Admin Dashboard page"
+      );
+      await test.step("Verify Choose buttons as admin", async () => {
+        await app.membership.verifyChooseButtonAsAdmin();
+      });
+    });
   }
 );
 
