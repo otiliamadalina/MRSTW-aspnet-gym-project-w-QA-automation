@@ -23,6 +23,14 @@ export default class CommonPage extends BasePage {
     return this.page.locator("h3", { hasText: text });
   }
 
+  h4Locator(text: string) {
+    return this.page.locator("h4", { hasText: text });
+  }
+
+  h5Locator(text: string) {
+    return this.page.locator("h5", { hasText: text });
+  }
+
   pLocator(text: string) {
     return this.page.locator("p", { hasText: text });
   }

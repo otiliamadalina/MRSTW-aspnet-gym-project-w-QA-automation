@@ -42,6 +42,20 @@ export default class CommonActions extends BaseActions {
     console.log(`Checked H3: "${header}" is visible and has correct text.`);
   }
 
+  async checkH4(header: string) {
+    const locator = this.commonPage.h4Locator(header);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(header);
+    console.log(`Checked H4: "${header}" is visible and has correct text.`);
+  }
+
+  async checkH5(header: string) {
+    const locator = this.commonPage.h5Locator(header);
+    await expect(locator).toBeVisible();
+    await expect(locator).toHaveText(header);
+    console.log(`Checked H5: "${header}" is visible and has correct text.`);
+  }
+
   async checkP(text: string) {
     const locator = this.commonPage.pLocator(text);
     await expect(locator).toBeVisible();

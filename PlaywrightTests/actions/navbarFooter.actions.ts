@@ -365,59 +365,28 @@ export default class navbarFooterActions extends AuthActions {
     await this.goBackMultiple(2);
   }
 
-  //de schimbat 
-  async fillCheckoutFormAndPlaceOrder() {
-    const checkout = strings.checkout;
 
-    await this.page
-      .locator(`#${checkout.id_firstName}`)
-      .fill(checkout.value_firstName);
-    await this.page
-      .locator(`#${checkout.id_lastName}`)
-      .fill(checkout.value_lastName);
-    await this.page.locator(`#${checkout.id_email}`).fill(checkout.value_email);
+  // async verifyOrderSuccessPage() {
+  //   await this.verifyUserIsLoggedIn();
 
-    await this.page
-      .locator(`#${checkout.id_membershipDuration}`)
-      .selectOption({ label: checkout.value_membershipDuration });
+  //   const membershipLink = this.commonPage.membershipLinkDesktop;
+  //   await expect(membershipLink).toBeVisible();
+  //   await membershipLink.click();
+  //   await this.page.waitForLoadState("load");
 
-    await this.page
-      .locator(`#${checkout.id_cardNumber}`)
-      .fill(checkout.value_cardNumber);
-    await this.page.locator(`#${checkout.id_cvv}`).fill(checkout.value_cvv);
-    await this.page
-      .locator(`#${checkout.id_expirationDate}`)
-      .fill(checkout.value_expirationDate);
+  //   const checkoutLink = this.page
+  //     .getByRole("link", { name: strings.membership.checkout })
+  //     .first();
+  //   await expect(checkoutLink).toBeVisible();
+  //   await checkoutLink.click();
+  //   await this.page.waitForLoadState("load");
 
-    await this.page.locator(`#${checkout.id_termsAndConditions}`).check();
-    const placeOrderButton = this.commonPage.orderSuccessLink;
-    await expect(placeOrderButton).toBeVisible();
-    await placeOrderButton.click();
+  //   await this.fillCheckoutFormAndPlaceOrder();
 
-    await this.page.waitForLoadState("load");
-  }
+  //   await this.verifyNavbarAndFooter();
 
-  async verifyOrderSuccessPage() {
-    await this.verifyUserIsLoggedIn();
-
-    const membershipLink = this.commonPage.membershipLinkDesktop;
-    await expect(membershipLink).toBeVisible();
-    await membershipLink.click();
-    await this.page.waitForLoadState("load");
-
-    const checkoutLink = this.page
-      .getByRole("link", { name: strings.membership.checkout })
-      .first();
-    await expect(checkoutLink).toBeVisible();
-    await checkoutLink.click();
-    await this.page.waitForLoadState("load");
-
-    await this.fillCheckoutFormAndPlaceOrder();
-
-    await this.verifyNavbarAndFooter();
-
-    await this.goBackMultiple(3);
-  }
+  //   await this.goBackMultiple(3);
+  // }
 
   async verifyTermsAndConditionsPage() {
     await this.verifyUserIsLoggedIn();

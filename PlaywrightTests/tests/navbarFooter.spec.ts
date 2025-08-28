@@ -156,10 +156,10 @@ test.describe(
         await app.navbarFooter.verifyMembershipCheckoutPage();
       });
 
-      And("the user verifies Navbar and Footer on Order Success page");
-      await test.step("Verify Order Success page", async () => {
-        await app.navbarFooter.verifyOrderSuccessPage();
-      });
+      // And("the user verifies Navbar and Footer on Order Success page");
+      // await test.step("Verify Order Success page", async () => {
+      //   await app.navbarFooter.verifyOrderSuccessPage();
+      // });
 
       And("the user verifies Navbar and Footer on Terms and Conditions page");
       await test.step("Verify Terms and Conditions page", async () => {

@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Checkout</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +21,7 @@
             <div class="col-md-6">
                 <div class="card checkoutMembershipCard shadow-lg">
                     <div class="card-header checkoutMembershipCardHeader bg-primary text-white">
-                        <h3 class="text-center">Order Checkout</h3>
+                        <h3 id="orderCheckoutHeader" class="text-center">Order Checkout</h3>
                     </div>
                     <div class="card-body checkoutMembershipCardBody">
                         @using (Html.BeginForm("CheckoutMembership", "Checkout", FormMethod.Post))
@@ -31,20 +32,20 @@
 
                             @Html.AntiForgeryToken()
 
-                            <h5 class="text-dark">Billing Details</h5>
+                            <h5 id="billingDetailsHeader" class="text-dark">Billing Details</h5>
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label">First Name</label>
-                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required" })
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", required = "required", id = "firstNameField" })
                                 </div>
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label">Last Name</label>
-                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required" })
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", required = "required", id = "lastNameField" })
                                 </div>
                             </div>
 
                             <label for="email" class="form-label mt-3">Email Address</label>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required", id = "emailField" })
 
                             <label for="membership" class="form-label mt-3">Membership Plan</label>
                             @Html.DropDownListFor(m => m.MembershipName, new SelectList(Model.AvailableMemberships, "MembershipName", "MembershipName", Model.MembershipName), "Select a membership", new { @class = "form-control", required = "required", id = "membership" })
@@ -62,18 +63,18 @@
                                     new { @class = "form-control", required = "required", id = "duration" })
                             </div>
 
-                            <h5 class="text-dark mt-4">Payment Method</h5>
+                            <h5 id="paymentMethodHeader" class="text-dark mt-4">Payment Method</h5>
                             <div class="row">
                                 <div class="col-md-8">
                                     <label for="cardNumber" class="form-label">Card Number</label>
                                     @Html.TextBoxFor(m => m.CardNumber, new
-                                     {
-                                         @class = "form-control",
-                                         placeholder = "1234 5678 9012 3456",
-                                         required = "required",
-                                         maxlength = "19",
-                                         id = "CardNumber"
-                                     })
+                               {
+                                   @class = "form-control",
+                                   placeholder = "1234 5678 9012 3456",
+                                   required = "required",
+                                   maxlength = "19",
+                                   id = "cardNumberField"
+                               })
                                 </div>
                                 <div class="col-md-4">
                                     <label for="cvv" class="form-label">CVV</label>
@@ -84,7 +85,8 @@
                                         required = "required",
                                         maxlength = "3",
                                         inputmode = "numeric",
-                                        oninput = "this.value = this.value.replace(/[^0-9]/g, '').slice(0,3)"
+                                        oninput = "this.value = this.value.replace(/[^0-9]/g, '').slice(0,3)",
+                                        id = "cvvField"
                                     })
                                 </div>
                             </div>
@@ -92,25 +94,25 @@
                                 <div class="col-md-6">
                                     <label for="expDate" class="form-label">Expiration Date (MM/YY)</label>
                                     @Html.TextBoxFor(m => m.ExpDate, new
-                                    {
-                                        @class = "form-control",
-                                        placeholder = "MM/YY",
-                                        required = "required",
-                                        maxlength = "5",
-                                        id = "ExpDate"
-                                    })
+                               {
+                                   @class = "form-control",
+                                   placeholder = "MM/YY",
+                                   required = "required",
+                                   maxlength = "5",
+                                   id = "expDateField"
+                               })
                                 </div>
                             </div>
 
                             <div class="form-check mt-3">
-                                <input type="checkbox" class="form-check-input" id="terms" required>
+                                <input type="checkbox" class="form-check-input" id="termsCheckbox" required>
                                 <label for="terms" class="form-check-label">
                                     I agree to the <a href="@Url.Action("TermsAndConditions", "Checkout")" target="_blank">terms and conditions</a>
                                 </label>
                             </div>
 
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary w-100">Place Order</button>
+                                <button id="placeOrderButton" type="submit" class="btn btn-primary w-100">Place Order</button>
                             </div>
 
 
@@ -122,19 +124,19 @@
             <div class="col-md-4">
                 <div class="card orderSummaryCard shadow-lg">
                     <div class="card-header orderSummaryCardHeader bg-secondary text-white">
-                        <h3 class="text-center">Order Summary</h3>
+                        <h3 id="orderSummaryHeader" class="text-center">Order Summary</h3>
                     </div>
                     <div class="card-body orderSummaryCardBody">
                         <label for="discountCode" class="form-label mt-3">Discount Code</label>
                         <div class="input-group">
                             <input type="text" id="VisibleDiscountCode" class="form-control" placeholder="Enter discount code" />
 
-                            <button type="button" class="btn btn-secondary" id="applyDiscountBtn">Apply</button>
+                            <button type="button" class="btn btn-secondary" id="applyDiscountButton">Apply</button>
                         </div>
 
                         <div id="appliedDiscount" style="display:@(Model.DiscountCode != null ? "block" : "none");">
                             <h4 style="font-size: 14px; font-weight: normal; margin-bottom: 10px;">Applied Discount Code:</h4>
-                            <span id="discountCodeText" style="font-size: 16px; font-weight: bold; color: #dc3545;">
+                            <span id="appliedDiscountCode" style="font-size: 16px; font-weight: bold; color: #dc3545;">
                                 @Model.DiscountCode
                             </span>
                             <button id="removeDiscountFromUI" type="button" class="btn btn-danger btn-sm" style="background-color: red; border: none; color: black;">x</button>

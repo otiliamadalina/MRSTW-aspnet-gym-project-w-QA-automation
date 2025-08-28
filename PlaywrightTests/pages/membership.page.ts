@@ -79,6 +79,111 @@ export default class MembershipPage extends BasePage {
 
   // Checkout Page:
 
-  
-  
+  get orderCheckoutHeader() {
+    return this.page.locator("#orderCheckoutHeader");
+  }
+
+  get billingDetailsHeader() {
+    return this.page.locator("#billingDetailsHeader");
+  }
+
+  get paymentMethodHeader() {
+    return this.page.locator("#paymentMethodHeader");
+  }
+
+  get orderSummaryHeader() {
+    return this.page.locator("#orderSummaryHeader");
+  }
+
+  get firstNameField() {
+    return this.page.locator("#firstNameField");
+  }
+
+  get lastNameField() {
+    return this.page.locator("#lastNameField");
+  }
+
+  get emailField() {
+    return this.page.locator("#emailField");
+  }
+
+  get firstNameLabel() {
+    return this.page.locator("label[for='firstName']");
+  }
+
+  get lastNameLabel() {
+    return this.page.locator("label[for='lastName']");
+  }
+
+  get emailLabel() {
+    return this.page.locator("label[for='email']");
+  }
+
+  get membershipPlanLabel() {
+    return this.page.locator("label[for='membership']");
+  }
+
+  get membershipDropdown() {
+    return this.page.locator("#membership");
+  }
+
+  get durationDropdown() {
+    return this.page.locator("#duration");
+  }
+
+  get cardNumberField() {
+    return this.page.locator("#cardNumberField");
+  }
+
+  get cvvField() {
+    return this.page.locator("#cvvField");
+  }
+
+  get expDateField() {
+    return this.page.locator("#expDateField");
+  }
+
+  get termsCheckbox() {
+    return this.page.locator("#termsCheckbox");
+  }
+
+  get placeOrderButton() {
+    return this.page.locator("#placeOrderButton");
+  }
+
+  get visibleDiscountCode() {
+    return this.page.locator("#VisibleDiscountCode");
+  }
+
+  get applyDiscountButton() {
+    return this.page.locator("#applyDiscountButton");
+  }
+
+  get appliedDiscount() {
+    return this.page.locator("#appliedDiscount");
+  }
+
+  get appliedDiscountCode() {
+    return this.page.locator("#appliedDiscountCode");
+  }
+
+  get removeDiscountButton() {
+    return this.page.locator("#removeDiscountFromUI");
+  }
+
+  get subtotalAmount() {
+    return this.page.locator("#subtotal");
+  }
+
+  get totalAmount() {
+    return this.page.locator("#finalPrice");
+  }
+
+  get totalPriceHidden() {
+    return this.page.locator("#TotalPrice");
+  }
+
+  get hiddenDiscountCode() {
+    return this.page.locator("#hiddenDiscountCode");
+  }
 }

@@ -124,11 +124,14 @@ test.describe(
   "Checkout Page tests",
   { tag: ["@regression", "@membership"] },
   async () => {
-    test("", async ({ app }) => {
-      And("the user sees ");
-      await test.step("", async () => {
-        await app.membership.locateMembershipCards();
+    test("Verify Basic Membership", async ({ app }) => {
+      And("the user accesses Checkout page by clicking Basic membership ");
+      await test.step("Access Checkout page", async () => {
+        await app.membership.clickMembership(strings.checkout.basic);
       });
+
+
+
     });
 
     test("Description section", async ({ app }) => {});
