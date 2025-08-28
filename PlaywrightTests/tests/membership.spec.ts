@@ -124,16 +124,39 @@ test.describe(
   "Checkout Page tests",
   { tag: ["@regression", "@membership"] },
   async () => {
-    test("Verify Basic Membership", async ({ app }) => {
-      And("the user accesses Checkout page by clicking Basic membership ");
-      await test.step("Access Checkout page", async () => {
+    test("Verify Order Checkout Container", async ({ app }) => {
+      And("the user accesses Checkout page by clicking Basic membership");
+      await test.step("Access Checkout page through clicking Basic Plan", async () => {
         await app.membership.clickMembership(strings.checkout.basic);
       });
+
+      And("the user sees Billing Details");
+      await test.step("Verify Billing Details labels and Fields", async () => {
+        await app.membership.verifyUserInfoFieldsAndLabels();
+      });
+
+      And("the user sees Membership Plan Dropdown");
+      await test.step("Membership Plan Dropdown", async () => {
+        await app.membership.verifyMembershipPlanDropdown();
+      });
+
+      And("the user sees Membership Duration Dropdown");
+      await test.step("Membership Duration Dropdown", async () => {
+        await app.membership.verifyMembershipDurationDropdown();
+      });
+
+
+
+
+
+
+
+
 
 
 
     });
 
-    test("Description section", async ({ app }) => {});
+    test("Verify Order Summary Container", async ({ app }) => {});
   }
 );

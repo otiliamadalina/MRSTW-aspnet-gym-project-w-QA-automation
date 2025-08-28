@@ -222,9 +222,8 @@ export default class MembershipActions extends CommonActions {
 
   // ===========
 
-
-  async clickMembership (membershipSelected: string) {
-     await this.navbarFooter.navigateToPageByLinkText(
+  async clickMembership(membershipSelected: string) {
+    await this.navbarFooter.navigateToPageByLinkText(
       strings.navBar.login,
       routes.allPages.authLoginPage
     );
@@ -240,15 +239,15 @@ export default class MembershipActions extends CommonActions {
 
   async verifyMembershipSelected(membershipName: string) {
     switch (membershipName) {
-        case strings.checkout.basic:
-            await this.membership.membership1Button.click();
-            break;
-        case strings.checkout.premium:
-            await this.membership.membership2Button.click();
-            break;
-        case strings.checkout.elite:
-            await this.membership.membership3Button.click();
-            break;
+      case strings.checkout.basic:
+        await this.membership.membership1Button.click();
+        break;
+      case strings.checkout.premium:
+        await this.membership.membership2Button.click();
+        break;
+      case strings.checkout.elite:
+        await this.membership.membership3Button.click();
+        break;
     }
 
     const membershipDropdown = this.membership.membershipDropdown;
@@ -257,85 +256,106 @@ export default class MembershipActions extends CommonActions {
     const selectedValue = await membershipDropdown.inputValue();
     expect(selectedValue).toBe(membershipName);
 
-    console.log(`${membershipName} membership is correctly selected in the dropdown`);
-}
+    console.log(
+      `${membershipName} membership is correctly selected in the dropdown`
+    );
+  }
 
- async fillCheckoutFormAndPlaceOrder(applyDiscount: boolean = false, discountCode?: string) {
-   
+  async fillCheckoutFormAndPlaceOrder(
+    applyDiscount: boolean = false,
+    discountCode?: string
+  ) {
     await this.membership.firstNameField.fill(strings.checkout.value_firstName);
     await this.membership.lastNameField.fill(strings.checkout.value_lastName);
     await this.membership.emailField.fill(strings.checkout.value_email);
 
-    await this.membership.membershipDropdown.selectOption({ label: strings.checkout.value_membershipPlan });
-    await this.membership.durationDropdown.selectOption({ label: strings.checkout.value_membershipDuration });
+    await this.membership.membershipDropdown.selectOption({
+      label: strings.checkout.value_membershipPlan,
+    });
+    await this.membership.durationDropdown.selectOption({
+      label: strings.checkout.value_membershipDuration,
+    });
 
-    await this.membership.cardNumberField.fill(strings.checkout.value_cardNumber);
+    await this.membership.cardNumberField.fill(
+      strings.checkout.value_cardNumber
+    );
     await this.membership.cvvField.fill(strings.checkout.value_cvv);
-    await this.membership.expDateField.fill(strings.checkout.value_expirationDate);
+    await this.membership.expDateField.fill(
+      strings.checkout.value_expirationDate
+    );
 
     if (applyDiscount && discountCode) {
-        await this.membership.visibleDiscountCode.fill(discountCode);
-        await this.membership.applyDiscountButton.click();
-        await this.membership.appliedDiscount.waitFor({ state: 'visible' });
+      await this.membership.visibleDiscountCode.fill(discountCode);
+      await this.membership.applyDiscountButton.click();
+      await this.membership.appliedDiscount.waitFor({ state: "visible" });
     }
 
     await this.membership.termsCheckbox.check();
 
     await this.membership.placeOrderButton.click();
+  }
 
-}
-
-
-  async verifyUserInfoFields() {
-
-    await expect(this.membership.firstNameLabel).toHaveText(strings.checkout.firstName);
-    await expect(this.membership.lastNameLabel).toHaveText(strings.checkout.lastName);
+  async verifyUserInfoFieldsAndLabels() {
+    await expect(this.membership.firstNameLabel).toHaveText(
+      strings.checkout.firstName
+    );
+    await expect(this.membership.lastNameLabel).toHaveText(
+      strings.checkout.lastName
+    );
     await expect(this.membership.emailLabel).toHaveText(strings.checkout.email);
 
     await expect(this.membership.firstNameField).toBeVisible();
     await expect(this.membership.lastNameField).toBeVisible();
     await expect(this.membership.emailField).toBeVisible();
-
-    await expect(this.membership.firstNameField).toHaveAttribute(
-      "required",
-      ""
-    );
-    await expect(this.membership.lastNameField).toHaveAttribute("required", "");
-    await expect(this.membership.emailField).toHaveAttribute("required", "");
-
-    await expect(this.membership.firstNameField).toHaveAttribute(
-      "placeholder",
-      strings.checkout.firstName
-    );
-    await expect(this.membership.lastNameField).toHaveAttribute(
-      "placeholder",
-      strings.checkout.lastName
-    );
-    await expect(this.membership.emailField).toHaveAttribute(
-      "placeholder",
-      strings.checkout.email
-    );
   }
 
-  async verifyMembershipPlan(expectedPlan: string) {
-    await expect(this.membership.membershipPlanLabel).toHaveText(strings.checkout.membershipPlan);
+  async verifyMembershipPlanDropdown() {
+    await this.changeMembershipPlan(strings.checkout.basic);
+    await this.changeMembershipPlan(strings.checkout.premium);
+    await this.changeMembershipPlan(strings.checkout.elite);
+  }
 
+  async changeMembershipPlan(plan: string) {
+    const dropdown = this.membership.membershipDropdown; 
 
-    const membershipDropdown = this.membership.membershipDropdown;
-    await membershipDropdown.waitFor({ state: "visible" });
+    await dropdown.click();
+    await dropdown.selectOption(plan);
 
-    const selectedValue = await membershipDropdown.inputValue();
+    const selectedValue = await dropdown.inputValue();
+    expect(selectedValue).toBe(plan);
 
-    expect(selectedValue).toBe(expectedPlan);
-
-    console.log(`Membership plan selected: ${selectedValue}`);
+    console.log(`Membership plan changed to: ${plan}`);
 }
 
+  async changeMembershipDuration(duration: string) {
+    const dropdown = this.membership.durationDropdown; 
+
+    await dropdown.click();
+    await dropdown.selectOption(duration);
+
+    const selectedValue = await dropdown.inputValue();
+    expect(selectedValue).toBe(duration);
+
+    console.log(`Membership duration changed to: ${duration}`);
+}
+
+async verifyMembershipDurationDropdown() {
+    await this.changeMembershipDuration(strings.checkout.oneMonth);
+    await this.changeMembershipDuration(strings.checkout.threeMonths);
+    await this.changeMembershipDuration(strings.checkout.sixMonths);
+  }
 
 
-  async verifyMembershipDurationDropdown() {}
+  async verifyCardInfoFieldsAndLabels() {
+await expect(this.membership.cardNumberField).toHaveText(
+      strings.checkout.firstName
+    );
+    await expect(this.membership.lastNameLabel).toHaveText(
+      strings.checkout.lastName
+    );
+    await expect(this.membership.emailLabel).toHaveText(strings.checkout.email);
 
-  async verifyCardInfoFields() {}
+  }
 
   async verifyExpirationDateField() {}
 

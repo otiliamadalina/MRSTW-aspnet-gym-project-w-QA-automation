@@ -142,6 +142,9 @@
     "basic":"Basic",
     "premium":"Premium",
     "elite":"Elite",
+    "oneMonth":"1",
+    "threeMonths":"3",
+    "sixMonths":"6",
 
     "value_firstName": "otilia",
     "value_lastName": "madalina",

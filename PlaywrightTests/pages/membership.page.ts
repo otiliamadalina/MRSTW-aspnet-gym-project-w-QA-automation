@@ -143,6 +143,18 @@ export default class MembershipPage extends BasePage {
     return this.page.locator("#expDateField");
   }
 
+  get cardNumberLabel() {
+    return this.page.locator("label[for='cardNumberField']");
+  }
+
+  get cvvLabel() {
+    return this.page.locator("label[for='cvvField']");
+  }
+
+  get expDateLabel() {
+    return this.page.locator("label[for='expDateField']");
+  }
+
   get termsCheckbox() {
     return this.page.locator("#termsCheckbox");
   }
