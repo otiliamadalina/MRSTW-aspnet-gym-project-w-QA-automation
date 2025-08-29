@@ -144,19 +144,23 @@ export default class MembershipPage extends BasePage {
   }
 
   get cardNumberLabel() {
-    return this.page.locator("label[for='cardNumberField']");
+    return this.page.locator("label[for='cardNumber']");
   }
 
   get cvvLabel() {
-    return this.page.locator("label[for='cvvField']");
+    return this.page.locator("label[for='cvv']");
   }
 
   get expDateLabel() {
-    return this.page.locator("label[for='expDateField']");
+    return this.page.locator("label[for='expDate']");
   }
 
   get termsCheckbox() {
     return this.page.locator("#termsCheckbox");
+  }
+
+  get termsLabel() {
+    return this.page.locator("label[for='terms']");
   }
 
   get placeOrderButton() {
@@ -169,6 +173,10 @@ export default class MembershipPage extends BasePage {
 
   get applyDiscountButton() {
     return this.page.locator("#applyDiscountButton");
+  }
+
+  get discountCodeLabel() {
+    return this.page.locator("label[for='discountCode']");
   }
 
   get appliedDiscount() {

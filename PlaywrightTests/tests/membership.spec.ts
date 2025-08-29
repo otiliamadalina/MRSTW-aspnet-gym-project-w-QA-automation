@@ -1,3 +1,4 @@
+import { planCard } from "../actions/membership.actions";
 import routes from "../resources/routes.json";
 import strings from "../resources/strings.json";
 import { And, Given, Then } from "../utils/annotations";
@@ -127,7 +128,9 @@ test.describe(
     test("Verify Order Checkout Container", async ({ app }) => {
       And("the user accesses Checkout page by clicking Basic membership");
       await test.step("Access Checkout page through clicking Basic Plan", async () => {
-        await app.membership.clickMembership(strings.checkout.basic);
+        
+        //TODO: De adaugat pas: Autentificarea
+        await app.membership.clickMembership(planCard.basic);
       });
 
       And("the user sees Billing Details");
@@ -145,18 +148,40 @@ test.describe(
         await app.membership.verifyMembershipDurationDropdown();
       });
 
+      And("the user sees Card info fields and labels");
+      await test.step("Card info Fields and Labels", async () => {
+        await app.membership.verifyCardInfoFieldsAndLabels();
+      });
 
+      And("the user sees Terms checkbox and text and Checks it");
+      await test.step("Terms checkbox and text", async () => {
+        await app.membership.verifyTermsCheckbox();
+      });
 
+      And("the user sees Place Order button and clicks it without filling details");
+      await test.step("Place Order button", async () => {
+        await app.membership.verifyPlaceOrderButton();
+      });
+      
+    });
 
+    test("Verify Order Summary Container", async ({ app }) => {
+      And("the user accesses Checkout page by clicking Basic membership");
+      await test.step("Access Checkout page through clicking Premium Plan", async () => {
+        await app.membership.clickMembership(planCard.premium);
+      });
 
+      And("the user sees Membership Duration Dropdown");
+      await test.step("Membership Duration Dropdown", async () => {
+        await app.membership.verifyMembershipDurationDropdown();
+      });
 
-
-
-
+      And("the user sees Discount Code Field and Label");
+      await test.step("Discount Code Field and Label", async () => {
+        await app.membership.verifyDiscountCodeFieldAndLabel(strings.checkout.discountTen);
+      });
 
 
     });
-
-    test("Verify Order Summary Container", async ({ app }) => {});
   }
 );

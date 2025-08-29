@@ -8,6 +8,12 @@ import MembershipPage from "../pages/membership.page";
 import AuthActions from "./auth.actions";
 import navbarFooterActions from "./navbarFooter.actions";
 
+export enum planCard {
+  basic = "Basic",
+  premium = "Premium",
+  elite = "Elite"
+}
+
 export default class MembershipActions extends CommonActions {
   membership: MembershipPage;
   auth: AuthActions;
@@ -222,7 +228,7 @@ export default class MembershipActions extends CommonActions {
 
   // ===========
 
-  async clickMembership(membershipSelected: string) {
+  async clickMembership(plansCard: planCard) {
     await this.navbarFooter.navigateToPageByLinkText(
       strings.navBar.login,
       routes.allPages.authLoginPage
@@ -234,32 +240,35 @@ export default class MembershipActions extends CommonActions {
       routes.allPages.membershipPage
     );
 
-    await this.verifyMembershipSelected(membershipSelected);
+    await this.verifyMembershipSelected(plansCard);
   }
 
-  async verifyMembershipSelected(membershipName: string) {
-    switch (membershipName) {
-      case strings.checkout.basic:
-        await this.membership.membership1Button.click();
-        break;
-      case strings.checkout.premium:
-        await this.membership.membership2Button.click();
-        break;
-      case strings.checkout.elite:
-        await this.membership.membership3Button.click();
-        break;
-    }
+ async verifyMembershipSelected(plan: planCard) {
+  const membershipDropdown = this.membership.membershipDropdown;
 
-    const membershipDropdown = this.membership.membershipDropdown;
+  // Map planCard values to their respective buttons
+  const planButtonMap = {
+    [planCard.basic]: this.membership.membership1Button,
+    [planCard.premium]: this.membership.membership2Button,
+    [planCard.elite]: this.membership.membership3Button,
+  };
+
+  const button = planButtonMap[plan];
+  if (!button) {
+    throw new Error(`No button found for the plan: ${plan}`);
+  }
+
+  await button.click();
+  
+  // Only wait for dropdown if it exists
+  if (membershipDropdown) {
     await membershipDropdown.waitFor({ state: "visible" });
-
     const selectedValue = await membershipDropdown.inputValue();
-    expect(selectedValue).toBe(membershipName);
-
-    console.log(
-      `${membershipName} membership is correctly selected in the dropdown`
-    );
+    expect(selectedValue).toBe(plan);
+    console.log(`${plan} membership is correctly selected in the dropdown`);
   }
+}
+
 
   async fillCheckoutFormAndPlaceOrder(
     applyDiscount: boolean = false,
@@ -357,6 +366,10 @@ export default class MembershipActions extends CommonActions {
     await expect(this.membership.cardNumberField).toBeVisible();
     await expect(this.membership.cvvField).toBeVisible();
     await expect(this.membership.expDateField).toBeVisible();
+
+    await expect(this.membership.cardNumberField).toHaveAttribute("placeholder", "1234 5678 9012 3456");
+    await expect(this.membership.cvvField).toHaveAttribute("placeholder", "123");
+    await expect(this.membership.expDateField).toHaveAttribute("placeholder", "MM/YY");
   }
 
   async verifyTermsCheckbox() {
@@ -368,15 +381,53 @@ export default class MembershipActions extends CommonActions {
     }
 
     await expect(this.membership.termsCheckbox).toBeChecked();
+
+    await expect(this.membership.termsLabel).toHaveText(strings.checkout.termsAndConditions);
+
   }
 
-  async verifyPlaceOrderButton() {}
+  async verifyPlaceOrderButton() {
+    const placeOrderButton = this.membership.placeOrderButton;
+    await expect(placeOrderButton).toBeVisible();
+    await placeOrderButton.click();
+  }
 
-  async verifyDiscountCodeField() {}
+  async verifyApplyButton() {
+    const applyButton = this.membership.applyDiscountButton;
+    await expect(applyButton).toBeVisible();
+    await applyButton.click();
+  }
+
+  async verifyDiscountCodeFieldAndLabel(code: string) {
+    await expect(this.membership.discountCodeLabel).toHaveText(strings.checkout.discountCode);
+    await expect(this.membership.visibleDiscountCode).toBeVisible();
+
+    await this.membership.visibleDiscountCode.fill(code);
+
+    await this.verifyApplyButton();
+
+    await this.page.waitForFunction(
+  (selector: string) => {
+    const el = document.querySelector(selector);
+    return el && window.getComputedStyle(el).display !== 'none';
+  },
+  '#appliedDiscount',
+  { timeout: 10000 }
+);
+
+
+
+    await expect(this.membership.appliedDiscount).toBeVisible({ timeout: 10000 });
+    await expect(this.membership.appliedDiscountCode).toHaveText(code);
+
+    const subtotal = await this.membership.subtotalAmount.textContent();
+  const total = await this.membership.totalAmount.textContent();
+  console.log(`Subtotal: ${subtotal}, Total: ${total}`);
+  }
 
   async verifySubtotal() {}
 
   async verifyTotal() {}
 
-  async verifyApplyButton() {}
+  
 }
